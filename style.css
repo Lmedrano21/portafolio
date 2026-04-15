@@ -1,0 +1,83 @@
+/* --- RESET BASE --- */
+
+* {
+    margin: 0;           /* Elimina el espacio exterior que los navegadores ponen por defecto */
+    padding: 0;          /* Elimina el espacio interior por defecto */
+    box-sizing: border-box; /* Crucial: asegura que el padding no "infle" el ancho de los elementos */
+    font-family: sans-serif; /* Define el tipo de letra para todo el documento */
+}
+
+/* --- BARRA DE NAVEGACIÓN (NAVBAR) --- */
+
+.navbar {
+    display: flex;             /* Activa el modo "caja flexible" para alinear hijos en línea */
+    justify-content: space-between; /* Empuja el logo a un extremo y el menú al otro */
+    align-items: center;       /* Centra el logo y los links verticalmente entre sí */
+    padding: 20px 50px;        /* Crea aire arriba/abajo (20px) y a los lados (50px) */
+    background-color: #fff;    /* Color de fondo blanco */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Crea una sombra sutil bajo la barra */
+}
+
+.logo {
+    font-size: 24px;           /* Define el tamaño de la letra del logo */
+    font-weight: bold;         /* Hace que el texto del logo sea grueso */
+    color: #5d4037;            /* Color marrón café */
+}
+
+.navbar nav a {
+    text-decoration: none;     /* Quita la línea subrayada azul de los enlaces */
+    color: #333;               /* Color gris oscuro para los textos del menú */
+    margin-left: 20px;         /* Separa cada link del anterior por la izquierda */
+    font-weight: 500;          /* Grosor de letra intermedio */
+    transition: 0.3s;          /* Hace que cualquier cambio (como el color) sea suave */
+}
+
+.navbar nav a:hover {
+    color: #d4a373;            /* Cambia el color cuando el mouse pasa por encima */
+}
+
+/* --- SECCIÓN PRINCIPAL (HERO) --- */
+
+.hero {
+    height: 90vh;              /* Altura: el 90% del alto de la pantalla del usuario */
+    display: flex;             /* Usamos flex para centrar el contenido interno */
+    justify-content: center;   /* Centra el contenido de forma horizontal */
+    align-items: center;       /* Centra el contenido de forma vertical */
+    text-align: center;        /* Centra las líneas de texto una sobre otra */
+    
+    /* Imagen de fondo con una capa oscura (linear-gradient) para que el texto blanco se lea bien */
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                url('https://unsplash.com');
+    
+    background-size: cover;    /* La imagen se estira para cubrir todo el fondo sin deformarse */
+    background-position: center; /* Asegura que lo más importante de la foto esté siempre al centro */
+    color: white;              /* Color de todo el texto dentro de esta sección */
+}
+
+.hero-content h1 {
+    font-size: 3rem;           /* Tamaño de letra grande (3 veces el tamaño base) */
+    margin-bottom: 20px;       /* Empuja el párrafo de abajo hacia fuera */
+}
+
+.hero-content p {
+    font-size: 1.2rem;         /* Tamaño de letra un poco más grande que el normal */
+    margin-bottom: 30px;       /* Empuja el botón de abajo hacia fuera */
+}
+
+/* --- BOTÓN --- */
+
+.btn-main {
+    padding: 15px 30px;        /* Espacio interno para darle volumen al botón */
+    background-color: #d4a373; /* Color de fondo del botón */
+    color: white;              /* Color del texto del botón */
+    border: none;              /* Quita el borde gris tosco que traen los botones */
+    border-radius: 5px;        /* Redondea las esquinas del botón */
+    font-size: 1rem;           /* Tamaño del texto del botón */
+    cursor: pointer;           /* Hace que el cursor sea una "mano" al apuntar */
+    transition: 0.3s ease;     /* Suaviza cualquier animación */
+}
+
+.btn-main:hover {
+    background-color: #bc8a5f; /* Oscurece el color al pasar el mouse */
+    transform: translateY(-3px); /* Hace que el botón "salte" 3 píxeles hacia arriba */
+}
