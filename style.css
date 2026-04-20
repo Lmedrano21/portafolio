@@ -1,0 +1,29 @@
+.typing {
+  font-family: monospace; /* Ayuda a que el ancho sea preciso */
+  font-size: 3rem;
+  white-space: nowrap;    /* Evita que el texto salte de línea */
+  overflow: hidden;       /* Oculta las letras que aún no "aparecen" */
+  border-right: 3px solid #fff; /* El cursor parpadeante */
+  
+  /* Definimos el ancho inicial en 0 */
+  width: 0;
+  
+  /* Animaciones: 
+     1. typing: expande el ancho.
+     2. blink: hace parpadear el cursor. */
+  animation: 
+    typing 3.5s steps(30, end) forwards, 
+    blink .75s step-end infinite;
+}
+
+/* El efecto de escribir: de 0 a 100% del ancho */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+/* El parpadeo del cursor */
+@keyframes blink {
+  from, to { border-color: transparent }
+  50% { border-color: white }
+}
