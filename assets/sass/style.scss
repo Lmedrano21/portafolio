@@ -1,107 +1,826 @@
+
+
 @import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap');
 
+/* ================================================
+   VARIABLES DE COLOR
+   ================================================ */
+$color-bg-dark: #0E0B16;      /* Color de fondo principal - Fondo oscuro */
+$color-bg-card: #1A1722;      /* Color de fondo para tarjetas - Ligeramente más claro */
+$color-accent: #58b30f;       /* Color de acento - Verde vibrante */
+$color-accent-hover: #6bc91e; /* Versión más clara del acento para hover */
+$color-text-light: #fff;      /* Texto blanco */
+$color-text-gray: #999;       /* Texto gris para descripciones */
+$color-text-dark: #333;       /* Texto gris oscuro para nav */
+$color-border: #2d2a2a;       /* Color de bordes */
+
+/* ================================================
+   RESET Y ESTILOS GLOBALES
+   ================================================ */
+
+/* El selector universal * aplica estilos a TODOS los elementos */
 * {
-    margin: 0;           /* Elimina el espacio exterior que los navegadores ponen por defecto */
-    padding: 0;          /* Elimina el espacio interior por defecto */
-    box-sizing: border-box; /* Crucial: asegura que el padding no "infle" el ancho de los elementos */
-    font-family: Libre Franklin; /* Define el tipo de letra para todo el documento */
+    margin: 0;              /* Elimina márgenes externos por defecto */
+    padding: 0;             /* Elimina relleno interno por defecto */
+    box-sizing: border-box; /* Incluye padding y border en el ancho total (crucial para diseños) */
+    font-family: 'Libre Franklin', sans-serif; /* Tipografía consistente en todo el sitio */
 }
 
-body{
-    background-color: #0E0B16;
+/* Body: contenedor principal del documento */
+body {
+    background-color: $color-bg-dark;
+    color: $color-text-light;
+    line-height: 1.6;       /* Espaciado entre líneas para mejor legibilidad */
+    overflow-x: hidden;     /* Evita barras de scroll horizontal */
+}
+
+/* ================================================
+   CONTENEDOR - Clase reutilizable
+   ================================================ */
+/* Centra el contenido y establece un ancho máximo */
+.container {
+    max-width: 1200px;      /* Ancho máximo en pantallas grandes */
+    margin: 0 auto;         /* Centra horizontalmente */
+    padding: 0 20px;        /* Relleno lateral responsivo */
+}
+
+/* ================================================
+   BARRA DE NAVEGACIÓN (NAVBAR)
+   ================================================ */
+
+.navbar {
+    display: flex;                  /* Activa flexbox para alinear elementos */
+    justify-content: space-between; /* Empuja logo a la izquierda, nav a la derecha */
+    align-items: center;            /* Centra verticalmente todos los elementos */
+    padding: 20px 50px;             /* Espaciado vertical y horizontal */
+    background-color: $color-bg-dark;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Sombra sutil para profundidad */
+    position: sticky;               /* Permanece visible al hacer scroll */
+    top: 0;                         /* Se fija en la parte superior */
+    z-index: 100;                   /* Se asegura que esté sobre otros elementos */
+
+    .logo {
+        font-size: 24px;            /* Tamaño de letra grande */
+        font-weight: bold;          /* Texto en negrita */
+        color: $color-accent;       /* Color verde acento */
+        letter-spacing: 1px;        /* Espaciado entre letras para elegancia */
+        transition: all 0.3s ease;  /* Suaviza cambios de estilo */
+
+        &:hover {
+            color: $color-accent-hover; /* Verde más claro al pasar el mouse */
+            text-shadow: 0 0 10px rgba(88, 179, 15, 0.5); /* Brillo sutil */
+        }
+    }
+
+    /* Estilos para el contenedor de navegación */
+    nav {
+        display: flex;              /* Alinea links horizontalmente */
+        gap: 30px;                  /* Espacio entre cada link */
+
+        a {
+            text-decoration: none;      /* Quita la línea subrayada */
+            color: $color-text-light;
+            font-weight: 500;           /* Grosor medio */
+            font-size: 16px;
+            transition: 0.3s ease;      /* Transición suave en hover */
+            position: relative;         /* Necesario para el efecto underline */
+
+            /* Efecto subrayado que aparece al hover */
+            &::after {
+                content: '';            /* Crea un pseudo-elemento vacío */
+                position: absolute;     /* Se posiciona relativo a su padre */
+                bottom: -5px;           /* 5px debajo del texto */
+                left: 0;                /* Comienza desde la izquierda */
+                width: 0;               /* Inicia con ancho 0 */
+                height: 2px;            /* Grosor de la línea */
+                background-color: $color-accent;
+                transition: width 0.3s ease; /* Anima el ancho */
+            }
+
+            &:hover {
+                color: $color-accent; /* Cambio de color en hover */
+
+                /* El subrayado se expande */
+                &::after {
+                    width: 100%;        /* Se expande al ancho completo */
+                }
+            }
+        }
+    }
+}
+
+/* ================================================
+   HERO SECTION (Sección Principal)
+   ================================================ */
+
+.hero {
+    height: 100vh;                  /* Altura completa de la pantalla */
+    display: flex;                  /* Flexbox para centrar contenido */
+    justify-content: center;        /* Centra horizontalmente */
+    align-items: center;            /* Centra verticalmente */
+    background: linear-gradient(135deg, $color-bg-dark 0%, #1a1722 100%); /* Gradiente sutil */
+    color: $color-text-light;
+    padding: 40px 20px;
+
+    .hero-content {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Dos columnas iguales */
+        gap: 50px;                  /* Espacio entre columnas */
+        align-items: center;
+        width: 100%;
+        max-width: 1200px;
+
+        .hero-text {
+            /* Estilos del texto principal */
+        }
+
+        .img_style {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                width: 300px;           /* Ancho de imagen */
+                height: 300px;          /* Alto de imagen */
+                border-radius: 50%;     /* Hace un círculo */
+                object-fit: cover;      /* Recorta la imagen sin deformarla */
+                border: 3px solid $color-accent; /* Borde verde */
+                animation: flotar 3s ease-in-out infinite; /* Animación de flotación */
+                box-shadow: 0 0 30px rgba(88, 179, 15, 0.3); /* Brillo alrededor */
+            }
+        }
+
+        h1 {
+            font-size: 4rem;            /* Tamaño muy grande */
+            margin-bottom: 20px;
+            font-weight: 900;           /* Muy negrita */
+            color: $color-accent;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: $color-text-gray;
+            line-height: 1.8;
+        }
+    }
+}
+
+/* ================================================
+   ANIMACIÓN: FLOTAR
+   ================================================ */
+/* Hace que la imagen suba y baje continuamente */
+@keyframes flotar {
+    0%, 100% { 
+        transform: translateY(0);       /* Posición inicial */
+    }
+    50% { 
+        transform: translateY(-30px);   /* Sube 30px en el medio */
+    }
+}
+
+/* ================================================
+   ANIMACIÓN: TYPING (EFECTO DE ESCRITURA)
+   ================================================ */
+/* Simula que el texto se está escribiendo */
+@keyframes typing {
+    from { 
+        width: 0;                       /* Comienza en 0 de ancho */
+    }
+    to { 
+        width: 100%;                    /* Se expande al ancho completo */
+    }
+}
+
+/* Efecto de parpadeo del cursor */
+@keyframes blink {
+    from, to { 
+        border-color: transparent;      /* Invisible */
+    }
+    50% { 
+        border-color: $color-accent;    /* Visible */
+    }
+}
+
+/* Clase para aplicar la animación typing */
+.typing {
+    font-family: monospace;             /* Fuente monoespaciada para precisión */
+    font-size: 3rem;
+    white-space: nowrap;                /* No permite saltos de línea */
+    overflow: hidden;                   /* Oculta el texto que aún no se "escribe" */
+    border-right: 3px solid $color-accent; /* Cursor de escritura */
+    width: 0;                           /* Ancho inicial 0 */
+    animation: 
+        typing 3.5s steps(30, end) forwards,  /* Escribe cada letra en pasos */
+        blink 0.75s step-end infinite;        /* Parpadea el cursor */
+}
+
+/* ================================================
+   ANIMACIÓN: FADE IN UP (APARECE Y SUBE)
+   ================================================ */
+/* Elementos aparecen con opacidad y suben suavemente */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;                     /* Completamente transparente */
+        transform: translateY(30px);    /* Empieza 30px más abajo */
+    }
+    to {
+        opacity: 1;                     /* Completamente visible */
+        transform: translateY(0);       /* Sube a su posición final */
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.8s ease forwards;
+    
+    /* Cada elemento con esta clase se anima en diferente momento */
+    &:nth-child(1) { animation-delay: 0.2s; }
+    &:nth-child(2) { animation-delay: 0.4s; }
+    &:nth-child(3) { animation-delay: 0.6s; }
+}
+
+/* ================================================
+   ANIMACIÓN: SLIDE IN LEFT (ENTRA DESDE IZQUIERDA)
+   ================================================ */
+/* Los elementos entran desde la izquierda */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;                     /* Invisible */
+        transform: translateX(-50px);   /* 50px a la izquierda */
+    }
+    to {
+        opacity: 1;                     /* Visible */
+        transform: translateX(0);       /* En su posición */
+    }
+}
+
+.slide-in-left {
+    animation: slideInLeft 0.6s ease forwards;
+    
+    /* Cada tarjeta se anima en diferente momento */
+    &:nth-child(1) { animation-delay: 0.2s; }
+    &:nth-child(2) { animation-delay: 0.4s; }
+    &:nth-child(3) { animation-delay: 0.6s; }
+}
+
+/* ================================================
+   SECCIÓN ABOUT ME (SOBRE MÍ)
+   ================================================ */
+
+.about_me {
+    padding: 80px 20px;
+    background: linear-gradient(180deg, $color-bg-dark 0%, $color-bg-card 100%);
+
+    .section-title {
+        font-size: 3rem;                /* Tamaño grande */
+        text-align: center;
+        margin-bottom: 60px;
+        color: $color-accent;
+        position: relative;
+        padding-bottom: 20px;
+
+        /* Línea decorativa debajo del título */
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, $color-accent, transparent);
+            border-radius: 2px;
+        }
+    }
+
+    .about-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: start;
+
+        .about-text {
+            h3 {
+                font-size: 1.5rem;
+                margin-bottom: 15px;
+                color: $color-accent;
+            }
+
+            p {
+                font-size: 1.1rem;
+                color: $color-text-gray;
+                margin-bottom: 25px;
+                line-height: 1.8;
+            text-align: justify; /* Justifica el texto para un aspecto más profesional */
+            }
+
+            /* Lista de habilidades */
+            .skills-list {
+                list-style: none;       /* Quita los puntos por defecto */
+
+                li {
+                    padding: 12px 0;
+                    padding-left: 30px;
+                    position: relative;
+                    font-size: 1.1rem;
+                    color: $color-text-gray;
+
+                    /* Punto decorativo verde antes de cada elemento */
+                    &::before {
+                        content: '✓';       /* Checkmark en lugar de punto */
+                        position: absolute;
+                        left: 0;
+                        color: $color-accent;
+                        font-weight: bold;
+                        font-size: 1.3rem;
+                    }
+                }
+            }
+        }
+
+        /* Estadísticas en tarjetas */
+        .about-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            .stat-card {
+                background-color: $color-bg-card;
+                padding: 30px;
+                border-radius: 10px;
+                border-left: 4px solid $color-accent;
+                text-align: center;
+                transition: all 0.3s ease;
+
+                &:hover {
+                    transform: translateY(-5px);    /* Sube el elemento */
+                    box-shadow: 0 10px 30px rgba(88, 179, 15, 0.2); /* Sombra */
+                }
+
+                .stat-number {
+                    font-size: 2.5rem;
+                    color: $color-accent;
+                    margin-bottom: 10px;
+                    font-weight: 900;
+                }
+
+                p {
+                    color: $color-text-gray;
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+}
+
+/* ================================================
+   SECCIÓN PROYECTOS (PROJECTS)
+   ================================================ */
+
+.projects {
+    padding: 80px 20px;
+    background-color: $color-bg-dark;
+
+    .section-title {
+        font-size: 3rem;
+        text-align: center;
+        margin-bottom: 60px;
+        color: $color-accent;
+        position: relative;
+        padding-bottom: 20px;
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, $color-accent, transparent);
+            border-radius: 2px;
+        }
+    }
+
+    /* Grid de tarjetas de proyectos */
+    .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive */
+        gap: 40px;
+    }
+}
+
+/* Tarjeta de proyecto individual */
+.project-card {
+    background-color: $color-bg-card;
+    border-radius: 10px;
+    overflow: hidden;          /* Recorta contenido que salga de los límites */
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+        transform: translateY(-10px);       /* Sube 10px */
+        box-shadow: 0 20px 40px rgba(88, 179, 15, 0.2); /* Sombra verde */
+    }
+
+    /* Contenedor de imagen con efecto overlay */
+    .project-image {
+        position: relative;
+        overflow: hidden;
+        height: 200px;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease; /* Zoom en hover */
+        }
+
+        /* Capa oscura que aparece en hover */
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;                 /* Invisible por defecto */
+            transition: opacity 0.3s ease; /* Aparece suavemente */
+
+            .btn-view {
+                padding: 12px 30px;
+                background-color: $color-accent;
+                color: white;
+                text-decoration: none;
+                border-radius: 5px;
+                font-weight: bold;
+                transition: all 0.3s ease;
+
+                &:hover {
+                    background-color: $color-accent-hover;
+                    transform: scale(1.05);         /* Agranda el botón */
+                }
+            }
+        }
+
+        /* El overlay aparece cuando el mouse está sobre la tarjeta */
+        &:hover {
+            .project-overlay {
+                opacity: 1;             /* Se hace visible */
+            }
+
+            img {
+                transform: scale(1.1);  /* Imagen se agranda */
+            }
+        }
+    }
+
+    /* Información de la tarjeta */
+    .project-info {
+        padding: 25px;
+
+        h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: $color-text-light;
+        }
+
+        p {
+            color: $color-text-gray;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        /* Tags de tecnologías */
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;            /* Los tags pasan a siguiente línea si no caben */
+            gap: 10px;
+
+            .tag {
+                display: inline-block;
+                padding: 6px 12px;
+                background-color: rgba(88, 179, 15, 0.2); /* Fondo verde transparente */
+                color: $color-accent;
+                border-radius: 20px;
+                font-size: 0.85rem;
+                border: 1px solid $color-accent;
+                transition: all 0.3s ease;
+
+                &:hover {
+                    background-color: $color-accent;
+                    color: $color-bg-dark;
+                }
+            }
+        }
+    }
+}
+
+/* ================================================
+   SECCIÓN CONTACTO (CONTACT)
+   ================================================ */
+
+.contact {
+    padding: 80px 20px;
+    background: linear-gradient(180deg, $color-bg-card 0%, $color-bg-dark 100%);
+
+    .section-title {
+        font-size: 3rem;
+        text-align: center;
+        margin-bottom: 60px;
+        color: $color-accent;
+        position: relative;
+        padding-bottom: 20px;
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, $color-accent, transparent);
+            border-radius: 2px;
+        }
+    }
+
+    /* Contenido en dos columnas: info + formulario */
+    .contact-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    .contact-info {
+        h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: $color-accent;
+        }
+
+        > p {
+            color: $color-text-gray;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        /* Enlaces de contacto */
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            .contact-link {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                padding: 15px;
+                background-color: rgba(88, 179, 15, 0.1);
+                border-radius: 8px;
+                text-decoration: none;
+                color: $color-text-light;
+                transition: all 0.3s ease;
+                border-left: 3px solid transparent;
+
+                .icon {
+                    font-size: 1.5rem;
+                }
+
+                span:last-child {
+                    font-weight: 500;
+                }
+
+                &:hover {
+                    background-color: rgba(88, 179, 15, 0.2);
+                    border-left-color: $color-accent;
+                    transform: translateX(5px);
+                }
+            }
+        }
+    }
+
+    /* Formulario de contacto */
+    .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            label {
+                font-weight: 600;
+                color: $color-text-light;
+                font-size: 0.95rem;
+            }
+
+            /* Estilos para inputs y textareas */
+            input,
+            textarea {
+                padding: 15px;
+                background-color: rgba(255, 255, 255, 0.05); /* Fondo muy sutil */
+                border: 1px solid $color-border;
+                border-radius: 5px;
+                color: $color-text-light;
+                font-family: inherit;
+                font-size: 1rem;
+                transition: all 0.3s ease;
+
+                /* Placeholder con color tenue */
+                &::placeholder {
+                    color: rgba(255, 255, 255, 0.3);
+                }
+
+                /* Al enfocar el input (cuando haces click) */
+                &:focus {
+                    outline: none;                          /* Quita el outline azul default */
+                    background-color: rgba(88, 179, 15, 0.1); /* Fondo verde suave */
+                    border-color: $color-accent;            /* Borde verde */
+                    box-shadow: 0 0 10px rgba(88, 179, 15, 0.3); /* Brillo verde */
+                }
+
+                /* Al pasar el mouse */
+                &:hover {
+                    border-color: $color-accent;
+                }
+            }
+
+            textarea {
+                resize: vertical;                       /* Permite cambiar altura */
+                font-family: 'Libre Franklin', sans-serif;
+            }
+        }
+
+        /* Botón de envío */
+        .btn-submit {
+            margin-top: 10px;
+            width: 100%;
+        }
+    }
+}
+
+/* ================================================
+   BOTONES
+   ================================================ */
+
+.btn-main {
+    padding: 15px 40px;
+    background-color: $color-accent;
+    color: white;
+    border: none;                       /* Quita borde default */
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;                    /* Cambia el cursor a mano */
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;                   /* Necesario para el efecto de ondas */
+
+    /* Efecto de onda al hacer hover */
+    &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s; /* Transición lenta de la onda */
+    }
+
+    &:hover {
+        background-color: $color-accent-hover;
+        transform: translateY(-3px);            /* Sube el botón */
+        box-shadow: 0 10px 20px rgba(88, 179, 15, 0.3); /* Sombra */
+
+        &::before {
+            width: 300px;                       /* La onda se expande */
+            height: 300px;
+        }
+    }
+
+    &:active {
+        transform: translateY(-1px);            /* Menos elevación cuando está presionado */
+    }
+}
+
+/* ================================================
+   FOOTER
+   ================================================ */
+
+.footer {
+    padding: 30px 20px;
+    text-align: center;
+    background-color: #050409;         /* Fondo aún más oscuro */
+    border-top: 1px solid $color-border;
+    color: $color-text-gray;
+    font-size: 0.95rem;
+}
+
+/* ================================================
+   RESPONSIVE - Media Queries
+   ================================================ */
+
+/* Pantallas medianas (tablets) */
+@media (max-width: 768px) {
     .navbar {
-        display: flex;             /* Activa el modo "caja flexible" para alinear hijos en línea */
-        justify-content: space-between; /* Empuja el logo a un extremo y el menú al otro */
-        align-items: center;       /* Centra el logo y los links verticalmente entre sí */
-        padding: 20px 50px;        /* Crea aire arriba/abajo (20px) y a los lados (50px) */
-          /* Color de fondo blanco */
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Crea una sombra sutil bajo la barra */
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 15px;
 
-        nav a {
-            text-decoration: none;     /* Quita la línea subrayada azul de los enlaces */
-            color: #333;               /* Color gris oscuro para los textos del menú */
-            margin-left: 20px;         /* Separa cada link del anterior por la izquierda */
-            font-weight: 500;          /* Grosor de letra intermedio */
-            transition: 0.3s;          /* Hace que cualquier cambio (como el color) sea suave */
-        }
-
-        nav a:hover {
-            color: #58b30f;            /* Cambia el color cuando el mouse pasa por encima */
-        }
-
-        .logo {
-            font-size: 24px;           /* Define el tamaño de la letra del logo */
-            font-weight: bold;         /* Hace que el texto del logo sea grueso */
-            color: #58b30f;            /* Color marrón café */
+        nav {
+            gap: 15px;
         }
     }
 
     .hero {
-        height: 90vh;              /* Altura: el 90% del alto de la pantalla del usuario */
-        display: flex;             /* Usamos flex para centrar el contenido interno */
-        justify-content: center;   /* Centra el contenido de forma horizontal */
-        align-items: center;       /* Centra el contenido de forma vertical */
-        text-align: center;        /* Centra las líneas de texto una sobre otra */
-        
-        /* Imagen de fondo con una capa oscura (linear-gradient) para que el texto blanco se lea bien */
-              
-        
-        background-size: cover;    /* La imagen se estira para cubrir todo el fondo sin deformarse */
-        background-position: center; /* Asegura que lo más importante de la foto esté siempre al centro */
-        color: white;              /* Color de todo el texto dentro de esta sección */
+        height: auto;
+        padding: 40px 20px;
 
-        .hero-content{
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
+        .hero-content {
+            grid-template-columns: 1fr;
+            gap: 30px;
+            text-align: center;
 
-            .img_style {
-                display: flex;
-                justify-content: center;
-                margin: 30px 0;
-                animation: flotar 3s ease-in-out infinite;
+            h1 {
+                font-size: 2.5rem;
             }
 
-            @keyframes flotar {
-                0%, 100% { transform: translateY(0); }
-                50% { transform: translateY(-50px); }
+            .img_style img {
+                width: 200px;
+                height: 200px;
             }
         }
-
-        .hero-content h1 {
-            font-size: 4rem;           /* Tamaño de letra grande (3 veces el tamaño base) */
-            margin-bottom: 20px;       /* Empuja el párrafo de abajo hacia fuera */
-        }
-
-
-        .hero-content p {
-            font-size: 2rem;         /* Tamaño de letra un poco más grande que el normal */
-            margin-bottom: 30px;       /* Empuja el botón de abajo hacia fuera */
-        }
-
     }
 
-    .btn-main {
-        padding: 15px 30px;        /* Espacio interno para darle volumen al botón */
-        background-color: #2d2a2a; /* Color de fondo del botón */
-        color: white;              /* Color del texto del botón */
-        border: none;              /* Quita el borde gris tosco que traen los botones */
-        border-radius: 5px;        /* Redondea las esquinas del botón */
-        font-size: 1rem;           /* Tamaño del texto del botón */
-        cursor: pointer;           /* Hace que el cursor sea una "mano" al apuntar */
-        transition: 0.3s ease;     /* Suaviza cualquier animación */
-
-        &:hover {
-            background-color: #58b30f; /* Oscurece el color al pasar el mouse */
-            transform: translateY(-3px); /* Hace que el botón "salte" 3 píxeles hacia arriba */
-        }
+    .about_me .about-content,
+    .contact .contact-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
     }
 
-    .about_me{
-        color: white;
+    .projects .projects-grid {
+        grid-template-columns: 1fr;
+    }
 
-        h2{
-            
+    .section-title {
+        font-size: 2rem;
+    }
+}
+
+/* Pantallas pequeñas (móviles) */
+@media (max-width: 480px) {
+    .navbar {
+        padding: 10px 15px;
+
+        .logo {
+            font-size: 20px;
+        }
+
+        nav {
+            flex-direction: column;
+            gap: 10px;
+            font-size: 0.9rem;
         }
     }
 
+    .hero {
+        height: auto;
+
+        .hero-content {
+            h1 {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            .img_style img {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+    }
+
+    .contact-content {
+        gap: 30px;
+    }
 }

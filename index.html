@@ -3,37 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portafolio | Luis</title>
+    <title>Portfolio | Luis Medrano</title>
+    <link rel="icon" type="image/x-icon" href="favicon.png">
+
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <header class="navbar">
-        <div class="logo">Portafolio</div>
+        <div class="logo">Portfolio</div>
         <nav>
-            <a href="#">About me</a>
-            <a href="#">Projects</a>
-            <a href="#">Contacto</a>
+            <a href="#about">About me</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact me</a>
         </nav>
     </header>
 
+    <!-- HERO SECTION -->
     <section class="hero">
         <div class="hero-content">
-            <div>
-                <h1>Eoooo</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem sint asperiores tempore accusantium nemo cupiditate, quam fugit eligendi? Asperiores similique soluta beatae neque aspernatur ut reprehenderit officia porro omnis rem.</p>
-                <button class="btn-main">Contact me</button>
+            <div class="hero-text">
+                <h1 class="typing">Luis Medrano...</h1>
+                <p>I am a legal professional seeking to combine my legal career with the world of software development.</p>
+                <p>Full-Stack Developer in Training | Lawyer | Riwi Coder | Public Administration</p>
+                <button class="btn-main">Contáctame</button>
             </div>
             <div class="img_style">
-                <img src="img.png" alt="">
+                <img src="foto.jpg" alt="Foto de perfil">
             </div>
         </div>
     </section>
 
-
-    <section class="about_me">
-        <div>
-            <h2>About me</h2>
+    <!-- ABOUT ME SECTION -->
+    <section class="about_me" id="about">
+        <div class="container">
+            <h2 class="section-title">About me</h2>
+            <div class="about-content">
+                <div class="about-text fade-in-up">
+                    <h3>Luis Alfredo Medrano Caballero</h3>
+                    <p>I am a legal professional seeking to combine my legal career with the world of software development. Currently, I am training as a Coder at Riwi, where I am acquiring technical skills to build innovative digital solutions. My profile combines the analytical rigor of legal sciences with the technical ability to solve problems through code</p>
+                    <h3>Education and Experience</h3>
+                    <ul class="skills-list">
+                        <li><strong>Riwi Coder:</strong> Full-Stack Development (Currently in training)</li>
+                        <li><strong>Public Administration:</strong> ESAP (Student)</li>
+                        <li><strong>Law:</strong> Universidad del Atlántico (Graduate)</li>
+                    </ul>
+                </div>
+                <div class="about-stats fade-in-up">
+                    <div class="stat-card">
+                        <h4 class="stat-number">3</h4>
+                        <p>Focus Areas (Law, Public Admin, Tech)</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4 class="stat-number">4</h4>
+                        <p>Tech Skills (Python, HTML, CSS, JavaScript)</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4 class="stat-number">1+</h4>
+                        <p>Projects in Development</p>
+                    </div>
+                </div>
+                </div>
+            </div>
         </div>
     </section>
+
+    <section class="projects" id="projects">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                
+                <div class="project-card slide-in-left">
+                    <div class="project-image">
+                        <img src="https://thumbs.dreamstime.com/b/futuristic-pos-system-processing-transaction-vibrant-cyberpunk-store-modern-point-sale-terminal-glowing-neon-417342391.jpg" alt="Ice Cream POS System">
+                        <div class="project-overlay">
+                            <a href="#" class="btn-view">View Project</a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Ice Cream POS System</h3>
+                        <p>A comprehensive desktop Point of Sale application featuring quick sales, detailed invoicing, inventory tracking, and customer management.</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Tkinter</span>
+                            <span class="tag">Desktop App</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card slide-in-left">
+                    <div class="project-image">
+                        <img src="https://thumbs.dreamstime.com/b/business-professionals-discussing-artificial-intelligence-legal-systems-modern-office-environment-visual-technology-451820707.jpg" alt="Legal Management System">
+                        <div class="project-overlay">
+                            <a href="#" class="btn-view">View Project</a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Legal Management System</h3>
+                        <p>A modern desktop system for law firms. Includes client data management, automated legal document generation, task tracking, and internal messaging.</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">CustomTkinter</span>
+                            <span class="tag">Pandas</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT FORM SECTION -->
+   <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Me</h2>
+            <div class="contact-content">
+                <div class="contact-info fade-in-up">
+                    <h3>Have an idea?</h3>
+                    <p>I would love to hear about your project and help you bring it to life.</p>
+                    <div class="contact-links">
+                        <a href="mailto:lmedrano2314@gmail.com" class="contact-link">
+                            <span>lmedrano2314@gmail.com</span>
+                        </a>
+                        <a href="#" class="contact-link">
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="https://github.com/Lmedrano21" class="contact-link" target="_blank"    >
+                            <span>GitHub</span>
+                        </a>
+                    </div>
+                </div>
+
+                <form class="contact-form fade-in-up">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-main btn-submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>&copy; 2026 Luis Medrano. All rights reserved.</p>
+    </footer>
+
 </body>
 </html>
