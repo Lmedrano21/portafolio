@@ -1,758 +1,1398 @@
-/* ================================================
-   PORTAFOLIO - ESTILOS PRINCIPALES
-   Autor: Sharith PK
-   Descripción: Estilos CSS compilados para el portafolio fullstack
-   ================================================ */
-
+@charset "UTF-8";
+/* Importa la fuente Libre Franklin de Google Fonts con múltiples pesos (100-900) e inclina (ital) */
 @import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap");
-
 /* ================================================
-   VARIABLES DE COLOR (usando CSS Custom Properties)
+   VARIABLES DE COLOR - Define colores reutilizables en todo el SCSS
    ================================================ */
-:root {
-  --color-bg-dark: #0E0B16;
-  --color-bg-card: #1A1722;
-  --color-accent: #58b30f;
-  --color-accent-hover: #6bc91e;
-  --color-text-light: #fff;
-  --color-text-gray: #999;
-  --color-text-dark: #333;
-  --color-border: #2d2a2a;
-}
-
+/* Color de fondo principal - Tono muy oscuro/casi negro (#0E0B16) */
+/* Color de fondo para tarjetas - Ligeramente más claro que el fondo principal (#1A1722) */
+/* Color de acento principal - Verde vibrante que resalta en el diseño (#58b30f) */
+/* Versión más clara del acento para estados hover - Verde más brillante (#6bc91e) */
+/* Texto principal - Blanco puro (#fff) para máximo contraste */
+/* Texto secundario - Gris medio (#999) para descripciones y textos auxiliares */
+/* Texto oscuro - Gris muy oscuro (#333) usado en navegación */
+/* Color de bordes - Gris muy oscuro (#2d2a2a) para separadores */
 /* ================================================
-   RESET Y ESTILOS GLOBALES
+   RESET Y ESTILOS GLOBALES - Normaliza estilos de todos los navegadores
    ================================================ */
-
-/* El selector * es el "selector universal" que aplica a TODOS los elementos */
+/* El selector universal * selecciona TODOS los elementos HTML del documento */
 * {
-  margin: 0;              /* Elimina márgenes externos */
-  padding: 0;             /* Elimina relleno interno */
-  box-sizing: border-box; /* Incluye padding/border en el cálculo de ancho */
+  /* Elimina márgenes externos por defecto que agregan espacios innecesarios */
+  margin: 0;
+  /* Elimina relleno interno por defecto de elementos del navegador */
+  padding: 0;
+  /* Incluye padding y border en el cálculo del ancho/alto total (crucial para layouts consistentes) */
+  box-sizing: border-box;
+  /* Define la tipografía "Libre Franklin" en todo el sitio para consistencia visual */
   font-family: "Libre Franklin", sans-serif;
 }
 
-/* Body: contenedor principal del documento */
+/* Body: contenedor principal del documento HTML */
 body {
-  background-color: var(--color-bg-dark);
-  color: var(--color-text-light);
+  /* Aplica el fondo oscuro definido en la variable de color */
+  background-color: #0E0B16;
+  /* Define el color de texto principal en blanco para contraste */
+  color: #fff;
+  /* Espaciado entre líneas: 1.6 líneas proporciona buena legibilidad */
   line-height: 1.6;
+  /* Evita que aparezca barra de scroll horizontal innecesaria */
   overflow-x: hidden;
 }
 
 /* ================================================
    CONTENEDOR - Clase reutilizable para centrar contenido
    ================================================ */
+/* Centra el contenido y establece un ancho máximo para mejor legibilidad */
 .container {
+  /* Ancho máximo en pantallas grandes para evitar líneas demasiado largas */
   max-width: 1200px;
+  /* Establece márgenes automáticos derecha e izquierda para centrar horizontalmente */
   margin: 0 auto;
+  /* Relleno lateral responsivo: evita que el contenido toque los bordes en móviles */
   padding: 0 20px;
 }
 
 /* ================================================
-   BARRA DE NAVEGACIÓN (NAVBAR)
-   FLEXBOX: display:flex centra elementos horizontalmente
-   justify-content:space-between = elementos en extremos
+   BARRA DE NAVEGACIÓN (NAVBAR) - Encabezado superior fijo
    ================================================ */
-
 .navbar {
+  /* Activa Flexbox para alinear elementos de forma flexible */
   display: flex;
+  /* Distribuye espacio: logo a la izquierda, navegación a la derecha */
   justify-content: space-between;
+  /* Alinea verticalmente todos los elementos al centro */
   align-items: center;
+  /* Espaciado: 20px arriba/abajo, 50px izquierda/derecha */
   padding: 20px 50px;
-  background-color: var(--color-bg-dark);
+  /* Fondo oscuro igual al del body para consistencia */
+  background-color: #0E0B16;
+  /* Sombra sutil: da profundidad visual separando navbar del contenido */
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  /* Mantiene la navbar visible incluso al hacer scroll */
   position: sticky;
+  /* Fija la posición en la parte superior de la pantalla */
   top: 0;
+  /* Asegura que esté sobre otros elementos (dropdown, modal, etc) */
   z-index: 100;
+  /* Estilos para el logo de la marca */
 }
-
-/* Logo con efecto glow en hover */
 .navbar .logo {
+  /* Tamaño de letra grande y visible */
   font-size: 24px;
+  /* Texto en negrita para destacar */
   font-weight: bold;
-  color: var(--color-accent);
+  /* Color verde acento definido en variables */
+  color: #58b30f;
+  /* Espaciado entre letras para elegancia tipográfica */
   letter-spacing: 1px;
+  /* Suaviza todos los cambios de estilo en 0.3 segundos */
   transition: all 0.3s ease;
+  /* Estilos cuando el mouse está sobre el logo */
 }
-
 .navbar .logo:hover {
-  color: var(--color-accent-hover);
+  /* Cambia a verde más claro al pasar el mouse */
+  color: #6bc91e;
+  /* Crea un efecto de brillo/resplandor alrededor del texto */
   text-shadow: 0 0 10px rgba(88, 179, 15, 0.5);
 }
-
-/* Contenedor de links de navegación */
+.navbar {
+  /* Estilos para el contenedor de navegación */
+}
 .navbar nav {
+  /* Alinea los links de navegación horizontalmente */
   display: flex;
+  /* Espacio entre cada link de navegación */
   gap: 30px;
+  /* Estilos para cada enlace dentro de nav */
 }
-
-/* Estilos para cada link */
 .navbar nav a {
+  /* Elimina la línea subrayada por defecto de los enlaces */
   text-decoration: none;
-  color: var(--color-text-light);
+  /* Color blanco para los links */
+  color: #fff;
+  /* Grosor medio de la fuente */
   font-weight: 500;
+  /* Tamaño de letra estándar */
   font-size: 16px;
+  /* Transición suave de 0.3 segundos para cambios de estilo */
   transition: 0.3s ease;
+  /* Position relativo necesario para que funcione ::after */
   position: relative;
+  /* Crea un pseudo-elemento para efecto de subrayado animado */
 }
-
-/* Pseudo-elemento ::after crea un subrayado que se anima */
 .navbar nav a::after {
+  /* Crea un elemento invisible (vacío) */
   content: "";
+  /* Se posiciona relativo a su elemento padre (el link) */
   position: absolute;
+  /* 5 píxeles debajo del texto */
   bottom: -5px;
+  /* Comienza desde la izquierda del elemento */
   left: 0;
+  /* Inicia con ancho 0 (invisible) */
   width: 0;
+  /* Altura del subrayado: 2 píxeles */
   height: 2px;
-  background-color: var(--color-accent);
+  /* Color del subrayado: verde acento */
+  background-color: #58b30f;
+  /* Anima el cambio de ancho suavemente */
   transition: width 0.3s ease;
 }
-
-.navbar nav a:hover {
-  color: var(--color-accent);
+.navbar nav a {
+  /* Estilos cuando el mouse está sobre el link */
 }
-
-/* El subrayado se expande a 100% en hover */
+.navbar nav a:hover {
+  /* Cambia el color del texto a verde acento */
+  color: #58b30f;
+  /* El subrayado se expande al ancho del texto */
+}
 .navbar nav a:hover::after {
+  /* El subrayado se expande al 100% del ancho del link */
   width: 100%;
 }
 
 /* ================================================
-   HERO SECTION (Sección Principal)
-   height:100vh = altura completa de la pantalla del usuario
+   HERO SECTION (Sección Principal) - Primera sección visible al cargar
    ================================================ */
-
 .hero {
+  /* Altura igual al 100% de la ventana del navegador */
   height: 100vh;
+  /* Activa Flexbox para centrar el contenido */
   display: flex;
+  /* Centra el contenido horizontalmente */
   justify-content: center;
+  /* Centra el contenido verticalmente */
   align-items: center;
-  background: linear-gradient(135deg, var(--color-bg-dark) 0%, #1a1722 100%);
-  color: var(--color-text-light);
+  /* Gradiente diagonal: de color oscuro a gris oscuro para profundidad */
+  background: linear-gradient(135deg, #0E0B16 0%, #1a1722 100%);
+  /* Color de texto blanco */
+  color: #fff;
+  /* Relleno: 40px arriba/abajo, 20px izquierda/derecha */
   padding: 40px 20px;
+  /* Contenedor principal del contenido hero */
 }
-
-/* Grid de 2 columnas para el contenido del hero */
 .hero .hero-content {
+  /* Crea un grid (tabla) con 2 columnas de igual tamaño */
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  /* Espacio entre columnas */
   gap: 50px;
+  /* Alinea los items al inicio vertical */
   align-items: center;
+  /* El contenido ocupa todo el ancho disponible */
   width: 100%;
+  /* Ancho máximo para que no sea demasiado ancho en pantallas grandes */
   max-width: 1200px;
+  /* Columna izquierda: texto del hero */
 }
-
+.hero .hero-content .hero-text {
+  /* Estilos del texto principal */
+}
+.hero .hero-content {
+  /* Columna derecha: imagen del perfil */
+}
 .hero .hero-content .img_style {
+  /* Centrador flexible para la imagen */
   display: flex;
+  /* Centra la imagen horizontalmente */
   justify-content: center;
+  /* Centra la imagen verticalmente */
   align-items: center;
 }
-
-/* Imagen circular con animación de flotación */
 .hero .hero-content .img_style img {
+  /* Ancho de la imagen: 300 píxeles */
   width: 300px;
+  /* Alto de la imagen: 300 píxeles (hace un cuadrado) */
   height: 300px;
+  /* Esquinas redondeadas: 50% hace un círculo perfecto */
   border-radius: 50%;
+  /* Asegura que la imagen no se deforme al recortarse */
   object-fit: cover;
-  border: 3px solid var(--color-accent);
+  /* Borde de 3px sólido con color de acento verde */
+  border: 3px solid #58b30f;
+  /* Aplica animación de flotación continua por 3 segundos */
   animation: flotar 3s ease-in-out infinite;
+  /* Sombra alrededor de la imagen: efecto de resplandor verde */
   box-shadow: 0 0 30px rgba(88, 179, 15, 0.3);
 }
-
-.hero .hero-content h1 {
-  font-size: 4rem;
-  margin-bottom: 20px;
-  font-weight: 900;
-  color: var(--color-accent);
+.hero .hero-content {
+  /* Título principal (h1) */
 }
-
+.hero .hero-content h1 {
+  /* Tamaño muy grande: 4 veces el tamaño base (64px) */
+  font-size: 4rem;
+  /* Margen inferior para separar del párrafo */
+  margin-bottom: 20px;
+  /* Peso máximo de fuente: muy negrita */
+  font-weight: 900;
+  /* Color verde acento */
+  color: #58b30f;
+}
+.hero .hero-content {
+  /* Párrafo (p) - descripción principal */
+}
 .hero .hero-content p {
+  /* Tamaño de letra más grande */
   font-size: 1.2rem;
+  /* Margen inferior para separar del siguiente elemento */
   margin-bottom: 30px;
-  color: var(--color-text-gray);
+  /* Color gris para texto secundario */
+  color: #999;
+  /* Espaciado entre líneas: 1.8 proporciona buena legibilidad */
   line-height: 1.8;
 }
 
 /* ================================================
-   ANIMACIÓN: FLOTAR
-   Hace que un elemento suba y baje continuamente
-   0%, 100%: posición inicial (abajo)
-   50%: posición media (arriba -30px)
+   ANIMACIÓN: FLOTAR - Hace que la imagen suba y baje continuamente
    ================================================ */
 @keyframes flotar {
+  /* Estado inicial (0%) y final (100%): posición normal */
   0%, 100% {
+    /* Sin movimiento vertical */
     transform: translateY(0);
   }
+  /* Estado medio (50%): sube 30 píxeles */
   50% {
+    /* Sube 30 píxeles (valor negativo = hacia arriba) */
     transform: translateY(-30px);
   }
 }
-
 /* ================================================
-   ANIMACIÓN: TYPING (EFECTO DE MÁQUINA DE ESCRIBIR)
-   steps(30, end) = divide la animación en 30 pasos discretos
-   Crea el efecto de "letra por letra"
+   ANIMACIÓN: TYPING (EFECTO DE ESCRITURA) - Simula escribir texto
    ================================================ */
 @keyframes typing {
+  /* Desde el inicio */
   from {
+    /* Comienza con ancho 0 (texto invisible) */
     width: 0;
   }
+  /* Hasta el final */
   to {
+    /* Se expande al ancho completo (todo el texto visible) */
     width: 100%;
   }
 }
-
-/* Animación del cursor parpadeante */
+/* Efecto de parpadeo del cursor de máquina de escribir */
 @keyframes blink {
+  /* Estados inicial y final: el cursor está invisible */
   from, to {
+    /* Color del borde transparente = invisible */
     border-color: transparent;
   }
+  /* Estado medio (50%): el cursor es visible */
   50% {
-    border-color: var(--color-accent);
+    /* Color del borde verde = visible */
+    border-color: #58b30f;
   }
 }
-
-/* Clase que aplica la animación de typing */
+/* Clase para aplicar la animación typing a elementos */
 .typing {
+  /* Fuente monoespaciada (cada letra ocupa mismo ancho) */
   font-family: monospace;
+  /* Tamaño grande de fuente */
   font-size: 3rem;
+  /* Evita que el texto salte a nueva línea */
   white-space: nowrap;
+  /* Oculta el texto que aún no se "escribe" */
   overflow: hidden;
-  border-right: 3px solid var(--color-accent);
+  /* Borde derecho de 3px que simula el cursor de escritura */
+  border-right: 3px solid #58b30f;
+  /* Ancho inicial 0: el texto comienza invisible */
   width: 0;
+  /* Combina dos animaciones:
+     - typing: expande el ancho en pasos discretos (30 pasos) durante 3.5 segundos
+     - blink: hace parpadear el cursor cada 0.75 segundos */
   animation: typing 3.5s steps(30, end) forwards, blink 0.75s step-end infinite;
 }
 
 /* ================================================
-   ANIMACIÓN: FADE IN UP
-   Los elementos aparecen con transparencia y suben
-   Útil para entradas elegantes
+   ANIMACIÓN: FADE IN UP (APARECE Y SUBE SUAVEMENTE)
    ================================================ */
 @keyframes fadeInUp {
+  /* Estado inicial */
   from {
+    /* Texto completamente transparente (invisible) */
     opacity: 0;
+    /* Empieza 30 píxeles más abajo que posición final */
     transform: translateY(30px);
   }
+  /* Estado final */
   to {
+    /* Texto completamente visible */
     opacity: 1;
+    /* Sube a su posición original */
     transform: translateY(0);
   }
 }
-
+/* Clase que aplica la animación fadeInUp */
 .fade-in-up {
+  /* Duración: 0.8 segundos, suave, sin repetirse */
   animation: fadeInUp 0.8s ease forwards;
+  /* Cada hijo de esta clase se anima en diferente momento (efecto cascada) */
 }
-
-/* Cada elemento se anima en diferentes tiempos (stagger) */
 .fade-in-up:nth-child(1) {
+  /* Primer elemento comienza después de 0.2 segundos */
   animation-delay: 0.2s;
 }
-
 .fade-in-up:nth-child(2) {
+  /* Segundo elemento comienza después de 0.4 segundos */
   animation-delay: 0.4s;
 }
-
 .fade-in-up:nth-child(3) {
+  /* Tercer elemento comienza después de 0.6 segundos */
   animation-delay: 0.6s;
 }
 
 /* ================================================
-   ANIMACIÓN: SLIDE IN LEFT
-   Los elementos entran desde la izquierda
-   Perfecto para tarjetas que aparecen en secuencia
+   ANIMACIÓN: SLIDE IN LEFT (ENTRA DESDE IZQUIERDA)
    ================================================ */
 @keyframes slideInLeft {
+  /* Estado inicial */
   from {
+    /* Invisible */
     opacity: 0;
+    /* 50 píxeles a la izquierda de su posición final */
     transform: translateX(-50px);
   }
+  /* Estado final */
   to {
+    /* Visible */
     opacity: 1;
+    /* En su posición original */
     transform: translateX(0);
   }
 }
-
+/* Clase que aplica la animación slideInLeft */
 .slide-in-left {
+  /* Duración: 0.6 segundos, suave, sin repetirse */
   animation: slideInLeft 0.6s ease forwards;
+  /* Cada tarjeta se anima en diferente momento (efecto cascada) */
 }
-
 .slide-in-left:nth-child(1) {
+  /* Primer elemento comienza después de 0.2 segundos */
   animation-delay: 0.2s;
 }
-
 .slide-in-left:nth-child(2) {
+  /* Segundo elemento comienza después de 0.4 segundos */
   animation-delay: 0.4s;
 }
-
 .slide-in-left:nth-child(3) {
+  /* Tercer elemento comienza después de 0.6 segundos */
   animation-delay: 0.6s;
 }
 
 /* ================================================
-   SECCIÓN ABOUT ME (SOBRE MÍ)
+   SECCIÓN ABOUT ME (SOBRE MÍ) - Información personal y habilidades
    ================================================ */
-
 .about_me {
+  /* Relleno: 80px arriba/abajo, 20px izquierda/derecha */
   padding: 80px 20px;
-  background: linear-gradient(180deg, var(--color-bg-dark) 0%, var(--color-bg-card) 100%);
+  /* Gradiente vertical: de oscuro a más claro */
+  background: linear-gradient(180deg, #0E0B16 0%, #1A1722 100%);
+  /* Título de la sección */
 }
-
-/* Título de sección con línea decorativa */
 .about_me .section-title {
+  /* Tamaño grande para destacar */
   font-size: 3rem;
+  /* Centra el texto horizontalmente */
   text-align: center;
+  /* Margen inferior para separar del contenido */
   margin-bottom: 60px;
-  color: var(--color-accent);
+  /* Color verde acento */
+  color: #58b30f;
+  /* Necesario para que el pseudo-elemento ::after funcione */
   position: relative;
+  /* Espacio inferior dentro del elemento para el decorador */
   padding-bottom: 20px;
+  /* Crea una línea decorativa debajo del título */
 }
-
-/* ::after crea una línea decorativa debajo del título */
 .about_me .section-title::after {
+  /* Crea un elemento invisible que será la línea */
   content: "";
+  /* Se posiciona relativo al elemento padre */
   position: absolute;
+  /* Pone la línea en la parte inferior */
   bottom: 0;
+  /* Centra horizontalmente */
   left: 50%;
+  /* Mueve el origen al 50% (centro) */
   transform: translateX(-50%);
+  /* Ancho de la línea: 60px */
   width: 60px;
+  /* Altura de la línea: 4px */
   height: 4px;
-  background: linear-gradient(90deg, var(--color-accent), transparent);
+  /* Gradiente de color verde a transparente */
+  background: linear-gradient(90deg, #58b30f, transparent);
+  /* Esquinas ligeramente redondeadas */
   border-radius: 2px;
 }
-
-/* Grid de 2 columnas para about content */
+.about_me {
+  /* Contenedor del contenido About Me */
+}
 .about_me .about-content {
+  /* Crea un grid con 2 columnas */
   display: grid;
   grid-template-columns: 1fr 1fr;
+  /* Espacio entre columnas */
   gap: 60px;
+  /* Alinea los items al inicio vertical */
   align-items: start;
+  /* Columna izquierda: texto y habilidades */
 }
-
+.about_me .about-content .about-text {
+  /* Subtítulo (h3) */
+}
 .about_me .about-content .about-text h3 {
+  /* Tamaño grande para subtítulo */
   font-size: 1.5rem;
+  /* Margen inferior para separar */
   margin-bottom: 15px;
-  color: var(--color-accent);
+  /* Color verde acento */
+  color: #58b30f;
 }
-
+.about_me .about-content .about-text {
+  /* Párrafos de descripción */
+}
 .about_me .about-content .about-text p {
+  /* Tamaño de fuente un poco más grande */
   font-size: 1.1rem;
-  color: var(--color-text-gray);
+  /* Color gris para texto secundario */
+  color: #999;
+  /* Margen inferior entre párrafos */
   margin-bottom: 25px;
+  /* Espaciado vertical entre líneas: mejora legibilidad */
   line-height: 1.8;
-  text-align: justify; /* Justifica el texto para un aspecto más profesional */
-
+  /* Alinea el texto a ambos márgenes (justificado) */
+  text-align: justify;
 }
-
-/* Lista de habilidades sin puntos por defecto */
+.about_me .about-content .about-text {
+  /* Lista de habilidades */
+}
 .about_me .about-content .about-text .skills-list {
+  /* Quita los puntos/bullets por defecto */
   list-style: none;
+  /* Cada elemento de la lista */
 }
-
 .about_me .about-content .about-text .skills-list li {
+  /* Relleno: 12px arriba/abajo, 0 izquierda/derecha */
   padding: 12px 0;
+  /* Espacio para dejar lugar al icono checkmark */
   padding-left: 30px;
+  /* Necesario para posicionar el ::before */
   position: relative;
+  /* Tamaño de letra */
   font-size: 1.1rem;
-  color: var(--color-text-gray);
+  /* Color gris para habilidades */
+  color: #999;
+  /* Crea un checkmark (✓) antes de cada elemento */
 }
-
-/* Checkmark verde antes de cada skill */
 .about_me .about-content .about-text .skills-list li::before {
+  /* Inserta un checkmark en lugar de punto */
   content: "✓";
+  /* Se posiciona relativo al li */
   position: absolute;
+  /* Alineado a la izquierda */
   left: 0;
-  color: var(--color-accent);
+  /* Color verde del checkmark */
+  color: #58b30f;
+  /* Checkmark en negrita */
   font-weight: bold;
+  /* Tamaño del checkmark */
   font-size: 1.3rem;
 }
-
-/* Tarjetas de estadísticas */
+.about_me .about-content {
+  /* Columna derecha: estadísticas en tarjetas */
+}
 .about_me .about-content .about-stats {
+  /* Flex vertical para apilar tarjetas */
   display: flex;
+  /* Dirección vertical (uno debajo de otro) */
   flex-direction: column;
+  /* Espacio entre tarjetas */
   gap: 20px;
+  /* Cada tarjeta de estadística */
 }
-
 .about_me .about-content .about-stats .stat-card {
-  background-color: var(--color-bg-card);
+  /* Fondo oscuro de tarjeta */
+  background-color: #1A1722;
+  /* Relleno interno */
   padding: 30px;
+  /* Esquinas redondeadas */
   border-radius: 10px;
-  border-left: 4px solid var(--color-accent);
+  /* Borde izquierdo de 4px verde */
+  border-left: 4px solid #58b30f;
+  /* Centra el contenido de la tarjeta */
   text-align: center;
+  /* Transición suave de 0.3 segundos */
   transition: all 0.3s ease;
+  /* Efecto hover: tarjeta sube y muestra sombra */
 }
-
-/* Efecto hover: sube y muestra sombra */
 .about_me .about-content .about-stats .stat-card:hover {
+  /* Sube el elemento 5 píxeles */
   transform: translateY(-5px);
+  /* Sombra con color verde tenue */
   box-shadow: 0 10px 30px rgba(88, 179, 15, 0.2);
 }
-
+.about_me .about-content .about-stats .stat-card {
+  /* Número grande de la estadística */
+}
 .about_me .about-content .about-stats .stat-card .stat-number {
+  /* Tamaño muy grande: 2.5 veces el tamaño base */
   font-size: 2.5rem;
-  color: var(--color-accent);
+  /* Color verde acento */
+  color: #58b30f;
+  /* Margen inferior */
   margin-bottom: 10px;
+  /* Muy negrita */
   font-weight: 900;
 }
-
+.about_me .about-content .about-stats .stat-card {
+  /* Texto descriptivo de la estadística */
+}
 .about_me .about-content .about-stats .stat-card p {
-  color: var(--color-text-gray);
+  /* Color gris */
+  color: #999;
+  /* Tamaño normal */
   font-size: 1rem;
 }
 
 /* ================================================
-   SECCIÓN PROYECTOS (PROJECTS)
+   SECCIÓN PROYECTOS (PROJECTS) - Galería de proyectos
    ================================================ */
-
 .projects {
+  /* Relleno: 80px arriba/abajo, 20px izquierda/derecha */
   padding: 80px 20px;
-  background-color: var(--color-bg-dark);
+  /* Fondo oscuro */
+  background-color: #0E0B16;
+  /* Título de la sección */
 }
-
 .projects .section-title {
+  /* Tamaño grande para destacar */
   font-size: 3rem;
+  /* Centra el texto */
   text-align: center;
+  /* Margen inferior */
   margin-bottom: 60px;
-  color: var(--color-accent);
+  /* Color verde acento */
+  color: #58b30f;
+  /* Necesario para el pseudo-elemento */
   position: relative;
+  /* Espacio para la línea decorativa */
   padding-bottom: 20px;
+  /* Línea decorativa verde debajo */
 }
-
 .projects .section-title::after {
+  /* Elemento decorativo vacío */
   content: "";
+  /* Se posiciona absolutamente */
   position: absolute;
+  /* En la parte inferior */
   bottom: 0;
+  /* Centrado horizontalmente */
   left: 50%;
+  /* Ajusta el origen al centro */
   transform: translateX(-50%);
+  /* Ancho de la línea */
   width: 60px;
+  /* Altura de la línea */
   height: 4px;
-  background: linear-gradient(90deg, var(--color-accent), transparent);
+  /* Gradiente verde a transparente */
+  background: linear-gradient(90deg, #58b30f, transparent);
+  /* Esquinas redondeadas */
   border-radius: 2px;
 }
-
-/* Grid responsivo: auto-fit hace que se adapte al ancho */
+.projects {
+  /* Grid de tarjetas de proyectos */
+}
 .projects .projects-grid {
+  /* Activa grid CSS */
   display: grid;
+  /* Auto-fit: crea columnas automáticamente
+     minmax(300px, 1fr): cada columna tiene mínimo 300px y expande si hay espacio */
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  /* Espacio entre tarjetas */
   gap: 40px;
 }
 
 /* Tarjeta de proyecto individual */
 .project-card {
-  background-color: var(--color-bg-card);
+  /* Fondo gris oscuro de tarjeta */
+  background-color: #1A1722;
+  /* Esquinas redondeadas */
   border-radius: 10px;
+  /* Recorta contenido que salga de los límites de la tarjeta */
   overflow: hidden;
+  /* Transición suave de 0.3 segundos para cambios */
   transition: all 0.3s ease;
+  /* Cambia el cursor a manita (señal de clickeable) */
   cursor: pointer;
+  /* Efecto hover: tarjeta sube y muestra sombra */
 }
-
 .project-card:hover {
+  /* Sube 10 píxeles */
   transform: translateY(-10px);
+  /* Sombra verde */
   box-shadow: 0 20px 40px rgba(88, 179, 15, 0.2);
 }
-
-.project-card .project-image {
-  position: relative;
-  overflow: hidden;
-  height: 200px;
+.project-card {
+  /* Contenedor de imagen con efecto overlay */
 }
-
+.project-card .project-image {
+  /* Se posiciona relativamente para controlar el overlay */
+  position: relative;
+  /* Oculta contenido que salga de los límites */
+  overflow: hidden;
+  /* Altura fija de la imagen */
+  height: 200px;
+  /* Imagen del proyecto */
+}
 .project-card .project-image img {
+  /* Ancho 100% del contenedor */
   width: 100%;
+  /* Alto 100% del contenedor */
   height: 100%;
+  /* Recorta o redimensiona la imagen sin distorsionar */
   object-fit: cover;
+  /* Transición suave para el efecto zoom */
   transition: transform 0.3s ease;
 }
-
-/* Capa oscura que aparece en hover */
+.project-card .project-image {
+  /* Capa oscura que aparece en hover */
+}
 .project-card .project-image .project-overlay {
+  /* Se posiciona sobre la imagen */
   position: absolute;
+  /* Pega en las esquinas */
   top: 0;
   left: 0;
+  /* Cubre toda la imagen */
   width: 100%;
   height: 100%;
+  /* Fondo negro con 70% opacidad (transparencia) */
   background: rgba(0, 0, 0, 0.7);
+  /* Flex para centrar el botón */
   display: flex;
+  /* Centra horizontalmente */
   justify-content: center;
+  /* Centra verticalmente */
   align-items: center;
+  /* Invisible por defecto */
   opacity: 0;
+  /* Aparece suavemente */
   transition: opacity 0.3s ease;
+  /* Botón "Ver más" */
 }
-
 .project-card .project-image .project-overlay .btn-view {
+  /* Relleno del botón */
   padding: 12px 30px;
-  background-color: var(--color-accent);
+  /* Fondo verde acento */
+  background-color: #58b30f;
+  /* Texto blanco */
   color: white;
+  /* Quita subrayado de enlace */
   text-decoration: none;
+  /* Esquinas redondeadas */
   border-radius: 5px;
+  /* Texto en negrita */
   font-weight: bold;
+  /* Transición suave */
   transition: all 0.3s ease;
+  /* Efecto hover del botón */
 }
-
 .project-card .project-image .project-overlay .btn-view:hover {
-  background-color: var(--color-accent-hover);
+  /* Verde más claro */
+  background-color: #6bc91e;
+  /* Agranda el botón en 5% */
   transform: scale(1.05);
 }
-
-/* En hover, la capa se hace visible */
+.project-card .project-image {
+  /* Al pasar mouse sobre la imagen */
+}
+.project-card .project-image:hover {
+  /* El overlay se hace visible */
+}
 .project-card .project-image:hover .project-overlay {
   opacity: 1;
 }
-
+.project-card .project-image:hover {
+  /* La imagen se agranda (zoom) */
+}
 .project-card .project-image:hover img {
   transform: scale(1.1);
 }
-
+.project-card {
+  /* Información de la tarjeta (debajo de la imagen) */
+}
 .project-card .project-info {
+  /* Relleno interno */
   padding: 25px;
+  /* Título del proyecto */
 }
-
 .project-card .project-info h3 {
+  /* Tamaño grande */
   font-size: 1.4rem;
+  /* Margen inferior */
   margin-bottom: 10px;
-  color: var(--color-text-light);
+  /* Texto blanco */
+  color: #fff;
 }
-
+.project-card .project-info {
+  /* Descripción del proyecto */
+}
 .project-card .project-info p {
-  color: var(--color-text-gray);
+  /* Texto gris */
+  color: #999;
+  /* Tamaño de fuente */
   font-size: 0.95rem;
+  /* Margen inferior */
   margin-bottom: 15px;
+  /* Espaciado entre líneas */
   line-height: 1.6;
 }
-
-/* Tags de tecnologías */
+.project-card .project-info {
+  /* Contenedor de tags/etiquetas de tecnologías */
+}
 .project-card .project-info .project-tags {
+  /* Flex para alinear tags horizontalmente */
   display: flex;
+  /* Los tags pasan a siguiente línea si no caben */
   flex-wrap: wrap;
+  /* Espacio entre tags */
   gap: 10px;
+  /* Cada tag/etiqueta de tecnología */
 }
-
 .project-card .project-info .project-tags .tag {
+  /* Muestra el tag como un bloque en línea */
   display: inline-block;
+  /* Relleno del tag */
   padding: 6px 12px;
+  /* Fondo verde con 20% opacidad (muy tenue) */
   background-color: rgba(88, 179, 15, 0.2);
-  color: var(--color-accent);
+  /* Color del texto verde */
+  color: #58b30f;
+  /* Esquinas muy redondeadas (estilo píldora) */
   border-radius: 20px;
+  /* Tamaño de fuente pequeño */
   font-size: 0.85rem;
-  border: 1px solid var(--color-accent);
+  /* Borde de 1px verde */
+  border: 1px solid #58b30f;
+  /* Transición suave */
   transition: all 0.3s ease;
+  /* Efecto hover del tag */
 }
-
 .project-card .project-info .project-tags .tag:hover {
-  background-color: var(--color-accent);
-  color: var(--color-bg-dark);
+  /* Fondo verde sólido */
+  background-color: #58b30f;
+  /* Texto oscuro */
+  color: #0E0B16;
 }
 
 /* ================================================
-   SECCIÓN CONTACTO (CONTACT)
+   SECCIÓN CONTACTO (CONTACT) - Formulario y datos de contacto
    ================================================ */
-
 .contact {
+  /* Relleno: 80px arriba/abajo, 20px izquierda/derecha */
   padding: 80px 20px;
-  background: linear-gradient(180deg, var(--color-bg-card) 0%, var(--color-bg-dark) 100%);
+  /* Gradiente vertical: gris a oscuro */
+  background: linear-gradient(180deg, #1A1722 0%, #0E0B16 100%);
+  /* Título de la sección */
 }
-
 .contact .section-title {
+  /* Tamaño grande */
   font-size: 3rem;
+  /* Centra el texto */
   text-align: center;
+  /* Margen inferior */
   margin-bottom: 60px;
-  color: var(--color-accent);
+  /* Color verde acento */
+  color: #58b30f;
+  /* Para el pseudo-elemento decorativo */
   position: relative;
+  /* Espacio para la línea */
   padding-bottom: 20px;
+  /* Línea decorativa */
 }
-
 .contact .section-title::after {
+  /* Elemento decorativo */
   content: "";
+  /* Posición absoluta */
   position: absolute;
+  /* En la parte inferior */
   bottom: 0;
+  /* Centrado horizontalmente */
   left: 50%;
+  /* Ajusta al centro */
   transform: translateX(-50%);
+  /* Ancho de la línea */
   width: 60px;
+  /* Alto de la línea */
   height: 4px;
-  background: linear-gradient(90deg, var(--color-accent), transparent);
+  /* Gradiente verde a transparente */
+  background: linear-gradient(90deg, #58b30f, transparent);
+  /* Esquinas redondeadas */
   border-radius: 2px;
 }
-
-/* Grid de 2 columnas: info + formulario */
+.contact {
+  /* Contenedor principal de contacto */
+}
 .contact .contact-content {
+  /* Grid con 2 columnas: info + formulario */
   display: grid;
   grid-template-columns: 1fr 1fr;
+  /* Espacio entre columnas */
   gap: 60px;
+  /* Ancho máximo */
   max-width: 1000px;
+  /* Centra el contenido */
   margin: 0 auto;
 }
-
-.contact .contact-info h3 {
-  font-size: 1.8rem;
-  margin-bottom: 15px;
-  color: var(--color-accent);
+.contact {
+  /* Columna izquierda: información de contacto */
 }
-
+.contact .contact-info {
+  /* Subtítulo */
+}
+.contact .contact-info h3 {
+  /* Tamaño grande */
+  font-size: 1.8rem;
+  /* Margen inferior */
+  margin-bottom: 15px;
+  /* Color verde acento */
+  color: #58b30f;
+}
+.contact .contact-info {
+  /* Párrafos de descripción (usando > para solo párrafos directos) */
+}
 .contact .contact-info > p {
-  color: var(--color-text-gray);
+  /* Texto gris */
+  color: #999;
+  /* Tamaño de fuente */
   font-size: 1.1rem;
+  /* Margen inferior */
   margin-bottom: 30px;
+  /* Espaciado entre líneas */
   line-height: 1.8;
 }
-
+.contact .contact-info {
+  /* Contenedor de enlaces de contacto */
+}
 .contact .contact-info .contact-links {
+  /* Flex vertical */
   display: flex;
+  /* Dirección: vertical (uno abajo del otro) */
   flex-direction: column;
+  /* Espacio entre enlaces */
   gap: 20px;
+  /* Cada enlace de contacto */
 }
-
-/* Enlaces de contacto con efecto hover */
 .contact .contact-info .contact-links .contact-link {
+  /* Flex horizontal para alinear icono y texto */
   display: flex;
+  /* Centra verticalmente */
   align-items: center;
+  /* Espacio entre icono y texto */
   gap: 15px;
+  /* Relleno interno */
   padding: 15px;
+  /* Fondo verde muy transparente */
   background-color: rgba(88, 179, 15, 0.1);
+  /* Esquinas redondeadas */
   border-radius: 8px;
+  /* Quita subrayado del enlace */
   text-decoration: none;
-  color: var(--color-text-light);
+  /* Texto blanco */
+  color: #fff;
+  /* Transición suave */
   transition: all 0.3s ease;
+  /* Borde izquierdo inicialmente transparente */
   border-left: 3px solid transparent;
+  /* Icono (emoji o símbolo) */
 }
-
 .contact .contact-info .contact-links .contact-link .icon {
+  /* Tamaño del icono */
   font-size: 1.5rem;
 }
-
+.contact .contact-info .contact-links .contact-link {
+  /* El último span es el texto */
+}
 .contact .contact-info .contact-links .contact-link span:last-child {
+  /* Texto en negrita */
   font-weight: 500;
 }
-
+.contact .contact-info .contact-links .contact-link {
+  /* Efecto hover del enlace */
+}
 .contact .contact-info .contact-links .contact-link:hover {
+  /* Fondo verde más intenso */
   background-color: rgba(88, 179, 15, 0.2);
-  border-left-color: var(--color-accent);
+  /* Borde izquierdo verde */
+  border-left-color: #58b30f;
+  /* Se desplaza 5px a la derecha */
   transform: translateX(5px);
 }
-
-/* ================================================
-   FORMULARIO DE CONTACTO
-   ================================================ */
-
-.contact-form {
+.contact {
+  /* Columna derecha: formulario de contacto */
+}
+.contact .contact-form {
+  /* Flex vertical para apilar elementos */
   display: flex;
+  /* Dirección: vertical */
   flex-direction: column;
+  /* Espacio entre grupos de formulario */
   gap: 20px;
+  /* Cada grupo de formulario (label + input) */
 }
-
-.contact-form .form-group {
+.contact .contact-form .form-group {
+  /* Flex vertical */
   display: flex;
+  /* Dirección vertical */
   flex-direction: column;
+  /* Espacio entre label e input */
   gap: 8px;
+  /* Etiqueta del formulario */
 }
-
-.contact-form .form-group label {
+.contact .contact-form .form-group label {
+  /* Texto en negrita */
   font-weight: 600;
-  color: var(--color-text-light);
+  /* Texto blanco */
+  color: #fff;
+  /* Tamaño de fuente */
   font-size: 0.95rem;
 }
-
-/* Inputs y textareas con borde sutil */
-.contact-form .form-group input,
-.contact-form .form-group textarea {
-  padding: 15px;
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--color-border);
-  border-radius: 5px;
-  color: var(--color-text-light);
-  font-family: inherit;
-  font-size: 1rem;
-  transition: all 0.3s ease;
+.contact .contact-form .form-group {
+  /* Estilos para inputs y textareas (formularios) */
 }
-
-.contact-form .form-group input::placeholder,
-.contact-form .form-group textarea::placeholder {
+.contact .contact-form .form-group input,
+.contact .contact-form .form-group textarea {
+  /* Relleno interno */
+  padding: 15px;
+  /* Fondo muy tenue (casi invisible) */
+  background-color: rgba(255, 255, 255, 0.05);
+  /* Borde gris oscuro */
+  border: 1px solid #2d2a2a;
+  /* Esquinas redondeadas */
+  border-radius: 5px;
+  /* Texto blanco */
+  color: #fff;
+  /* Fuente heredada del sitio */
+  font-family: inherit;
+  /* Tamaño de fuente */
+  font-size: 1rem;
+  /* Transición suave */
+  transition: all 0.3s ease;
+  /* Placeholder (texto de ayuda dentro del input) */
+}
+.contact .contact-form .form-group input::placeholder,
+.contact .contact-form .form-group textarea::placeholder {
+  /* Color gris muy tenue */
   color: rgba(255, 255, 255, 0.3);
 }
-
-/* Efecto focus: borde verde y fondo verde suave */
-.contact-form .form-group input:focus,
-.contact-form .form-group textarea:focus {
+.contact .contact-form .form-group input,
+.contact .contact-form .form-group textarea {
+  /* Cuando el input está enfocado (clickeado) */
+}
+.contact .contact-form .form-group input:focus,
+.contact .contact-form .form-group textarea:focus {
+  /* Elimina el outline azul default */
   outline: none;
+  /* Fondo verde suave */
   background-color: rgba(88, 179, 15, 0.1);
-  border-color: var(--color-accent);
+  /* Borde verde acento */
+  border-color: #58b30f;
+  /* Brillo verde alrededor */
   box-shadow: 0 0 10px rgba(88, 179, 15, 0.3);
 }
-
-.contact-form .form-group input:hover,
-.contact-form .form-group textarea:hover {
-  border-color: var(--color-accent);
+.contact .contact-form .form-group input,
+.contact .contact-form .form-group textarea {
+  /* Cuando pasa el mouse sobre el input */
 }
-
-.contact-form .form-group textarea {
+.contact .contact-form .form-group input:hover,
+.contact .contact-form .form-group textarea:hover {
+  /* Borde se vuelve verde */
+  border-color: #58b30f;
+}
+.contact .contact-form .form-group {
+  /* Textarea específicamente */
+}
+.contact .contact-form .form-group textarea {
+  /* Permite cambiar solo la altura (no el ancho) */
   resize: vertical;
+  /* Fuente consistente del sitio */
   font-family: "Libre Franklin", sans-serif;
 }
-
-.contact-form .btn-submit {
+.contact .contact-form {
+  /* Botón de envío del formulario */
+}
+.contact .contact-form .btn-submit {
+  /* Margen superior para separar */
   margin-top: 10px;
+  /* Ancho al 100% del contenedor */
   width: 100%;
 }
 
 /* ================================================
-   BOTONES PRINCIPALES
-   Incluye efecto de onda al pasar el mouse
+   SECCIÓN PROYECTOS MASCOTA (PETS) - Variante de galería con imágenes más grandes
    ================================================ */
-
-.btn-main {
-  padding: 15px 40px;
-  background-color: var(--color-accent);
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
+.pets {
+  /* Relleno: 80px arriba/abajo, 20px izquierda/derecha */
+  padding: 80px 20px;
+  /* Fondo oscuro */
+  background-color: #0E0B16;
+  /* Título de la sección */
+}
+.pets .section-title {
+  /* Tamaño grande */
+  font-size: 3rem;
+  /* Centra el texto */
+  text-align: center;
+  /* Margen inferior */
+  margin-bottom: 60px;
+  /* Color verde acento */
+  color: #58b30f;
+  /* Para el pseudo-elemento */
   position: relative;
-  overflow: hidden;
+  /* Espacio para la línea decorativa */
+  padding-bottom: 20px;
+  /* Línea decorativa verde */
+}
+.pets .section-title::after {
+  /* Elemento decorativo */
+  content: "";
+  /* Posición absoluta */
+  position: absolute;
+  /* En la parte inferior */
+  bottom: 0;
+  /* Centrado horizontalmente */
+  left: 50%;
+  /* Ajusta al centro */
+  transform: translateX(-50%);
+  /* Ancho de la línea */
+  width: 60px;
+  /* Alto de la línea */
+  height: 4px;
+  /* Gradiente verde a transparente */
+  background: linear-gradient(90deg, #58b30f, transparent);
+  /* Esquinas redondeadas */
+  border-radius: 2px;
+}
+.pets {
+  /* Grid de tarjetas de proyectos/mascotas */
+}
+.pets .projects-grid-pet {
+  /* Activa grid CSS */
+  display: grid;
+  /* 3 columnas fijas de igual tamaño */
+  grid-template-columns: repeat(3, 1fr);
+  /* Espacio entre tarjetas horizontalmente */
+  gap: 30px;
+  /* Espacio entre filas */
+  row-gap: 40px;
 }
 
-/* Efecto de onda (ripple effect) con ::before */
-.btn-main::before {
-  content: "";
+/* Tarjeta de proyecto/mascota individual */
+.project-card-pet {
+  /* Fondo gris oscuro */
+  background-color: #1A1722;
+  /* Esquinas redondeadas */
+  border-radius: 15px;
+  /* Recorta contenido que salga de los límites */
+  overflow: hidden;
+  /* Transición suave */
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  /* Señala que es clickeable */
+  cursor: pointer;
+  /* Sombra inicial sutil */
+  box-shadow: 0 5px 15px rgba(88, 179, 15, 0.1);
+  /* Borde verde muy sutil */
+  border: 1px solid rgba(88, 179, 15, 0.2);
+  /* Efecto hover: sube y muestra sombra más intensa */
+}
+.project-card-pet:hover {
+  /* Sube 15 píxeles (más que antes) */
+  transform: translateY(-15px) scale(1.02);
+  /* Sombra verde más intensa */
+  box-shadow: 0 25px 50px rgba(88, 179, 15, 0.3);
+  /* Borde verde más visible en hover */
+  border-color: rgba(88, 179, 15, 0.5);
+}
+.project-card-pet {
+  /* Contenedor de imagen con efecto overlay */
+}
+.project-card-pet .project-image-pet {
+  /* Se posiciona relativamente */
+  position: relative;
+  /* Oculta contenido que salga de los límites */
+  overflow: hidden;
+  /* Altura mucho mayor que project-image (500px vs 200px) */
+  height: 350px;
+  /* Fondo degradado mientras carga la imagen */
+  background: linear-gradient(135deg, #1a1722, #2d2a2a);
+  /* Imagen del proyecto */
+}
+.project-card-pet .project-image-pet img {
+  /* Ancho 100% */
+  width: 100%;
+  /* Alto 100% */
+  height: 100%;
+  /* Recorta la imagen proporcional */
+  object-fit: cover;
+  /* Transición suave para el zoom */
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  /* Escala inicial ligeramente menor */
+  transform: scale(1);
+}
+.project-card-pet .project-image-pet {
+  /* Capa oscura que aparece en hover */
+}
+.project-card-pet .project-image-pet .project-overlay {
+  /* Se posiciona sobre la imagen */
   position: absolute;
+  /* En las esquinas */
+  top: 0;
+  left: 0;
+  /* Cubre toda la imagen */
+  width: 100%;
+  height: 100%;
+  /* Fondo negro con gradiente para mejor efecto */
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(88, 179, 15, 0.2));
+  /* Flex para centrar el botón */
+  display: flex;
+  /* Centra horizontalmente */
+  justify-content: center;
+  /* Centra verticalmente */
+  align-items: center;
+  /* Invisible por defecto */
+  opacity: 0;
+  /* Aparece suavemente */
+  transition: opacity 0.4s ease;
+  /* Backdrop blur para efecto de vidrio */
+  backdrop-filter: blur(0px);
+  transition: opacity 0.4s ease, backdrop-filter 0.4s ease;
+  /* Botón "Ver más" de mascota */
+}
+.project-card-pet .project-image-pet .project-overlay .btn-view-pet {
+  /* Relleno del botón */
+  padding: 14px 35px;
+  /* Fondo verde acento */
+  background-color: #58b30f;
+  /* Texto blanco */
+  color: white;
+  /* Quita subrayado */
+  text-decoration: none;
+  /* Esquinas más redondeadas */
+  border-radius: 8px;
+  /* Texto en negrita */
+  font-weight: bold;
+  /* Transición suave */
+  transition: all 0.3s ease;
+  /* Sombra para el botón */
+  box-shadow: 0 5px 15px rgba(88, 179, 15, 0.3);
+  /* Borde para mayor definición */
+  border: 2px solid #6bc91e;
+  /* Efecto hover del botón */
+}
+.project-card-pet .project-image-pet .project-overlay .btn-view-pet:hover {
+  /* Verde más claro */
+  background-color: #6bc91e;
+  /* Agranda en 8% */
+  transform: scale(1.08);
+  /* Sombra más intensa */
+  box-shadow: 0 8px 20px rgba(88, 179, 15, 0.5);
+}
+.project-card-pet .project-image-pet {
+  /* Al pasar el mouse sobre la imagen */
+}
+.project-card-pet .project-image-pet:hover {
+  /* El overlay se hace visible */
+}
+.project-card-pet .project-image-pet:hover .project-overlay {
+  opacity: 1;
+  /* Efecto de vidrio esmerilado */
+  backdrop-filter: blur(5px);
+}
+.project-card-pet .project-image-pet:hover {
+  /* La imagen se agranda (zoom) */
+}
+.project-card-pet .project-image-pet:hover img {
+  transform: scale(1.15);
+}
+.project-card-pet {
+  /* Información de la tarjeta */
+}
+.project-card-pet .project-info {
+  /* Relleno interno */
+  padding: 30px;
+  /* Gradiente sutil en el fondo */
+  background: linear-gradient(135deg, #1A1722 0%, rgba(88, 179, 15, 0.05) 100%);
+  /* Transición suave */
+  transition: all 0.3s ease;
+  /* Título */
+}
+.project-card-pet .project-info h3 {
+  /* Tamaño grande */
+  font-size: 1.4rem;
+  /* Margen inferior */
+  margin-bottom: 12px;
+  /* Texto blanco */
+  color: #fff;
+  /* Transición suave */
+  transition: color 0.3s ease;
+}
+.project-card-pet .project-info {
+  /* Descripción */
+}
+.project-card-pet .project-info p {
+  /* Texto gris */
+  color: #999;
+  /* Tamaño */
+  font-size: 0.95rem;
+  /* Margen inferior */
+  margin-bottom: 18px;
+  /* Espaciado entre líneas */
+  line-height: 1.6;
+}
+.project-card-pet .project-info {
+  /* Contenedor de tags/etiquetas */
+}
+.project-card-pet .project-info .project-tags {
+  /* Flex horizontal */
+  display: flex;
+  /* Envoltura si no caben */
+  flex-wrap: wrap;
+  /* Espacio entre tags */
+  gap: 8px;
+  /* Cada tag */
+}
+.project-card-pet .project-info .project-tags .tag {
+  /* Bloque en línea */
+  display: inline-block;
+  /* Relleno */
+  padding: 7px 14px;
+  /* Fondo verde transparente */
+  background-color: rgba(88, 179, 15, 0.15);
+  /* Color verde */
+  color: #58b30f;
+  /* Esquinas redondeadas (estilo píldora) */
+  border-radius: 20px;
+  /* Tamaño pequeño */
+  font-size: 0.8rem;
+  /* Borde verde */
+  border: 1px solid rgba(88, 179, 15, 0.4);
+  /* Transición suave */
+  transition: all 0.3s ease;
+  /* Efecto hover */
+}
+.project-card-pet .project-info .project-tags .tag:hover {
+  /* Fondo sólido verde */
+  background-color: #58b30f;
+  /* Texto oscuro */
+  color: #0E0B16;
+  /* Borde más visible */
+  border-color: #58b30f;
+  /* Agranda ligeramente */
+  transform: scale(1.1);
+}
+.project-card-pet {
+  /* Efecto hover en toda la tarjeta */
+}
+.project-card-pet:hover .project-info {
+  /* Efecto de brillo en el fondo */
+  background: linear-gradient(135deg, #1A1722 0%, rgba(88, 179, 15, 0.15) 100%);
+}
+.project-card-pet:hover h3 {
+  /* Color cambia a verde acento en hover */
+  color: #58b30f;
+}
+
+/* ================================================
+   BOTONES - Estilos para botones de acción
+   ================================================ */
+.btn-main {
+  /* Relleno del botón */
+  padding: 15px 40px;
+  /* Fondo verde acento */
+  background-color: #58b30f;
+  /* Texto blanco */
+  color: white;
+  /* Quita el borde default del navegador */
+  border: none;
+  /* Esquinas ligeramente redondeadas */
+  border-radius: 5px;
+  /* Tamaño de fuente */
+  font-size: 1rem;
+  /* Texto en negrita */
+  font-weight: 600;
+  /* Cambia el cursor a manita */
+  cursor: pointer;
+  /* Transición suave */
+  transition: all 0.3s ease;
+  /* Necesario para el efecto de ondas */
+  position: relative;
+  /* Oculta la onda que sale del botón */
+  overflow: hidden;
+  /* Crea un efecto de onda que se expande en hover */
+}
+.btn-main::before {
+  /* Elemento invisible que será la onda */
+  content: "";
+  /* Se posiciona absolutamente desde el botón */
+  position: absolute;
+  /* En el centro vertical */
   top: 50%;
+  /* En el centro horizontal */
   left: 50%;
+  /* Comienza con tamaño 0 */
   width: 0;
   height: 0;
+  /* Forma circular */
   border-radius: 50%;
+  /* Fondo blanco semitransparente */
   background: rgba(255, 255, 255, 0.3);
+  /* Centra la onda */
   transform: translate(-50%, -50%);
+  /* Anima el crecimiento lentamente */
   transition: width 0.6s, height 0.6s;
 }
-
-.btn-main:hover {
-  background-color: var(--color-accent-hover);
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(88, 179, 15, 0.3);
+.btn-main {
+  /* Efecto hover del botón */
 }
-
-/* La onda se expande en hover */
+.btn-main:hover {
+  /* Verde más claro */
+  background-color: #6bc91e;
+  /* Sube el botón 3px */
+  transform: translateY(-3px);
+  /* Sombra */
+  box-shadow: 0 10px 20px rgba(88, 179, 15, 0.3);
+  /* La onda se expande */
+}
 .btn-main:hover::before {
+  /* Crece a 300px */
   width: 300px;
   height: 300px;
 }
-
+.btn-main {
+  /* Efecto cuando está presionado */
+}
 .btn-main:active {
+  /* Menos elevación cuando está presionado */
   transform: translateY(-1px);
 }
 
 /* ================================================
-   FOOTER
+   FOOTER - Pie de página
    ================================================ */
-
 .footer {
+  /* Relleno: 30px arriba/abajo, 20px izquierda/derecha */
   padding: 30px 20px;
+  /* Centra el contenido */
   text-align: center;
+  /* Fondo aún más oscuro que main */
   background-color: #050409;
-  border-top: 1px solid var(--color-border);
-  color: var(--color-text-gray);
+  /* Borde superior para separar del contenido */
+  border-top: 1px solid #2d2a2a;
+  /* Color del texto gris */
+  color: #999;
+  /* Tamaño de fuente pequeño */
   font-size: 0.95rem;
 }
 
@@ -760,94 +1400,166 @@ body {
    RESPONSIVE - Media Queries
    Adapta el diseño a diferentes tamaños de pantalla
    ================================================ */
-
-/* Pantallas medianas (tablets - máximo 768px) */
+/* Pantallas medianas (tablets) - Máximo 768px de ancho */
 @media (max-width: 768px) {
+  /* Estilos de navbar en tablets */
   .navbar {
+    /* Reduce el relleno */
     padding: 15px 20px;
+    /* Cambia a flex vertical para apilar elementos */
     flex-direction: column;
+    /* Espacio entre elementos apilados */
     gap: 15px;
+    /* Estilos de navegación en tablets */
   }
-
   .navbar nav {
+    /* Reduce el espacio entre links */
     gap: 15px;
   }
-
+  /* Estilos del hero en tablets */
   .hero {
+    /* Altura automática en lugar de 100vh */
     height: auto;
+    /* Ajusta el relleno */
     padding: 40px 20px;
+    /* Contenido del hero en tablets */
   }
-
   .hero .hero-content {
+    /* Una columna en lugar de dos */
     grid-template-columns: 1fr;
+    /* Menos espacio entre columnas */
     gap: 30px;
+    /* Centra el texto */
     text-align: center;
+    /* Título en tablets */
   }
-
   .hero .hero-content h1 {
+    /* Reduce el tamaño de fuente */
     font-size: 2.5rem;
   }
-
+  .hero .hero-content {
+    /* Imagen del perfil en tablets */
+  }
   .hero .hero-content .img_style img {
+    /* Imagen más pequeña */
     width: 200px;
     height: 200px;
   }
-
+  /* Contenido About Me y Contact en tablets */
   .about_me .about-content,
   .contact .contact-content {
+    /* Una columna en lugar de dos */
     grid-template-columns: 1fr;
+    /* Menos espacio entre elementos */
     gap: 40px;
   }
-
+  /* Grid de proyectos en tablets */
   .projects .projects-grid {
+    /* Una columna en lugar de grid responsivo */
     grid-template-columns: 1fr;
   }
-
+  /* Grid de mascotas en tablets: 2 columnas */
+  .pets .projects-grid-pet {
+    /* Cambia a 2 columnas en tablets */
+    grid-template-columns: repeat(2, 1fr);
+    /* Reduce el espacio entre tarjetas */
+    gap: 20px;
+    /* Reduce el espacio entre filas */
+    row-gap: 30px;
+  }
+  /* Altura de imagen en tablets */
+  .project-image-pet {
+    /* Reduce la altura de la imagen */
+    height: 280px !important;
+  }
+  /* Título de sección en tablets */
   .section-title {
+    /* Tamaño reducido */
     font-size: 2rem;
   }
 }
-
-/* Pantallas pequeñas (móviles - máximo 480px) */
+/* Pantallas pequeñas (móviles) - Máximo 480px de ancho */
 @media (max-width: 480px) {
+  /* Navbar en móviles */
   .navbar {
+    /* Reduce padding */
     padding: 10px 15px;
+    /* Logo en móviles */
   }
-
   .navbar .logo {
+    /* Reduce el tamaño del logo */
     font-size: 20px;
   }
-
+  .navbar {
+    /* Navegación en móviles */
+  }
   .navbar nav {
+    /* Cambia a vertical */
     flex-direction: column;
+    /* Reduce espaciado */
     gap: 10px;
+    /* Reduce tamaño de fuente */
     font-size: 0.9rem;
   }
-
+  /* Hero en móviles */
   .hero {
+    /* Altura automática */
     height: auto;
+    /* Contenido del hero en móviles */
   }
-
+  .hero .hero-content {
+    /* Título en móviles */
+  }
   .hero .hero-content h1 {
+    /* Tamaño muy reducido */
     font-size: 2rem;
   }
-
+  .hero .hero-content {
+    /* Párrafo en móviles */
+  }
   .hero .hero-content p {
+    /* Reduce el tamaño */
     font-size: 1rem;
   }
-
+  .hero .hero-content {
+    /* Imagen en móviles */
+  }
   .hero .hero-content .img_style img {
+    /* Imagen muy pequeña */
     width: 150px;
     height: 150px;
   }
-
+  /* Grid de mascotas en móviles: 1 columna */
+  .pets .projects-grid-pet {
+    /* Una sola columna en móviles */
+    grid-template-columns: 1fr;
+    /* Reduce el espacio entre tarjetas */
+    gap: 15px;
+    /* Reduce el espacio entre filas */
+    row-gap: 20px;
+  }
+  /* Altura de imagen en móviles */
+  .project-image-pet {
+    /* Reduce más la altura */
+    height: 220px !important;
+  }
+  /* Info de tarjeta en móviles */
+  .project-info {
+    /* Reduce padding */
+    padding: 20px;
+  }
+  /* Título de sección en móviles */
   .section-title {
+    /* Tamaño muy reducido */
     font-size: 1.5rem;
+    /* Reduce margen inferior */
     margin-bottom: 30px;
   }
-
+  /* Contacto en móviles */
   .contact-content {
+    /* Menos espacio */
     gap: 30px;
   }
 }
 
+/*# sourceMappingURL=style.css.map */

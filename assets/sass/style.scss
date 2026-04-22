@@ -1,108 +1,166 @@
 
 
+/* Importa la fuente Libre Franklin de Google Fonts con múltiples pesos (100-900) e inclina (ital) */
 @import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap');
 
 /* ================================================
-   VARIABLES DE COLOR
+   VARIABLES DE COLOR - Define colores reutilizables en todo el SCSS
    ================================================ */
-$color-bg-dark: #0E0B16;      /* Color de fondo principal - Fondo oscuro */
-$color-bg-card: #1A1722;      /* Color de fondo para tarjetas - Ligeramente más claro */
-$color-accent: #58b30f;       /* Color de acento - Verde vibrante */
-$color-accent-hover: #6bc91e; /* Versión más clara del acento para hover */
-$color-text-light: #fff;      /* Texto blanco */
-$color-text-gray: #999;       /* Texto gris para descripciones */
-$color-text-dark: #333;       /* Texto gris oscuro para nav */
-$color-border: #2d2a2a;       /* Color de bordes */
+/* Color de fondo principal - Tono muy oscuro/casi negro (#0E0B16) */
+$color-bg-dark: #0E0B16;
+/* Color de fondo para tarjetas - Ligeramente más claro que el fondo principal (#1A1722) */
+$color-bg-card: #1A1722;
+/* Color de acento principal - Verde vibrante que resalta en el diseño (#58b30f) */
+$color-accent: #58b30f;
+/* Versión más clara del acento para estados hover - Verde más brillante (#6bc91e) */
+$color-accent-hover: #6bc91e;
+/* Texto principal - Blanco puro (#fff) para máximo contraste */
+$color-text-light: #fff;
+/* Texto secundario - Gris medio (#999) para descripciones y textos auxiliares */
+$color-text-gray: #999;
+/* Texto oscuro - Gris muy oscuro (#333) usado en navegación */
+$color-text-dark: #333;
+/* Color de bordes - Gris muy oscuro (#2d2a2a) para separadores */
+$color-border: #2d2a2a;
 
 /* ================================================
-   RESET Y ESTILOS GLOBALES
+   RESET Y ESTILOS GLOBALES - Normaliza estilos de todos los navegadores
    ================================================ */
 
-/* El selector universal * aplica estilos a TODOS los elementos */
+/* El selector universal * selecciona TODOS los elementos HTML del documento */
 * {
-    margin: 0;              /* Elimina márgenes externos por defecto */
-    padding: 0;             /* Elimina relleno interno por defecto */
-    box-sizing: border-box; /* Incluye padding y border en el ancho total (crucial para diseños) */
-    font-family: 'Libre Franklin', sans-serif; /* Tipografía consistente en todo el sitio */
+    /* Elimina márgenes externos por defecto que agregan espacios innecesarios */
+    margin: 0;
+    /* Elimina relleno interno por defecto de elementos del navegador */
+    padding: 0;
+    /* Incluye padding y border en el cálculo del ancho/alto total (crucial para layouts consistentes) */
+    box-sizing: border-box;
+    /* Define la tipografía "Libre Franklin" en todo el sitio para consistencia visual */
+    font-family: 'Libre Franklin', sans-serif;
 }
 
-/* Body: contenedor principal del documento */
+/* Body: contenedor principal del documento HTML */
 body {
+    /* Aplica el fondo oscuro definido en la variable de color */
     background-color: $color-bg-dark;
+    /* Define el color de texto principal en blanco para contraste */
     color: $color-text-light;
-    line-height: 1.6;       /* Espaciado entre líneas para mejor legibilidad */
-    overflow-x: hidden;     /* Evita barras de scroll horizontal */
+    /* Espaciado entre líneas: 1.6 líneas proporciona buena legibilidad */
+    line-height: 1.6;
+    /* Evita que aparezca barra de scroll horizontal innecesaria */
+    overflow-x: hidden;
 }
 
 /* ================================================
-   CONTENEDOR - Clase reutilizable
+   CONTENEDOR - Clase reutilizable para centrar contenido
    ================================================ */
-/* Centra el contenido y establece un ancho máximo */
+/* Centra el contenido y establece un ancho máximo para mejor legibilidad */
 .container {
-    max-width: 1200px;      /* Ancho máximo en pantallas grandes */
-    margin: 0 auto;         /* Centra horizontalmente */
-    padding: 0 20px;        /* Relleno lateral responsivo */
+    /* Ancho máximo en pantallas grandes para evitar líneas demasiado largas */
+    max-width: 1200px;
+    /* Establece márgenes automáticos derecha e izquierda para centrar horizontalmente */
+    margin: 0 auto;
+    /* Relleno lateral responsivo: evita que el contenido toque los bordes en móviles */
+    padding: 0 20px;
 }
 
 /* ================================================
-   BARRA DE NAVEGACIÓN (NAVBAR)
+   BARRA DE NAVEGACIÓN (NAVBAR) - Encabezado superior fijo
    ================================================ */
 
 .navbar {
-    display: flex;                  /* Activa flexbox para alinear elementos */
-    justify-content: space-between; /* Empuja logo a la izquierda, nav a la derecha */
-    align-items: center;            /* Centra verticalmente todos los elementos */
-    padding: 20px 50px;             /* Espaciado vertical y horizontal */
+    /* Activa Flexbox para alinear elementos de forma flexible */
+    display: flex;
+    /* Distribuye espacio: logo a la izquierda, navegación a la derecha */
+    justify-content: space-between;
+    /* Alinea verticalmente todos los elementos al centro */
+    align-items: center;
+    /* Espaciado: 20px arriba/abajo, 50px izquierda/derecha */
+    padding: 20px 50px;
+    /* Fondo oscuro igual al del body para consistencia */
     background-color: $color-bg-dark;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Sombra sutil para profundidad */
-    position: sticky;               /* Permanece visible al hacer scroll */
-    top: 0;                         /* Se fija en la parte superior */
-    z-index: 100;                   /* Se asegura que esté sobre otros elementos */
+    /* Sombra sutil: da profundidad visual separando navbar del contenido */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    /* Mantiene la navbar visible incluso al hacer scroll */
+    position: sticky;
+    /* Fija la posición en la parte superior de la pantalla */
+    top: 0;
+    /* Asegura que esté sobre otros elementos (dropdown, modal, etc) */
+    z-index: 100;
 
+    /* Estilos para el logo de la marca */
     .logo {
-        font-size: 24px;            /* Tamaño de letra grande */
-        font-weight: bold;          /* Texto en negrita */
-        color: $color-accent;       /* Color verde acento */
-        letter-spacing: 1px;        /* Espaciado entre letras para elegancia */
-        transition: all 0.3s ease;  /* Suaviza cambios de estilo */
+        /* Tamaño de letra grande y visible */
+        font-size: 24px;
+        /* Texto en negrita para destacar */
+        font-weight: bold;
+        /* Color verde acento definido en variables */
+        color: $color-accent;
+        /* Espaciado entre letras para elegancia tipográfica */
+        letter-spacing: 1px;
+        /* Suaviza todos los cambios de estilo en 0.3 segundos */
+        transition: all 0.3s ease;
 
+        /* Estilos cuando el mouse está sobre el logo */
         &:hover {
-            color: $color-accent-hover; /* Verde más claro al pasar el mouse */
-            text-shadow: 0 0 10px rgba(88, 179, 15, 0.5); /* Brillo sutil */
+            /* Cambia a verde más claro al pasar el mouse */
+            color: $color-accent-hover;
+            /* Crea un efecto de brillo/resplandor alrededor del texto */
+            text-shadow: 0 0 10px rgba(88, 179, 15, 0.5);
         }
     }
 
     /* Estilos para el contenedor de navegación */
     nav {
-        display: flex;              /* Alinea links horizontalmente */
-        gap: 30px;                  /* Espacio entre cada link */
+        /* Alinea los links de navegación horizontalmente */
+        display: flex;
+        /* Espacio entre cada link de navegación */
+        gap: 30px;
 
+        /* Estilos para cada enlace dentro de nav */
         a {
-            text-decoration: none;      /* Quita la línea subrayada */
+            /* Elimina la línea subrayada por defecto de los enlaces */
+            text-decoration: none;
+            /* Color blanco para los links */
             color: $color-text-light;
-            font-weight: 500;           /* Grosor medio */
+            /* Grosor medio de la fuente */
+            font-weight: 500;
+            /* Tamaño de letra estándar */
             font-size: 16px;
-            transition: 0.3s ease;      /* Transición suave en hover */
-            position: relative;         /* Necesario para el efecto underline */
+            /* Transición suave de 0.3 segundos para cambios de estilo */
+            transition: 0.3s ease;
+            /* Position relativo necesario para que funcione ::after */
+            position: relative;
 
-            /* Efecto subrayado que aparece al hover */
+            /* Crea un pseudo-elemento para efecto de subrayado animado */
             &::after {
-                content: '';            /* Crea un pseudo-elemento vacío */
-                position: absolute;     /* Se posiciona relativo a su padre */
-                bottom: -5px;           /* 5px debajo del texto */
-                left: 0;                /* Comienza desde la izquierda */
-                width: 0;               /* Inicia con ancho 0 */
-                height: 2px;            /* Grosor de la línea */
+                /* Crea un elemento invisible (vacío) */
+                content: '';
+                /* Se posiciona relativo a su elemento padre (el link) */
+                position: absolute;
+                /* 5 píxeles debajo del texto */
+                bottom: -5px;
+                /* Comienza desde la izquierda del elemento */
+                left: 0;
+                /* Inicia con ancho 0 (invisible) */
+                width: 0;
+                /* Altura del subrayado: 2 píxeles */
+                height: 2px;
+                /* Color del subrayado: verde acento */
                 background-color: $color-accent;
-                transition: width 0.3s ease; /* Anima el ancho */
+                /* Anima el cambio de ancho suavemente */
+                transition: width 0.3s ease;
             }
 
+            /* Estilos cuando el mouse está sobre el link */
             &:hover {
-                color: $color-accent; /* Cambio de color en hover */
+                /* Cambia el color del texto a verde acento */
+                color: $color-accent;
 
-                /* El subrayado se expande */
+                /* El subrayado se expande al ancho del texto */
                 &::after {
-                    width: 100%;        /* Se expande al ancho completo */
+                    /* El subrayado se expande al 100% del ancho del link */
+                    width: 100%;
                 }
             }
         }
@@ -110,262 +168,415 @@ body {
 }
 
 /* ================================================
-   HERO SECTION (Sección Principal)
+   HERO SECTION (Sección Principal) - Primera sección visible al cargar
    ================================================ */
 
 .hero {
-    height: 100vh;                  /* Altura completa de la pantalla */
-    display: flex;                  /* Flexbox para centrar contenido */
-    justify-content: center;        /* Centra horizontalmente */
-    align-items: center;            /* Centra verticalmente */
-    background: linear-gradient(135deg, $color-bg-dark 0%, #1a1722 100%); /* Gradiente sutil */
+    /* Altura igual al 100% de la ventana del navegador */
+    height: 100vh;
+    /* Activa Flexbox para centrar el contenido */
+    display: flex;
+    /* Centra el contenido horizontalmente */
+    justify-content: center;
+    /* Centra el contenido verticalmente */
+    align-items: center;
+    /* Gradiente diagonal: de color oscuro a gris oscuro para profundidad */
+    background: linear-gradient(135deg, $color-bg-dark 0%, #1a1722 100%);
+    /* Color de texto blanco */
     color: $color-text-light;
+    /* Relleno: 40px arriba/abajo, 20px izquierda/derecha */
     padding: 40px 20px;
 
+    /* Contenedor principal del contenido hero */
     .hero-content {
+        /* Crea un grid (tabla) con 2 columnas de igual tamaño */
         display: grid;
-        grid-template-columns: repeat(2, 1fr); /* Dos columnas iguales */
-        gap: 50px;                  /* Espacio entre columnas */
+        grid-template-columns: repeat(2, 1fr);
+        /* Espacio entre columnas */
+        gap: 50px;
+        /* Alinea los items al inicio vertical */
         align-items: center;
+        /* El contenido ocupa todo el ancho disponible */
         width: 100%;
+        /* Ancho máximo para que no sea demasiado ancho en pantallas grandes */
         max-width: 1200px;
 
+        /* Columna izquierda: texto del hero */
         .hero-text {
             /* Estilos del texto principal */
         }
 
+        /* Columna derecha: imagen del perfil */
         .img_style {
+            /* Centrador flexible para la imagen */
             display: flex;
+            /* Centra la imagen horizontalmente */
             justify-content: center;
+            /* Centra la imagen verticalmente */
             align-items: center;
 
             img {
-                width: 300px;           /* Ancho de imagen */
-                height: 300px;          /* Alto de imagen */
-                border-radius: 50%;     /* Hace un círculo */
-                object-fit: cover;      /* Recorta la imagen sin deformarla */
-                border: 3px solid $color-accent; /* Borde verde */
-                animation: flotar 3s ease-in-out infinite; /* Animación de flotación */
-                box-shadow: 0 0 30px rgba(88, 179, 15, 0.3); /* Brillo alrededor */
+                /* Ancho de la imagen: 300 píxeles */
+                width: 300px;
+                /* Alto de la imagen: 300 píxeles (hace un cuadrado) */
+                height: 300px;
+                /* Esquinas redondeadas: 50% hace un círculo perfecto */
+                border-radius: 50%;
+                /* Asegura que la imagen no se deforme al recortarse */
+                object-fit: cover;
+                /* Borde de 3px sólido con color de acento verde */
+                border: 3px solid $color-accent;
+                /* Aplica animación de flotación continua por 3 segundos */
+                animation: flotar 3s ease-in-out infinite;
+                /* Sombra alrededor de la imagen: efecto de resplandor verde */
+                box-shadow: 0 0 30px rgba(88, 179, 15, 0.3);
             }
         }
 
+        /* Título principal (h1) */
         h1 {
-            font-size: 4rem;            /* Tamaño muy grande */
+            /* Tamaño muy grande: 4 veces el tamaño base (64px) */
+            font-size: 4rem;
+            /* Margen inferior para separar del párrafo */
             margin-bottom: 20px;
-            font-weight: 900;           /* Muy negrita */
+            /* Peso máximo de fuente: muy negrita */
+            font-weight: 900;
+            /* Color verde acento */
             color: $color-accent;
         }
 
+        /* Párrafo (p) - descripción principal */
         p {
+            /* Tamaño de letra más grande */
             font-size: 1.2rem;
+            /* Margen inferior para separar del siguiente elemento */
             margin-bottom: 30px;
+            /* Color gris para texto secundario */
             color: $color-text-gray;
+            /* Espaciado entre líneas: 1.8 proporciona buena legibilidad */
             line-height: 1.8;
         }
     }
 }
 
 /* ================================================
-   ANIMACIÓN: FLOTAR
+   ANIMACIÓN: FLOTAR - Hace que la imagen suba y baje continuamente
    ================================================ */
-/* Hace que la imagen suba y baje continuamente */
 @keyframes flotar {
-    0%, 100% { 
-        transform: translateY(0);       /* Posición inicial */
+    /* Estado inicial (0%) y final (100%): posición normal */
+    0%, 100% {
+        /* Sin movimiento vertical */
+        transform: translateY(0);
     }
-    50% { 
-        transform: translateY(-30px);   /* Sube 30px en el medio */
+    /* Estado medio (50%): sube 30 píxeles */
+    50% {
+        /* Sube 30 píxeles (valor negativo = hacia arriba) */
+        transform: translateY(-30px);
     }
 }
 
 /* ================================================
-   ANIMACIÓN: TYPING (EFECTO DE ESCRITURA)
+   ANIMACIÓN: TYPING (EFECTO DE ESCRITURA) - Simula escribir texto
    ================================================ */
-/* Simula que el texto se está escribiendo */
 @keyframes typing {
-    from { 
-        width: 0;                       /* Comienza en 0 de ancho */
+    /* Desde el inicio */
+    from {
+        /* Comienza con ancho 0 (texto invisible) */
+        width: 0;
     }
-    to { 
-        width: 100%;                    /* Se expande al ancho completo */
+    /* Hasta el final */
+    to {
+        /* Se expande al ancho completo (todo el texto visible) */
+        width: 100%;
     }
 }
 
-/* Efecto de parpadeo del cursor */
+/* Efecto de parpadeo del cursor de máquina de escribir */
 @keyframes blink {
-    from, to { 
-        border-color: transparent;      /* Invisible */
+    /* Estados inicial y final: el cursor está invisible */
+    from, to {
+        /* Color del borde transparente = invisible */
+        border-color: transparent;
     }
-    50% { 
-        border-color: $color-accent;    /* Visible */
+    /* Estado medio (50%): el cursor es visible */
+    50% {
+        /* Color del borde verde = visible */
+        border-color: $color-accent;
     }
 }
 
-/* Clase para aplicar la animación typing */
+/* Clase para aplicar la animación typing a elementos */
 .typing {
-    font-family: monospace;             /* Fuente monoespaciada para precisión */
+    /* Fuente monoespaciada (cada letra ocupa mismo ancho) */
+    font-family: monospace;
+    /* Tamaño grande de fuente */
     font-size: 3rem;
-    white-space: nowrap;                /* No permite saltos de línea */
-    overflow: hidden;                   /* Oculta el texto que aún no se "escribe" */
-    border-right: 3px solid $color-accent; /* Cursor de escritura */
-    width: 0;                           /* Ancho inicial 0 */
-    animation: 
-        typing 3.5s steps(30, end) forwards,  /* Escribe cada letra en pasos */
-        blink 0.75s step-end infinite;        /* Parpadea el cursor */
+    /* Evita que el texto salte a nueva línea */
+    white-space: nowrap;
+    /* Oculta el texto que aún no se "escribe" */
+    overflow: hidden;
+    /* Borde derecho de 3px que simula el cursor de escritura */
+    border-right: 3px solid $color-accent;
+    /* Ancho inicial 0: el texto comienza invisible */
+    width: 0;
+    /* Combina dos animaciones:
+       - typing: expande el ancho en pasos discretos (30 pasos) durante 3.5 segundos
+       - blink: hace parpadear el cursor cada 0.75 segundos */
+    animation:
+        typing 3.5s steps(30, end) forwards,
+        blink 0.75s step-end infinite;
 }
 
 /* ================================================
-   ANIMACIÓN: FADE IN UP (APARECE Y SUBE)
+   ANIMACIÓN: FADE IN UP (APARECE Y SUBE SUAVEMENTE)
    ================================================ */
-/* Elementos aparecen con opacidad y suben suavemente */
 @keyframes fadeInUp {
+    /* Estado inicial */
     from {
-        opacity: 0;                     /* Completamente transparente */
-        transform: translateY(30px);    /* Empieza 30px más abajo */
+        /* Texto completamente transparente (invisible) */
+        opacity: 0;
+        /* Empieza 30 píxeles más abajo que posición final */
+        transform: translateY(30px);
     }
+    /* Estado final */
     to {
-        opacity: 1;                     /* Completamente visible */
-        transform: translateY(0);       /* Sube a su posición final */
+        /* Texto completamente visible */
+        opacity: 1;
+        /* Sube a su posición original */
+        transform: translateY(0);
     }
 }
 
+/* Clase que aplica la animación fadeInUp */
 .fade-in-up {
+    /* Duración: 0.8 segundos, suave, sin repetirse */
     animation: fadeInUp 0.8s ease forwards;
-    
-    /* Cada elemento con esta clase se anima en diferente momento */
-    &:nth-child(1) { animation-delay: 0.2s; }
-    &:nth-child(2) { animation-delay: 0.4s; }
-    &:nth-child(3) { animation-delay: 0.6s; }
+
+    /* Cada hijo de esta clase se anima en diferente momento (efecto cascada) */
+    &:nth-child(1) {
+        /* Primer elemento comienza después de 0.2 segundos */
+        animation-delay: 0.2s;
+    }
+    &:nth-child(2) {
+        /* Segundo elemento comienza después de 0.4 segundos */
+        animation-delay: 0.4s;
+    }
+    &:nth-child(3) {
+        /* Tercer elemento comienza después de 0.6 segundos */
+        animation-delay: 0.6s;
+    }
 }
 
 /* ================================================
    ANIMACIÓN: SLIDE IN LEFT (ENTRA DESDE IZQUIERDA)
    ================================================ */
-/* Los elementos entran desde la izquierda */
 @keyframes slideInLeft {
+    /* Estado inicial */
     from {
-        opacity: 0;                     /* Invisible */
-        transform: translateX(-50px);   /* 50px a la izquierda */
+        /* Invisible */
+        opacity: 0;
+        /* 50 píxeles a la izquierda de su posición final */
+        transform: translateX(-50px);
     }
+    /* Estado final */
     to {
-        opacity: 1;                     /* Visible */
-        transform: translateX(0);       /* En su posición */
+        /* Visible */
+        opacity: 1;
+        /* En su posición original */
+        transform: translateX(0);
     }
 }
 
+/* Clase que aplica la animación slideInLeft */
 .slide-in-left {
+    /* Duración: 0.6 segundos, suave, sin repetirse */
     animation: slideInLeft 0.6s ease forwards;
-    
-    /* Cada tarjeta se anima en diferente momento */
-    &:nth-child(1) { animation-delay: 0.2s; }
-    &:nth-child(2) { animation-delay: 0.4s; }
-    &:nth-child(3) { animation-delay: 0.6s; }
+
+    /* Cada tarjeta se anima en diferente momento (efecto cascada) */
+    &:nth-child(1) {
+        /* Primer elemento comienza después de 0.2 segundos */
+        animation-delay: 0.2s;
+    }
+    &:nth-child(2) {
+        /* Segundo elemento comienza después de 0.4 segundos */
+        animation-delay: 0.4s;
+    }
+    &:nth-child(3) {
+        /* Tercer elemento comienza después de 0.6 segundos */
+        animation-delay: 0.6s;
+    }
 }
 
 /* ================================================
-   SECCIÓN ABOUT ME (SOBRE MÍ)
+   SECCIÓN ABOUT ME (SOBRE MÍ) - Información personal y habilidades
    ================================================ */
 
 .about_me {
+    /* Relleno: 80px arriba/abajo, 20px izquierda/derecha */
     padding: 80px 20px;
+    /* Gradiente vertical: de oscuro a más claro */
     background: linear-gradient(180deg, $color-bg-dark 0%, $color-bg-card 100%);
 
+    /* Título de la sección */
     .section-title {
-        font-size: 3rem;                /* Tamaño grande */
+        /* Tamaño grande para destacar */
+        font-size: 3rem;
+        /* Centra el texto horizontalmente */
         text-align: center;
+        /* Margen inferior para separar del contenido */
         margin-bottom: 60px;
+        /* Color verde acento */
         color: $color-accent;
+        /* Necesario para que el pseudo-elemento ::after funcione */
         position: relative;
+        /* Espacio inferior dentro del elemento para el decorador */
         padding-bottom: 20px;
 
-        /* Línea decorativa debajo del título */
+        /* Crea una línea decorativa debajo del título */
         &::after {
+            /* Crea un elemento invisible que será la línea */
             content: '';
+            /* Se posiciona relativo al elemento padre */
             position: absolute;
+            /* Pone la línea en la parte inferior */
             bottom: 0;
+            /* Centra horizontalmente */
             left: 50%;
+            /* Mueve el origen al 50% (centro) */
             transform: translateX(-50%);
+            /* Ancho de la línea: 60px */
             width: 60px;
+            /* Altura de la línea: 4px */
             height: 4px;
+            /* Gradiente de color verde a transparente */
             background: linear-gradient(90deg, $color-accent, transparent);
+            /* Esquinas ligeramente redondeadas */
             border-radius: 2px;
         }
     }
 
+    /* Contenedor del contenido About Me */
     .about-content {
+        /* Crea un grid con 2 columnas */
         display: grid;
         grid-template-columns: 1fr 1fr;
+        /* Espacio entre columnas */
         gap: 60px;
+        /* Alinea los items al inicio vertical */
         align-items: start;
 
+        /* Columna izquierda: texto y habilidades */
         .about-text {
+            /* Subtítulo (h3) */
             h3 {
+                /* Tamaño grande para subtítulo */
                 font-size: 1.5rem;
+                /* Margen inferior para separar */
                 margin-bottom: 15px;
+                /* Color verde acento */
                 color: $color-accent;
             }
 
+            /* Párrafos de descripción */
             p {
+                /* Tamaño de fuente un poco más grande */
                 font-size: 1.1rem;
+                /* Color gris para texto secundario */
                 color: $color-text-gray;
+                /* Margen inferior entre párrafos */
                 margin-bottom: 25px;
+                /* Espaciado vertical entre líneas: mejora legibilidad */
                 line-height: 1.8;
-                text-align: justify; /* Justifica el texto para un aspecto más profesional */
+                /* Alinea el texto a ambos márgenes (justificado) */
+                text-align: justify;
             }
 
             /* Lista de habilidades */
             .skills-list {
-                list-style: none;       /* Quita los puntos por defecto */
+                /* Quita los puntos/bullets por defecto */
+                list-style: none;
 
+                /* Cada elemento de la lista */
                 li {
+                    /* Relleno: 12px arriba/abajo, 0 izquierda/derecha */
                     padding: 12px 0;
+                    /* Espacio para dejar lugar al icono checkmark */
                     padding-left: 30px;
+                    /* Necesario para posicionar el ::before */
                     position: relative;
+                    /* Tamaño de letra */
                     font-size: 1.1rem;
+                    /* Color gris para habilidades */
                     color: $color-text-gray;
 
-                    /* Punto decorativo verde antes de cada elemento */
+                    /* Crea un checkmark (✓) antes de cada elemento */
                     &::before {
-                        content: '✓';       /* Checkmark en lugar de punto */
+                        /* Inserta un checkmark en lugar de punto */
+                        content: '✓';
+                        /* Se posiciona relativo al li */
                         position: absolute;
+                        /* Alineado a la izquierda */
                         left: 0;
+                        /* Color verde del checkmark */
                         color: $color-accent;
+                        /* Checkmark en negrita */
                         font-weight: bold;
+                        /* Tamaño del checkmark */
                         font-size: 1.3rem;
                     }
                 }
             }
         }
 
-        /* Estadísticas en tarjetas */
+        /* Columna derecha: estadísticas en tarjetas */
         .about-stats {
+            /* Flex vertical para apilar tarjetas */
             display: flex;
+            /* Dirección vertical (uno debajo de otro) */
             flex-direction: column;
+            /* Espacio entre tarjetas */
             gap: 20px;
 
+            /* Cada tarjeta de estadística */
             .stat-card {
+                /* Fondo oscuro de tarjeta */
                 background-color: $color-bg-card;
+                /* Relleno interno */
                 padding: 30px;
+                /* Esquinas redondeadas */
                 border-radius: 10px;
+                /* Borde izquierdo de 4px verde */
                 border-left: 4px solid $color-accent;
+                /* Centra el contenido de la tarjeta */
                 text-align: center;
+                /* Transición suave de 0.3 segundos */
                 transition: all 0.3s ease;
 
+                /* Efecto hover: tarjeta sube y muestra sombra */
                 &:hover {
-                    transform: translateY(-5px);    /* Sube el elemento */
-                    box-shadow: 0 10px 30px rgba(88, 179, 15, 0.2); /* Sombra */
+                    /* Sube el elemento 5 píxeles */
+                    transform: translateY(-5px);
+                    /* Sombra con color verde tenue */
+                    box-shadow: 0 10px 30px rgba(88, 179, 15, 0.2);
                 }
 
+                /* Número grande de la estadística */
                 .stat-number {
+                    /* Tamaño muy grande: 2.5 veces el tamaño base */
                     font-size: 2.5rem;
+                    /* Color verde acento */
                     color: $color-accent;
+                    /* Margen inferior */
                     margin-bottom: 10px;
+                    /* Muy negrita */
                     font-weight: 900;
                 }
 
+                /* Texto descriptivo de la estadística */
                 p {
+                    /* Color gris */
                     color: $color-text-gray;
+                    /* Tamaño normal */
                     font-size: 1rem;
                 }
             }
@@ -374,145 +585,231 @@ body {
 }
 
 /* ================================================
-   SECCIÓN PROYECTOS (PROJECTS)
+   SECCIÓN PROYECTOS (PROJECTS) - Galería de proyectos
    ================================================ */
 
 .projects {
+    /* Relleno: 80px arriba/abajo, 20px izquierda/derecha */
     padding: 80px 20px;
+    /* Fondo oscuro */
     background-color: $color-bg-dark;
 
+    /* Título de la sección */
     .section-title {
+        /* Tamaño grande para destacar */
         font-size: 3rem;
+        /* Centra el texto */
         text-align: center;
+        /* Margen inferior */
         margin-bottom: 60px;
+        /* Color verde acento */
         color: $color-accent;
+        /* Necesario para el pseudo-elemento */
         position: relative;
+        /* Espacio para la línea decorativa */
         padding-bottom: 20px;
 
+        /* Línea decorativa verde debajo */
         &::after {
+            /* Elemento decorativo vacío */
             content: '';
+            /* Se posiciona absolutamente */
             position: absolute;
+            /* En la parte inferior */
             bottom: 0;
+            /* Centrado horizontalmente */
             left: 50%;
+            /* Ajusta el origen al centro */
             transform: translateX(-50%);
+            /* Ancho de la línea */
             width: 60px;
+            /* Altura de la línea */
             height: 4px;
+            /* Gradiente verde a transparente */
             background: linear-gradient(90deg, $color-accent, transparent);
+            /* Esquinas redondeadas */
             border-radius: 2px;
         }
     }
 
     /* Grid de tarjetas de proyectos */
     .projects-grid {
+        /* Activa grid CSS */
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive */
+        /* Auto-fit: crea columnas automáticamente
+           minmax(300px, 1fr): cada columna tiene mínimo 300px y expande si hay espacio */
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        /* Espacio entre tarjetas */
         gap: 40px;
     }
 }
 
 /* Tarjeta de proyecto individual */
 .project-card {
+    /* Fondo gris oscuro de tarjeta */
     background-color: $color-bg-card;
+    /* Esquinas redondeadas */
     border-radius: 10px;
-    overflow: hidden;          /* Recorta contenido que salga de los límites */
+    /* Recorta contenido que salga de los límites de la tarjeta */
+    overflow: hidden;
+    /* Transición suave de 0.3 segundos para cambios */
     transition: all 0.3s ease;
+    /* Cambia el cursor a manita (señal de clickeable) */
     cursor: pointer;
 
+    /* Efecto hover: tarjeta sube y muestra sombra */
     &:hover {
-        transform: translateY(-10px);       /* Sube 10px */
-        box-shadow: 0 20px 40px rgba(88, 179, 15, 0.2); /* Sombra verde */
+        /* Sube 10 píxeles */
+        transform: translateY(-10px);
+        /* Sombra verde */
+        box-shadow: 0 20px 40px rgba(88, 179, 15, 0.2);
     }
 
     /* Contenedor de imagen con efecto overlay */
     .project-image {
+        /* Se posiciona relativamente para controlar el overlay */
         position: relative;
+        /* Oculta contenido que salga de los límites */
         overflow: hidden;
+        /* Altura fija de la imagen */
         height: 200px;
 
+        /* Imagen del proyecto */
         img {
+            /* Ancho 100% del contenedor */
             width: 100%;
+            /* Alto 100% del contenedor */
             height: 100%;
+            /* Recorta o redimensiona la imagen sin distorsionar */
             object-fit: cover;
-            transition: transform 0.3s ease; /* Zoom en hover */
+            /* Transición suave para el efecto zoom */
+            transition: transform 0.3s ease;
         }
 
         /* Capa oscura que aparece en hover */
         .project-overlay {
+            /* Se posiciona sobre la imagen */
             position: absolute;
+            /* Pega en las esquinas */
             top: 0;
             left: 0;
+            /* Cubre toda la imagen */
             width: 100%;
             height: 100%;
+            /* Fondo negro con 70% opacidad (transparencia) */
             background: rgba(0, 0, 0, 0.7);
+            /* Flex para centrar el botón */
             display: flex;
+            /* Centra horizontalmente */
             justify-content: center;
+            /* Centra verticalmente */
             align-items: center;
-            opacity: 0;                 /* Invisible por defecto */
-            transition: opacity 0.3s ease; /* Aparece suavemente */
+            /* Invisible por defecto */
+            opacity: 0;
+            /* Aparece suavemente */
+            transition: opacity 0.3s ease;
 
+            /* Botón "Ver más" */
             .btn-view {
+                /* Relleno del botón */
                 padding: 12px 30px;
+                /* Fondo verde acento */
                 background-color: $color-accent;
+                /* Texto blanco */
                 color: white;
+                /* Quita subrayado de enlace */
                 text-decoration: none;
+                /* Esquinas redondeadas */
                 border-radius: 5px;
+                /* Texto en negrita */
                 font-weight: bold;
+                /* Transición suave */
                 transition: all 0.3s ease;
 
+                /* Efecto hover del botón */
                 &:hover {
+                    /* Verde más claro */
                     background-color: $color-accent-hover;
-                    transform: scale(1.05);         /* Agranda el botón */
+                    /* Agranda el botón en 5% */
+                    transform: scale(1.05);
                 }
             }
         }
 
-        /* El overlay aparece cuando el mouse está sobre la tarjeta */
+        /* Al pasar mouse sobre la imagen */
         &:hover {
+            /* El overlay se hace visible */
             .project-overlay {
-                opacity: 1;             /* Se hace visible */
+                opacity: 1;
             }
 
+            /* La imagen se agranda (zoom) */
             img {
-                transform: scale(1.1);  /* Imagen se agranda */
+                transform: scale(1.1);
             }
         }
     }
 
-    /* Información de la tarjeta */
+    /* Información de la tarjeta (debajo de la imagen) */
     .project-info {
+        /* Relleno interno */
         padding: 25px;
 
+        /* Título del proyecto */
         h3 {
+            /* Tamaño grande */
             font-size: 1.4rem;
+            /* Margen inferior */
             margin-bottom: 10px;
+            /* Texto blanco */
             color: $color-text-light;
         }
 
+        /* Descripción del proyecto */
         p {
+            /* Texto gris */
             color: $color-text-gray;
+            /* Tamaño de fuente */
             font-size: 0.95rem;
+            /* Margen inferior */
             margin-bottom: 15px;
+            /* Espaciado entre líneas */
             line-height: 1.6;
         }
 
-        /* Tags de tecnologías */
+        /* Contenedor de tags/etiquetas de tecnologías */
         .project-tags {
+            /* Flex para alinear tags horizontalmente */
             display: flex;
-            flex-wrap: wrap;            /* Los tags pasan a siguiente línea si no caben */
+            /* Los tags pasan a siguiente línea si no caben */
+            flex-wrap: wrap;
+            /* Espacio entre tags */
             gap: 10px;
 
+            /* Cada tag/etiqueta de tecnología */
             .tag {
+                /* Muestra el tag como un bloque en línea */
                 display: inline-block;
+                /* Relleno del tag */
                 padding: 6px 12px;
-                background-color: rgba(88, 179, 15, 0.2); /* Fondo verde transparente */
+                /* Fondo verde con 20% opacidad (muy tenue) */
+                background-color: rgba(88, 179, 15, 0.2);
+                /* Color del texto verde */
                 color: $color-accent;
+                /* Esquinas muy redondeadas (estilo píldora) */
                 border-radius: 20px;
+                /* Tamaño de fuente pequeño */
                 font-size: 0.85rem;
+                /* Borde de 1px verde */
                 border: 1px solid $color-accent;
+                /* Transición suave */
                 transition: all 0.3s ease;
 
+                /* Efecto hover del tag */
                 &:hover {
+                    /* Fondo verde sólido */
                     background-color: $color-accent;
+                    /* Texto oscuro */
                     color: $color-bg-dark;
                 }
             }
@@ -521,306 +818,790 @@ body {
 }
 
 /* ================================================
-   SECCIÓN CONTACTO (CONTACT)
+   SECCIÓN CONTACTO (CONTACT) - Formulario y datos de contacto
    ================================================ */
 
 .contact {
+    /* Relleno: 80px arriba/abajo, 20px izquierda/derecha */
     padding: 80px 20px;
+    /* Gradiente vertical: gris a oscuro */
     background: linear-gradient(180deg, $color-bg-card 0%, $color-bg-dark 100%);
 
+    /* Título de la sección */
     .section-title {
+        /* Tamaño grande */
         font-size: 3rem;
+        /* Centra el texto */
         text-align: center;
+        /* Margen inferior */
         margin-bottom: 60px;
+        /* Color verde acento */
         color: $color-accent;
+        /* Para el pseudo-elemento decorativo */
         position: relative;
+        /* Espacio para la línea */
         padding-bottom: 20px;
 
+        /* Línea decorativa */
         &::after {
+            /* Elemento decorativo */
             content: '';
+            /* Posición absoluta */
             position: absolute;
+            /* En la parte inferior */
             bottom: 0;
+            /* Centrado horizontalmente */
             left: 50%;
+            /* Ajusta al centro */
             transform: translateX(-50%);
+            /* Ancho de la línea */
             width: 60px;
+            /* Alto de la línea */
             height: 4px;
+            /* Gradiente verde a transparente */
             background: linear-gradient(90deg, $color-accent, transparent);
+            /* Esquinas redondeadas */
             border-radius: 2px;
         }
     }
 
-    /* Contenido en dos columnas: info + formulario */
+    /* Contenedor principal de contacto */
     .contact-content {
+        /* Grid con 2 columnas: info + formulario */
         display: grid;
         grid-template-columns: 1fr 1fr;
+        /* Espacio entre columnas */
         gap: 60px;
+        /* Ancho máximo */
         max-width: 1000px;
+        /* Centra el contenido */
         margin: 0 auto;
     }
 
+    /* Columna izquierda: información de contacto */
     .contact-info {
+        /* Subtítulo */
         h3 {
+            /* Tamaño grande */
             font-size: 1.8rem;
+            /* Margen inferior */
             margin-bottom: 15px;
+            /* Color verde acento */
             color: $color-accent;
         }
 
+        /* Párrafos de descripción (usando > para solo párrafos directos) */
         > p {
+            /* Texto gris */
             color: $color-text-gray;
+            /* Tamaño de fuente */
             font-size: 1.1rem;
+            /* Margen inferior */
             margin-bottom: 30px;
+            /* Espaciado entre líneas */
             line-height: 1.8;
         }
 
-        /* Enlaces de contacto */
+        /* Contenedor de enlaces de contacto */
         .contact-links {
+            /* Flex vertical */
             display: flex;
+            /* Dirección: vertical (uno abajo del otro) */
             flex-direction: column;
+            /* Espacio entre enlaces */
             gap: 20px;
 
+            /* Cada enlace de contacto */
             .contact-link {
+                /* Flex horizontal para alinear icono y texto */
                 display: flex;
+                /* Centra verticalmente */
                 align-items: center;
+                /* Espacio entre icono y texto */
                 gap: 15px;
+                /* Relleno interno */
                 padding: 15px;
+                /* Fondo verde muy transparente */
                 background-color: rgba(88, 179, 15, 0.1);
+                /* Esquinas redondeadas */
                 border-radius: 8px;
+                /* Quita subrayado del enlace */
                 text-decoration: none;
+                /* Texto blanco */
                 color: $color-text-light;
+                /* Transición suave */
                 transition: all 0.3s ease;
+                /* Borde izquierdo inicialmente transparente */
                 border-left: 3px solid transparent;
 
+                /* Icono (emoji o símbolo) */
                 .icon {
+                    /* Tamaño del icono */
                     font-size: 1.5rem;
                 }
 
+                /* El último span es el texto */
                 span:last-child {
+                    /* Texto en negrita */
                     font-weight: 500;
                 }
 
+                /* Efecto hover del enlace */
                 &:hover {
+                    /* Fondo verde más intenso */
                     background-color: rgba(88, 179, 15, 0.2);
+                    /* Borde izquierdo verde */
                     border-left-color: $color-accent;
+                    /* Se desplaza 5px a la derecha */
                     transform: translateX(5px);
                 }
             }
         }
     }
 
-    /* Formulario de contacto */
+    /* Columna derecha: formulario de contacto */
     .contact-form {
+        /* Flex vertical para apilar elementos */
         display: flex;
+        /* Dirección: vertical */
         flex-direction: column;
+        /* Espacio entre grupos de formulario */
         gap: 20px;
 
+        /* Cada grupo de formulario (label + input) */
         .form-group {
+            /* Flex vertical */
             display: flex;
+            /* Dirección vertical */
             flex-direction: column;
+            /* Espacio entre label e input */
             gap: 8px;
 
+            /* Etiqueta del formulario */
             label {
+                /* Texto en negrita */
                 font-weight: 600;
+                /* Texto blanco */
                 color: $color-text-light;
+                /* Tamaño de fuente */
                 font-size: 0.95rem;
             }
 
-            /* Estilos para inputs y textareas */
+            /* Estilos para inputs y textareas (formularios) */
             input,
             textarea {
+                /* Relleno interno */
                 padding: 15px;
-                background-color: rgba(255, 255, 255, 0.05); /* Fondo muy sutil */
+                /* Fondo muy tenue (casi invisible) */
+                background-color: rgba(255, 255, 255, 0.05);
+                /* Borde gris oscuro */
                 border: 1px solid $color-border;
+                /* Esquinas redondeadas */
                 border-radius: 5px;
+                /* Texto blanco */
                 color: $color-text-light;
+                /* Fuente heredada del sitio */
                 font-family: inherit;
+                /* Tamaño de fuente */
                 font-size: 1rem;
+                /* Transición suave */
                 transition: all 0.3s ease;
 
-                /* Placeholder con color tenue */
+                /* Placeholder (texto de ayuda dentro del input) */
                 &::placeholder {
+                    /* Color gris muy tenue */
                     color: rgba(255, 255, 255, 0.3);
                 }
 
-                /* Al enfocar el input (cuando haces click) */
+                /* Cuando el input está enfocado (clickeado) */
                 &:focus {
-                    outline: none;                          /* Quita el outline azul default */
-                    background-color: rgba(88, 179, 15, 0.1); /* Fondo verde suave */
-                    border-color: $color-accent;            /* Borde verde */
-                    box-shadow: 0 0 10px rgba(88, 179, 15, 0.3); /* Brillo verde */
+                    /* Elimina el outline azul default */
+                    outline: none;
+                    /* Fondo verde suave */
+                    background-color: rgba(88, 179, 15, 0.1);
+                    /* Borde verde acento */
+                    border-color: $color-accent;
+                    /* Brillo verde alrededor */
+                    box-shadow: 0 0 10px rgba(88, 179, 15, 0.3);
                 }
 
-                /* Al pasar el mouse */
+                /* Cuando pasa el mouse sobre el input */
                 &:hover {
+                    /* Borde se vuelve verde */
                     border-color: $color-accent;
                 }
             }
 
+            /* Textarea específicamente */
             textarea {
-                resize: vertical;                       /* Permite cambiar altura */
+                /* Permite cambiar solo la altura (no el ancho) */
+                resize: vertical;
+                /* Fuente consistente del sitio */
                 font-family: 'Libre Franklin', sans-serif;
             }
         }
 
-        /* Botón de envío */
+        /* Botón de envío del formulario */
         .btn-submit {
+            /* Margen superior para separar */
             margin-top: 10px;
+            /* Ancho al 100% del contenedor */
             width: 100%;
         }
     }
 }
 
 /* ================================================
-   BOTONES
+   SECCIÓN PROYECTOS MASCOTA (PETS) - Variante de galería con imágenes más grandes
+   ================================================ */
+
+.pets {
+    /* Relleno: 80px arriba/abajo, 20px izquierda/derecha */
+    padding: 80px 20px;
+    /* Fondo oscuro */
+    background-color: $color-bg-dark;
+
+    /* Título de la sección */
+    .section-title {
+        /* Tamaño grande */
+        font-size: 3rem;
+        /* Centra el texto */
+        text-align: center;
+        /* Margen inferior */
+        margin-bottom: 60px;
+        /* Color verde acento */
+        color: $color-accent;
+        /* Para el pseudo-elemento */
+        position: relative;
+        /* Espacio para la línea decorativa */
+        padding-bottom: 20px;
+
+        /* Línea decorativa verde */
+        &::after {
+            /* Elemento decorativo */
+            content: '';
+            /* Posición absoluta */
+            position: absolute;
+            /* En la parte inferior */
+            bottom: 0;
+            /* Centrado horizontalmente */
+            left: 50%;
+            /* Ajusta al centro */
+            transform: translateX(-50%);
+            /* Ancho de la línea */
+            width: 60px;
+            /* Alto de la línea */
+            height: 4px;
+            /* Gradiente verde a transparente */
+            background: linear-gradient(90deg, $color-accent, transparent);
+            /* Esquinas redondeadas */
+            border-radius: 2px;
+        }
+    }
+
+    /* Grid de tarjetas de proyectos/mascotas */
+    .projects-grid-pet {
+        /* Activa grid CSS */
+        display: grid;
+        /* 3 columnas fijas de igual tamaño */
+        grid-template-columns: repeat(3, 1fr);
+        /* Espacio entre tarjetas horizontalmente */
+        gap: 30px;
+        /* Espacio entre filas */
+        row-gap: 40px;
+    }
+}
+
+/* Tarjeta de proyecto/mascota individual */
+.project-card-pet {
+    /* Fondo gris oscuro */
+    background-color: $color-bg-card;
+    /* Esquinas redondeadas */
+    border-radius: 15px;
+    /* Recorta contenido que salga de los límites */
+    overflow: hidden;
+    /* Transición suave */
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    /* Señala que es clickeable */
+    cursor: pointer;
+    /* Sombra inicial sutil */
+    box-shadow: 0 5px 15px rgba(88, 179, 15, 0.1);
+    /* Borde verde muy sutil */
+    border: 1px solid rgba(88, 179, 15, 0.2);
+
+    /* Efecto hover: sube y muestra sombra más intensa */
+    &:hover {
+        /* Sube 15 píxeles (más que antes) */
+        transform: translateY(-15px) scale(1.02);
+        /* Sombra verde más intensa */
+        box-shadow: 0 25px 50px rgba(88, 179, 15, 0.3);
+        /* Borde verde más visible en hover */
+        border-color: rgba(88, 179, 15, 0.5);
+    }
+
+    /* Contenedor de imagen con efecto overlay */
+    .project-image-pet {
+        /* Se posiciona relativamente */
+        position: relative;
+        /* Oculta contenido que salga de los límites */
+        overflow: hidden;
+        /* Altura mucho mayor que project-image (500px vs 200px) */
+        height: 350px;
+        /* Fondo degradado mientras carga la imagen */
+        background: linear-gradient(135deg, #1a1722, #2d2a2a);
+
+        /* Imagen del proyecto */
+        img {
+            /* Ancho 100% */
+            width: 100%;
+            /* Alto 100% */
+            height: 100%;
+            /* Recorta la imagen proporcional */
+            object-fit: cover;
+            /* Transición suave para el zoom */
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            /* Escala inicial ligeramente menor */
+            transform: scale(1);
+        }
+
+        /* Capa oscura que aparece en hover */
+        .project-overlay {
+            /* Se posiciona sobre la imagen */
+            position: absolute;
+            /* En las esquinas */
+            top: 0;
+            left: 0;
+            /* Cubre toda la imagen */
+            width: 100%;
+            height: 100%;
+            /* Fondo negro con gradiente para mejor efecto */
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(88, 179, 15, 0.2));
+            /* Flex para centrar el botón */
+            display: flex;
+            /* Centra horizontalmente */
+            justify-content: center;
+            /* Centra verticalmente */
+            align-items: center;
+            /* Invisible por defecto */
+            opacity: 0;
+            /* Aparece suavemente */
+            transition: opacity 0.4s ease;
+            /* Backdrop blur para efecto de vidrio */
+            backdrop-filter: blur(0px);
+            transition: opacity 0.4s ease, backdrop-filter 0.4s ease;
+
+            /* Botón "Ver más" de mascota */
+            .btn-view-pet {
+                /* Relleno del botón */
+                padding: 14px 35px;
+                /* Fondo verde acento */
+                background-color: $color-accent;
+                /* Texto blanco */
+                color: white;
+                /* Quita subrayado */
+                text-decoration: none;
+                /* Esquinas más redondeadas */
+                border-radius: 8px;
+                /* Texto en negrita */
+                font-weight: bold;
+                /* Transición suave */
+                transition: all 0.3s ease;
+                /* Sombra para el botón */
+                box-shadow: 0 5px 15px rgba(88, 179, 15, 0.3);
+                /* Borde para mayor definición */
+                border: 2px solid $color-accent-hover;
+
+                /* Efecto hover del botón */
+                &:hover {
+                    /* Verde más claro */
+                    background-color: $color-accent-hover;
+                    /* Agranda en 8% */
+                    transform: scale(1.08);
+                    /* Sombra más intensa */
+                    box-shadow: 0 8px 20px rgba(88, 179, 15, 0.5);
+                }
+            }
+        }
+
+        /* Al pasar el mouse sobre la imagen */
+        &:hover {
+            /* El overlay se hace visible */
+            .project-overlay {
+                opacity: 1;
+                /* Efecto de vidrio esmerilado */
+                backdrop-filter: blur(5px);
+            }
+
+            /* La imagen se agranda (zoom) */
+            img {
+                transform: scale(1.15);
+            }
+        }
+    }
+
+    /* Información de la tarjeta */
+    .project-info {
+        /* Relleno interno */
+        padding: 30px;
+        /* Gradiente sutil en el fondo */
+        background: linear-gradient(135deg, $color-bg-card 0%, rgba(88, 179, 15, 0.05) 100%);
+        /* Transición suave */
+        transition: all 0.3s ease;
+
+        /* Título */
+        h3 {
+            /* Tamaño grande */
+            font-size: 1.4rem;
+            /* Margen inferior */
+            margin-bottom: 12px;
+            /* Texto blanco */
+            color: $color-text-light;
+            /* Transición suave */
+            transition: color 0.3s ease;
+        }
+
+        /* Descripción */
+        p {
+            /* Texto gris */
+            color: $color-text-gray;
+            /* Tamaño */
+            font-size: 0.95rem;
+            /* Margen inferior */
+            margin-bottom: 18px;
+            /* Espaciado entre líneas */
+            line-height: 1.6;
+        }
+
+        /* Contenedor de tags/etiquetas */
+        .project-tags {
+            /* Flex horizontal */
+            display: flex;
+            /* Envoltura si no caben */
+            flex-wrap: wrap;
+            /* Espacio entre tags */
+            gap: 8px;
+
+            /* Cada tag */
+            .tag {
+                /* Bloque en línea */
+                display: inline-block;
+                /* Relleno */
+                padding: 7px 14px;
+                /* Fondo verde transparente */
+                background-color: rgba(88, 179, 15, 0.15);
+                /* Color verde */
+                color: $color-accent;
+                /* Esquinas redondeadas (estilo píldora) */
+                border-radius: 20px;
+                /* Tamaño pequeño */
+                font-size: 0.8rem;
+                /* Borde verde */
+                border: 1px solid rgba(88, 179, 15, 0.4);
+                /* Transición suave */
+                transition: all 0.3s ease;
+
+                /* Efecto hover */
+                &:hover {
+                    /* Fondo sólido verde */
+                    background-color: $color-accent;
+                    /* Texto oscuro */
+                    color: $color-bg-dark;
+                    /* Borde más visible */
+                    border-color: $color-accent;
+                    /* Agranda ligeramente */
+                    transform: scale(1.1);
+                }
+            }
+        }
+    }
+
+    /* Efecto hover en toda la tarjeta */
+    &:hover {
+        .project-info {
+            /* Efecto de brillo en el fondo */
+            background: linear-gradient(135deg, $color-bg-card 0%, rgba(88, 179, 15, 0.15) 100%);
+        }
+
+        h3 {
+            /* Color cambia a verde acento en hover */
+            color: $color-accent;
+        }
+    }
+}
+
+
+
+/* ================================================
+   BOTONES - Estilos para botones de acción
    ================================================ */
 
 .btn-main {
+    /* Relleno del botón */
     padding: 15px 40px;
+    /* Fondo verde acento */
     background-color: $color-accent;
+    /* Texto blanco */
     color: white;
-    border: none;                       /* Quita borde default */
+    /* Quita el borde default del navegador */
+    border: none;
+    /* Esquinas ligeramente redondeadas */
     border-radius: 5px;
+    /* Tamaño de fuente */
     font-size: 1rem;
+    /* Texto en negrita */
     font-weight: 600;
-    cursor: pointer;                    /* Cambia el cursor a mano */
+    /* Cambia el cursor a manita */
+    cursor: pointer;
+    /* Transición suave */
     transition: all 0.3s ease;
+    /* Necesario para el efecto de ondas */
     position: relative;
-    overflow: hidden;                   /* Necesario para el efecto de ondas */
+    /* Oculta la onda que sale del botón */
+    overflow: hidden;
 
-    /* Efecto de onda al hacer hover */
+    /* Crea un efecto de onda que se expande en hover */
     &::before {
+        /* Elemento invisible que será la onda */
         content: '';
+        /* Se posiciona absolutamente desde el botón */
         position: absolute;
+        /* En el centro vertical */
         top: 50%;
+        /* En el centro horizontal */
         left: 50%;
+        /* Comienza con tamaño 0 */
         width: 0;
         height: 0;
+        /* Forma circular */
         border-radius: 50%;
+        /* Fondo blanco semitransparente */
         background: rgba(255, 255, 255, 0.3);
+        /* Centra la onda */
         transform: translate(-50%, -50%);
-        transition: width 0.6s, height 0.6s; /* Transición lenta de la onda */
+        /* Anima el crecimiento lentamente */
+        transition: width 0.6s, height 0.6s;
     }
 
+    /* Efecto hover del botón */
     &:hover {
+        /* Verde más claro */
         background-color: $color-accent-hover;
-        transform: translateY(-3px);            /* Sube el botón */
-        box-shadow: 0 10px 20px rgba(88, 179, 15, 0.3); /* Sombra */
+        /* Sube el botón 3px */
+        transform: translateY(-3px);
+        /* Sombra */
+        box-shadow: 0 10px 20px rgba(88, 179, 15, 0.3);
 
+        /* La onda se expande */
         &::before {
-            width: 300px;                       /* La onda se expande */
+            /* Crece a 300px */
+            width: 300px;
             height: 300px;
         }
     }
 
+    /* Efecto cuando está presionado */
     &:active {
-        transform: translateY(-1px);            /* Menos elevación cuando está presionado */
+        /* Menos elevación cuando está presionado */
+        transform: translateY(-1px);
     }
 }
 
 /* ================================================
-   FOOTER
+   FOOTER - Pie de página
    ================================================ */
 
 .footer {
+    /* Relleno: 30px arriba/abajo, 20px izquierda/derecha */
     padding: 30px 20px;
+    /* Centra el contenido */
     text-align: center;
-    background-color: #050409;         /* Fondo aún más oscuro */
+    /* Fondo aún más oscuro que main */
+    background-color: #050409;
+    /* Borde superior para separar del contenido */
     border-top: 1px solid $color-border;
+    /* Color del texto gris */
     color: $color-text-gray;
+    /* Tamaño de fuente pequeño */
     font-size: 0.95rem;
 }
 
 /* ================================================
    RESPONSIVE - Media Queries
+   Adapta el diseño a diferentes tamaños de pantalla
    ================================================ */
 
-/* Pantallas medianas (tablets) */
+/* Pantallas medianas (tablets) - Máximo 768px de ancho */
 @media (max-width: 768px) {
+    /* Estilos de navbar en tablets */
     .navbar {
+        /* Reduce el relleno */
         padding: 15px 20px;
+        /* Cambia a flex vertical para apilar elementos */
         flex-direction: column;
+        /* Espacio entre elementos apilados */
         gap: 15px;
 
+        /* Estilos de navegación en tablets */
         nav {
+            /* Reduce el espacio entre links */
             gap: 15px;
         }
     }
 
+    /* Estilos del hero en tablets */
     .hero {
+        /* Altura automática en lugar de 100vh */
         height: auto;
+        /* Ajusta el relleno */
         padding: 40px 20px;
 
+        /* Contenido del hero en tablets */
         .hero-content {
+            /* Una columna en lugar de dos */
             grid-template-columns: 1fr;
+            /* Menos espacio entre columnas */
             gap: 30px;
+            /* Centra el texto */
             text-align: center;
 
+            /* Título en tablets */
             h1 {
+                /* Reduce el tamaño de fuente */
                 font-size: 2.5rem;
             }
 
+            /* Imagen del perfil en tablets */
             .img_style img {
+                /* Imagen más pequeña */
                 width: 200px;
                 height: 200px;
             }
         }
     }
 
+    /* Contenido About Me y Contact en tablets */
     .about_me .about-content,
     .contact .contact-content {
+        /* Una columna en lugar de dos */
         grid-template-columns: 1fr;
+        /* Menos espacio entre elementos */
         gap: 40px;
     }
 
+    /* Grid de proyectos en tablets */
     .projects .projects-grid {
+        /* Una columna en lugar de grid responsivo */
         grid-template-columns: 1fr;
     }
 
+    /* Grid de mascotas en tablets: 2 columnas */
+    .pets .projects-grid-pet {
+        /* Cambia a 2 columnas en tablets */
+        grid-template-columns: repeat(2, 1fr);
+        /* Reduce el espacio entre tarjetas */
+        gap: 20px;
+        /* Reduce el espacio entre filas */
+        row-gap: 30px;
+    }
+
+    /* Altura de imagen en tablets */
+    .project-image-pet {
+        /* Reduce la altura de la imagen */
+        height: 280px !important;
+    }
+
+    /* Título de sección en tablets */
     .section-title {
+        /* Tamaño reducido */
         font-size: 2rem;
     }
 }
 
-/* Pantallas pequeñas (móviles) */
+/* Pantallas pequeñas (móviles) - Máximo 480px de ancho */
 @media (max-width: 480px) {
+    /* Navbar en móviles */
     .navbar {
+        /* Reduce padding */
         padding: 10px 15px;
 
+        /* Logo en móviles */
         .logo {
+            /* Reduce el tamaño del logo */
             font-size: 20px;
         }
 
+        /* Navegación en móviles */
         nav {
+            /* Cambia a vertical */
             flex-direction: column;
+            /* Reduce espaciado */
             gap: 10px;
+            /* Reduce tamaño de fuente */
             font-size: 0.9rem;
         }
     }
 
+    /* Hero en móviles */
     .hero {
+        /* Altura automática */
         height: auto;
 
+        /* Contenido del hero en móviles */
         .hero-content {
+            /* Título en móviles */
             h1 {
+                /* Tamaño muy reducido */
                 font-size: 2rem;
             }
 
+            /* Párrafo en móviles */
             p {
+                /* Reduce el tamaño */
                 font-size: 1rem;
             }
 
+            /* Imagen en móviles */
             .img_style img {
+                /* Imagen muy pequeña */
                 width: 150px;
                 height: 150px;
             }
         }
     }
 
+    /* Grid de mascotas en móviles: 1 columna */
+    .pets .projects-grid-pet {
+        /* Una sola columna en móviles */
+        grid-template-columns: 1fr;
+        /* Reduce el espacio entre tarjetas */
+        gap: 15px;
+        /* Reduce el espacio entre filas */
+        row-gap: 20px;
+    }
+
+    /* Altura de imagen en móviles */
+    .project-image-pet {
+        /* Reduce más la altura */
+        height: 220px !important;
+    }
+
+    /* Info de tarjeta en móviles */
+    .project-info {
+        /* Reduce padding */
+        padding: 20px;
+    }
+
+    /* Título de sección en móviles */
     .section-title {
+        /* Tamaño muy reducido */
         font-size: 1.5rem;
+        /* Reduce margen inferior */
         margin-bottom: 30px;
     }
 
+    /* Contacto en móviles */
     .contact-content {
+        /* Menos espacio */
         gap: 30px;
     }
 }
