@@ -22,39 +22,170 @@ $color-border: #2d2a2a;
 
 
 
+
 /* ================================================
-   SECCIÓN PROYECTOS MASCOTA (PETS) - Variante de galería con imágenes más grandes
+   SECCIÓN PROYECTOS (PROJECTS) - Galería de proyectos
    ================================================ */
 
+.projects {
+    /* Relleno: 80px arriba/abajo, 20px izquierda/derecha */
+    padding: 80px 20px;
+    /* Fondo oscuro */
+    background-color: $color-bg-dark;
 
-.imh {
-  flex: 1;
+    /* Título de la sección */
+    .section-title {
+        /* Tamaño grande para destacar */
+        font-size: 3rem;
+        /* Centra el texto */
+        text-align: center;
+        /* Margen inferior */
+        margin-bottom: 60px;
+        /* Color verde acento */
+        color: $color-accent;
+        /* Necesario para el pseudo-elemento */
+        position: relative;
+        /* Espacio para la línea decorativa */
+        padding-bottom: 20px;
+
+        /* Línea decorativa verde debajo */
+        &::after {
+            /* Elemento decorativo vacío */
+            content: '';
+            /* Se posiciona absolutamente */
+            position: absolute;
+            /* En la parte inferior */
+            bottom: 0;
+            /* Centrado horizontalmente */
+            left: 50%;
+            /* Ajusta el origen al centro */
+            transform: translateX(-50%);
+            /* Ancho de la línea */
+            width: 60px;
+            /* Altura de la línea */
+            height: 4px;
+            /* Gradiente verde a transparente */
+            background: linear-gradient(90deg, $color-accent, transparent);
+            /* Esquinas redondeadas */
+            border-radius: 2px;
+        }
+    }
+
+    /* Grid de tarjetas de proyectos */
+    .projects-grid {
+        /* Activa grid CSS */
+        display: grid;
+        /* Auto-fit: crea columnas automáticamente
+           minmax(300px, 1fr): cada columna tiene mínimo 300px y expande si hay espacio */
+        grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+        /* Espacio entre tarjetas */
+        gap: 40px;
+    }
 }
 
+/* Tarjeta de proyecto individual */
+.project-card {
+    /* Fondo gris oscuro de tarjeta */
+    background-color: $color-bg-card;
+    /* Esquinas redondeadas */
+    border-radius: 10px;
+    /* Recorta contenido que salga de los límites de la tarjeta */
+    overflow: hidden;
+    /* Transición suave de 0.3 segundos para cambios */
+    transition: all 0.3s ease;
+    /* Cambia el cursor a manita (señal de clickeable) */
+    cursor: pointer;
 
+    /* Efecto hover: tarjeta sube y muestra sombra */
+    &:hover {
+        /* Sube 10 píxeles */
+        transform: translateY(-10px);
+        /* Sombra verde */
+        box-shadow: 0 20px 40px rgba(88, 179, 15, 0.2);
+    }
 
-/* PETS GRID */
-.pets {
-  display: grid;
-  /*crea columnas automaticas de minimo 250px */
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  padding: 20px;
+    /* Contenedor de imagen con efecto overlay */
+    .project-image {
+        /* Se posiciona relativamente para controlar el overlay */
+        position: relative;
+        /* Oculta contenido que salga de los límites */
+        overflow: hidden;
+        /* Altura fija de la imagen */
+        height: 400px;
+
+        /* Imagen del proyecto */
+        img {
+            width: 100%;
+            /* Ocupa todo el ancho de la tarjeta */
+            height: 400px;
+            /* Altura uniforme para todas */
+            object-fit: cover;
+            /* Recorta la imagen para que no se vea estirada */
+            border-radius: 10px;
+            /* Transición suave para el efecto zoom */
+            transition: transform 0.3s ease;
+        }
+
+        /* Capa oscura que aparece en hover */
+        .project-overlay {
+            /* Se posiciona sobre la imagen */
+            position: absolute;
+            /* Pega en las esquinas */
+            top: 0;
+            left: 0;
+            /* Cubre toda la imagen */
+            width: 100%;
+            height: 100%;
+            /* Fondo negro con 70% opacidad (transparencia) */
+            background: rgba(0, 0, 0, 0.7);
+            /* Flex para centrar el botón */
+            display: flex;
+            /* Centra horizontalmente */
+            justify-content: center;
+            /* Centra verticalmente */
+            align-items: center;
+            /* Invisible por defecto */
+            opacity: 0;
+            /* Aparece suavemente */
+            transition: opacity 0.3s ease;
+
+        }
+
+        /* Al pasar mouse sobre la imagen */
+        &:hover {
+
+            /* La imagen se agranda (zoom) */
+            img {
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    /* Información de la tarjeta (debajo de la imagen) */
+    .project-info {
+        /* Relleno interno */
+        padding: 25px;
+
+        /* Título del proyecto */
+        h3 {
+            /* Tamaño grande */
+            font-size: 1.4rem;
+            /* Margen inferior */
+            margin-bottom: 10px;
+            /* Texto blanco */
+            color: $color-text-light;
+        }
+
+        /* Descripción del proyecto */
+        p {
+            /* Texto gris */
+            color: $color-text-gray;
+            /* Tamaño de fuente */
+            font-size: 0.95rem;
+            /* Margen inferior */
+            margin-bottom: 15px;
+            /* Espaciado entre líneas */
+            line-height: 1.6;
+        }
+    }
 }
-
-/* CARDS MASCOTAS */
-.cardpet {
-  background: #fafafa;
-  padding: 15px;
-  margin: 10px 0;
-  border-radius: 10px;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-  /*Aqui usamos FLEXBOX dentro de la tarjeta GRID*/
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-
-
