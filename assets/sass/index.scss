@@ -1,175 +1,27 @@
 
 
-/* Importa la fuente Libre Franklin de Google Fonts con múltiples pesos (100-900) e inclina (ital) */
+/* Importa la fuente Libre Franklin de Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap');
 
-/* ================================================
-   VARIABLES DE COLOR - Define colores reutilizables en todo el SCSS
-   ================================================ */
-/* Color de fondo principal - Tono muy oscuro/casi negro (#0E0B16) */
+/* 
+VARIABLES DE COLOR - Define colores reutilizables en todo el SCSS */
+/* Color de fondo principal  */
 $color-bg-dark: #0E0B16;
-/* Color de fondo para tarjetas - Ligeramente más claro que el fondo principal (#1A1722) */
+/* Color de fondo para tarjetas  */
 $color-bg-card: #1A1722;
-/* Color de acento principal - Verde vibrante que resalta en el diseño (#58b30f) */
+/* Color de acento principal  */
 $color-accent: #58b30f;
-/* Versión más clara del acento para estados hover - Verde más brillante (#6bc91e) */
+/* Versión más clara del acento para estados hover */
 $color-accent-hover: #6bc91e;
-/* Texto principal - Blanco puro (#fff) para máximo contraste */
+/* Texto principal contraste */
 $color-text-light: #fff;
-/* Texto secundario - Gris medio (#999) para descripciones y textos auxiliares */
+/* Texto secundario para descripciones y textos auxiliares */
 $color-text-gray: #999;
-/* Texto oscuro - Gris muy oscuro (#333) usado en navegación */
+/* Texto oscuro usado en navegación */
 $color-text-dark: #333;
-/* Color de bordes - Gris muy oscuro (#2d2a2a) para separadores */
+/* Color de bordes para separadores */
 $color-border: #2d2a2a;
 
-/* ================================================
-   RESET Y ESTILOS GLOBALES - Normaliza estilos de todos los navegadores
-   ================================================ */
-
-/* El selector universal * selecciona TODOS los elementos HTML del documento */
-* {
-    /* Elimina márgenes externos por defecto que agregan espacios innecesarios */
-    margin: 0;
-    /* Elimina relleno interno por defecto de elementos del navegador */
-    padding: 0;
-    /* Incluye padding y border en el cálculo del ancho/alto total (crucial para layouts consistentes) */
-    box-sizing: border-box;
-    /* Define la tipografía "Libre Franklin" en todo el sitio para consistencia visual */
-    font-family: 'Libre Franklin', sans-serif;
-}
-
-/* Body: contenedor principal del documento HTML */
-body {
-    /* Aplica el fondo oscuro definido en la variable de color */
-    background-color: $color-bg-dark;
-    /* Define el color de texto principal en blanco para contraste */
-    color: $color-text-light;
-    /* Espaciado entre líneas: 1.6 líneas proporciona buena legibilidad */
-    line-height: 1.6;
-    /* Evita que aparezca barra de scroll horizontal innecesaria */
-    overflow-x: hidden;
-}
-
-/* ================================================
-   CONTENEDOR - Clase reutilizable para centrar contenido
-   ================================================ */
-/* Centra el contenido y establece un ancho máximo para mejor legibilidad */
-.container {
-    /* Ancho máximo en pantallas grandes para evitar líneas demasiado largas */
-    max-width: 1200px;
-    /* Establece márgenes automáticos derecha e izquierda para centrar horizontalmente */
-    margin: 0 auto;
-    /* Relleno lateral responsivo: evita que el contenido toque los bordes en móviles */
-    padding: 0 20px;
-}
-
-/* ================================================
-   BARRA DE NAVEGACIÓN (NAVBAR) - Encabezado superior fijo
-   ================================================ */
-
-.navbar {
-    /* Activa Flexbox para alinear elementos de forma flexible */
-    display: flex;
-    /* Distribuye espacio: logo a la izquierda, navegación a la derecha */
-    justify-content: space-between;
-    /* Alinea verticalmente todos los elementos al centro */
-    align-items: center;
-    /* Espaciado: 20px arriba/abajo, 50px izquierda/derecha */
-    padding: 20px 50px;
-    /* Fondo oscuro igual al del body para consistencia */
-    background-color: $color-bg-dark;
-    /* Sombra sutil: da profundidad visual separando navbar del contenido */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    /* Mantiene la navbar visible incluso al hacer scroll */
-    position: sticky;
-    /* Fija la posición en la parte superior de la pantalla */
-    top: 0;
-    /* Asegura que esté sobre otros elementos (dropdown, modal, etc) */
-    z-index: 100;
-
-    /* Estilos para el logo de la marca */
-    .logo {
-        /* Tamaño de letra grande y visible */
-        font-size: 24px;
-        /* Texto en negrita para destacar */
-        font-weight: bold;
-        /* Color verde acento definido en variables */
-        color: $color-accent;
-        /* Espaciado entre letras para elegancia tipográfica */
-        letter-spacing: 1px;
-        /* Suaviza todos los cambios de estilo en 0.3 segundos */
-        transition: all 0.3s ease;
-
-        /* Estilos cuando el mouse está sobre el logo */
-        &:hover {
-            /* Cambia a verde más claro al pasar el mouse */
-            color: $color-accent-hover;
-            /* Crea un efecto de brillo/resplandor alrededor del texto */
-            text-shadow: 0 0 10px rgba(88, 179, 15, 0.5);
-        }
-    }
-
-    /* Estilos para el contenedor de navegación */
-    nav {
-        /* Alinea los links de navegación horizontalmente */
-        display: flex;
-        /* Espacio entre cada link de navegación */
-        gap: 30px;
-
-        /* Estilos para cada enlace dentro de nav */
-        a {
-            /* Elimina la línea subrayada por defecto de los enlaces */
-            text-decoration: none;
-            /* Color blanco para los links */
-            color: $color-text-light;
-            /* Grosor medio de la fuente */
-            font-weight: 500;
-            /* Tamaño de letra estándar */
-            font-size: 16px;
-            /* Transición suave de 0.3 segundos para cambios de estilo */
-            transition: 0.3s ease;
-            /* Position relativo necesario para que funcione ::after */
-            position: relative;
-
-            /* Crea un pseudo-elemento para efecto de subrayado animado */
-            &::after {
-                /* Crea un elemento invisible (vacío) */
-                content: '';
-                /* Se posiciona relativo a su elemento padre (el link) */
-                position: absolute;
-                /* 5 píxeles debajo del texto */
-                bottom: -5px;
-                /* Comienza desde la izquierda del elemento */
-                left: 0;
-                /* Inicia con ancho 0 (invisible) */
-                width: 0;
-                /* Altura del subrayado: 2 píxeles */
-                height: 2px;
-                /* Color del subrayado: verde acento */
-                background-color: $color-accent;
-                /* Anima el cambio de ancho suavemente */
-                transition: width 0.3s ease;
-            }
-
-            /* Estilos cuando el mouse está sobre el link */
-            &:hover {
-                /* Cambia el color del texto a verde acento */
-                color: $color-accent;
-
-                /* El subrayado se expande al ancho del texto */
-                &::after {
-                    /* El subrayado se expande al 100% del ancho del link */
-                    width: 100%;
-                }
-            }
-        }
-    }
-}
-
-/* ================================================
-   HERO SECTION (Sección Principal) - Primera sección visible al cargar
-   ================================================ */
 
 .hero {
     /* Altura igual al 100% de la ventana del navegador */
@@ -263,11 +115,14 @@ body {
    ANIMACIÓN: FLOTAR - Hace que la imagen suba y baje continuamente
    ================================================ */
 @keyframes flotar {
+
     /* Estado inicial (0%) y final (100%): posición normal */
-    0%, 100% {
+    0%,
+    100% {
         /* Sin movimiento vertical */
         transform: translateY(0);
     }
+
     /* Estado medio (50%): sube 30 píxeles */
     50% {
         /* Sube 30 píxeles (valor negativo = hacia arriba) */
@@ -279,11 +134,13 @@ body {
    ANIMACIÓN: TYPING (EFECTO DE ESCRITURA) - Simula escribir texto
    ================================================ */
 @keyframes typing {
+
     /* Desde el inicio */
     from {
         /* Comienza con ancho 0 (texto invisible) */
         width: 0;
     }
+
     /* Hasta el final */
     to {
         /* Se expande al ancho completo (todo el texto visible) */
@@ -293,11 +150,14 @@ body {
 
 /* Efecto de parpadeo del cursor de máquina de escribir */
 @keyframes blink {
+
     /* Estados inicial y final: el cursor está invisible */
-    from, to {
+    from,
+    to {
         /* Color del borde transparente = invisible */
         border-color: transparent;
     }
+
     /* Estado medio (50%): el cursor es visible */
     50% {
         /* Color del borde verde = visible */
@@ -331,6 +191,7 @@ body {
    ANIMACIÓN: FADE IN UP (APARECE Y SUBE SUAVEMENTE)
    ================================================ */
 @keyframes fadeInUp {
+
     /* Estado inicial */
     from {
         /* Texto completamente transparente (invisible) */
@@ -338,6 +199,7 @@ body {
         /* Empieza 30 píxeles más abajo que posición final */
         transform: translateY(30px);
     }
+
     /* Estado final */
     to {
         /* Texto completamente visible */
@@ -357,10 +219,12 @@ body {
         /* Primer elemento comienza después de 0.2 segundos */
         animation-delay: 0.2s;
     }
+
     &:nth-child(2) {
         /* Segundo elemento comienza después de 0.4 segundos */
         animation-delay: 0.4s;
     }
+
     &:nth-child(3) {
         /* Tercer elemento comienza después de 0.6 segundos */
         animation-delay: 0.6s;
@@ -371,6 +235,7 @@ body {
    ANIMACIÓN: SLIDE IN LEFT (ENTRA DESDE IZQUIERDA)
    ================================================ */
 @keyframes slideInLeft {
+
     /* Estado inicial */
     from {
         /* Invisible */
@@ -378,6 +243,7 @@ body {
         /* 50 píxeles a la izquierda de su posición final */
         transform: translateX(-50px);
     }
+
     /* Estado final */
     to {
         /* Visible */
@@ -397,10 +263,12 @@ body {
         /* Primer elemento comienza después de 0.2 segundos */
         animation-delay: 0.2s;
     }
+
     &:nth-child(2) {
         /* Segundo elemento comienza después de 0.4 segundos */
         animation-delay: 0.4s;
     }
+
     &:nth-child(3) {
         /* Tercer elemento comienza después de 0.6 segundos */
         animation-delay: 0.6s;
@@ -467,6 +335,7 @@ body {
 
         /* Columna izquierda: texto y habilidades */
         .about-text {
+
             /* Subtítulo (h3) */
             h3 {
                 /* Tamaño grande para subtítulo */
@@ -738,6 +607,7 @@ body {
 
         /* Al pasar mouse sobre la imagen */
         &:hover {
+
             /* El overlay se hace visible */
             .project-overlay {
                 opacity: 1;
@@ -880,6 +750,7 @@ body {
 
     /* Columna izquierda: información de contacto */
     .contact-info {
+
         /* Subtítulo */
         h3 {
             /* Tamaño grande */
@@ -891,7 +762,7 @@ body {
         }
 
         /* Párrafos de descripción (usando > para solo párrafos directos) */
-        > p {
+        >p {
             /* Texto gris */
             color: $color-text-gray;
             /* Tamaño de fuente */
@@ -1048,560 +919,5 @@ body {
             /* Ancho al 100% del contenedor */
             width: 100%;
         }
-    }
-}
-
-/* ================================================
-   SECCIÓN PROYECTOS MASCOTA (PETS) - Variante de galería con imágenes más grandes
-   ================================================ */
-
-.pets {
-    /* Relleno: 80px arriba/abajo, 20px izquierda/derecha */
-    padding: 80px 20px;
-    /* Fondo oscuro */
-    background-color: $color-bg-dark;
-
-    /* Título de la sección */
-    .section-title {
-        /* Tamaño grande */
-        font-size: 3rem;
-        /* Centra el texto */
-        text-align: center;
-        /* Margen inferior */
-        margin-bottom: 60px;
-        /* Color verde acento */
-        color: $color-accent;
-        /* Para el pseudo-elemento */
-        position: relative;
-        /* Espacio para la línea decorativa */
-        padding-bottom: 20px;
-
-        /* Línea decorativa verde */
-        &::after {
-            /* Elemento decorativo */
-            content: '';
-            /* Posición absoluta */
-            position: absolute;
-            /* En la parte inferior */
-            bottom: 0;
-            /* Centrado horizontalmente */
-            left: 50%;
-            /* Ajusta al centro */
-            transform: translateX(-50%);
-            /* Ancho de la línea */
-            width: 60px;
-            /* Alto de la línea */
-            height: 4px;
-            /* Gradiente verde a transparente */
-            background: linear-gradient(90deg, $color-accent, transparent);
-            /* Esquinas redondeadas */
-            border-radius: 2px;
-        }
-    }
-
-    /* Grid de tarjetas de proyectos/mascotas */
-    .projects-grid-pet {
-        /* Activa grid CSS */
-        display: grid;
-        /* 3 columnas fijas de igual tamaño */
-        grid-template-columns: repeat(3, 1fr);
-        /* Espacio entre tarjetas horizontalmente */
-        gap: 30px;
-        /* Espacio entre filas */
-        row-gap: 40px;
-    }
-}
-
-/* Tarjeta de proyecto/mascota individual */
-.project-card-pet {
-    /* Fondo gris oscuro */
-    background-color: $color-bg-card;
-    /* Esquinas redondeadas */
-    border-radius: 15px;
-    /* Recorta contenido que salga de los límites */
-    overflow: hidden;
-    /* Transición suave */
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    /* Señala que es clickeable */
-    cursor: pointer;
-    /* Sombra inicial sutil */
-    box-shadow: 0 5px 15px rgba(88, 179, 15, 0.1);
-    /* Borde verde muy sutil */
-    border: 1px solid rgba(88, 179, 15, 0.2);
-
-    /* Efecto hover: sube y muestra sombra más intensa */
-    &:hover {
-        /* Sube 15 píxeles (más que antes) */
-        transform: translateY(-15px) scale(1.02);
-        /* Sombra verde más intensa */
-        box-shadow: 0 25px 50px rgba(88, 179, 15, 0.3);
-        /* Borde verde más visible en hover */
-        border-color: rgba(88, 179, 15, 0.5);
-    }
-
-    /* Contenedor de imagen con efecto overlay */
-    .project-image-pet {
-        /* Se posiciona relativamente */
-        position: relative;
-        /* Oculta contenido que salga de los límites */
-        overflow: hidden;
-        /* Altura mucho mayor que project-image (500px vs 200px) */
-        height: 350px;
-        /* Fondo degradado mientras carga la imagen */
-        background: linear-gradient(135deg, #1a1722, #2d2a2a);
-
-        /* Imagen del proyecto */
-        img {
-            /* Ancho 100% */
-            width: 100%;
-            /* Alto 100% */
-            height: 100%;
-            /* Recorta la imagen proporcional */
-            object-fit: cover;
-            /* Transición suave para el zoom */
-            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            /* Escala inicial ligeramente menor */
-            transform: scale(1);
-        }
-
-        /* Capa oscura que aparece en hover */
-        .project-overlay {
-            /* Se posiciona sobre la imagen */
-            position: absolute;
-            /* En las esquinas */
-            top: 0;
-            left: 0;
-            /* Cubre toda la imagen */
-            width: 100%;
-            height: 100%;
-            /* Fondo negro con gradiente para mejor efecto */
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(88, 179, 15, 0.2));
-            /* Flex para centrar el botón */
-            display: flex;
-            /* Centra horizontalmente */
-            justify-content: center;
-            /* Centra verticalmente */
-            align-items: center;
-            /* Invisible por defecto */
-            opacity: 0;
-            /* Aparece suavemente */
-            transition: opacity 0.4s ease;
-            /* Backdrop blur para efecto de vidrio */
-            backdrop-filter: blur(0px);
-            transition: opacity 0.4s ease, backdrop-filter 0.4s ease;
-
-            /* Botón "Ver más" de mascota */
-            .btn-view-pet {
-                /* Relleno del botón */
-                padding: 14px 35px;
-                /* Fondo verde acento */
-                background-color: $color-accent;
-                /* Texto blanco */
-                color: white;
-                /* Quita subrayado */
-                text-decoration: none;
-                /* Esquinas más redondeadas */
-                border-radius: 8px;
-                /* Texto en negrita */
-                font-weight: bold;
-                /* Transición suave */
-                transition: all 0.3s ease;
-                /* Sombra para el botón */
-                box-shadow: 0 5px 15px rgba(88, 179, 15, 0.3);
-                /* Borde para mayor definición */
-                border: 2px solid $color-accent-hover;
-
-                /* Efecto hover del botón */
-                &:hover {
-                    /* Verde más claro */
-                    background-color: $color-accent-hover;
-                    /* Agranda en 8% */
-                    transform: scale(1.08);
-                    /* Sombra más intensa */
-                    box-shadow: 0 8px 20px rgba(88, 179, 15, 0.5);
-                }
-            }
-        }
-
-        /* Al pasar el mouse sobre la imagen */
-        &:hover {
-            /* El overlay se hace visible */
-            .project-overlay {
-                opacity: 1;
-                /* Efecto de vidrio esmerilado */
-                backdrop-filter: blur(5px);
-            }
-
-            /* La imagen se agranda (zoom) */
-            img {
-                transform: scale(1.15);
-            }
-        }
-    }
-
-    /* Información de la tarjeta */
-    .project-info {
-        /* Relleno interno */
-        padding: 30px;
-        /* Gradiente sutil en el fondo */
-        background: linear-gradient(135deg, $color-bg-card 0%, rgba(88, 179, 15, 0.05) 100%);
-        /* Transición suave */
-        transition: all 0.3s ease;
-
-        /* Título */
-        h3 {
-            /* Tamaño grande */
-            font-size: 1.4rem;
-            /* Margen inferior */
-            margin-bottom: 12px;
-            /* Texto blanco */
-            color: $color-text-light;
-            /* Transición suave */
-            transition: color 0.3s ease;
-        }
-
-        /* Descripción */
-        p {
-            /* Texto gris */
-            color: $color-text-gray;
-            /* Tamaño */
-            font-size: 0.95rem;
-            /* Margen inferior */
-            margin-bottom: 18px;
-            /* Espaciado entre líneas */
-            line-height: 1.6;
-        }
-
-        /* Contenedor de tags/etiquetas */
-        .project-tags {
-            /* Flex horizontal */
-            display: flex;
-            /* Envoltura si no caben */
-            flex-wrap: wrap;
-            /* Espacio entre tags */
-            gap: 8px;
-
-            /* Cada tag */
-            .tag {
-                /* Bloque en línea */
-                display: inline-block;
-                /* Relleno */
-                padding: 7px 14px;
-                /* Fondo verde transparente */
-                background-color: rgba(88, 179, 15, 0.15);
-                /* Color verde */
-                color: $color-accent;
-                /* Esquinas redondeadas (estilo píldora) */
-                border-radius: 20px;
-                /* Tamaño pequeño */
-                font-size: 0.8rem;
-                /* Borde verde */
-                border: 1px solid rgba(88, 179, 15, 0.4);
-                /* Transición suave */
-                transition: all 0.3s ease;
-
-                /* Efecto hover */
-                &:hover {
-                    /* Fondo sólido verde */
-                    background-color: $color-accent;
-                    /* Texto oscuro */
-                    color: $color-bg-dark;
-                    /* Borde más visible */
-                    border-color: $color-accent;
-                    /* Agranda ligeramente */
-                    transform: scale(1.1);
-                }
-            }
-        }
-    }
-
-    /* Efecto hover en toda la tarjeta */
-    &:hover {
-        .project-info {
-            /* Efecto de brillo en el fondo */
-            background: linear-gradient(135deg, $color-bg-card 0%, rgba(88, 179, 15, 0.15) 100%);
-        }
-
-        h3 {
-            /* Color cambia a verde acento en hover */
-            color: $color-accent;
-        }
-    }
-}
-
-
-
-/* ================================================
-   BOTONES - Estilos para botones de acción
-   ================================================ */
-
-.btn-main {
-    /* Relleno del botón */
-    padding: 15px 40px;
-    /* Fondo verde acento */
-    background-color: $color-accent;
-    /* Texto blanco */
-    color: white;
-    /* Quita el borde default del navegador */
-    border: none;
-    /* Esquinas ligeramente redondeadas */
-    border-radius: 5px;
-    /* Tamaño de fuente */
-    font-size: 1rem;
-    /* Texto en negrita */
-    font-weight: 600;
-    /* Cambia el cursor a manita */
-    cursor: pointer;
-    /* Transición suave */
-    transition: all 0.3s ease;
-    /* Necesario para el efecto de ondas */
-    position: relative;
-    /* Oculta la onda que sale del botón */
-    overflow: hidden;
-
-    /* Crea un efecto de onda que se expande en hover */
-    &::before {
-        /* Elemento invisible que será la onda */
-        content: '';
-        /* Se posiciona absolutamente desde el botón */
-        position: absolute;
-        /* En el centro vertical */
-        top: 50%;
-        /* En el centro horizontal */
-        left: 50%;
-        /* Comienza con tamaño 0 */
-        width: 0;
-        height: 0;
-        /* Forma circular */
-        border-radius: 50%;
-        /* Fondo blanco semitransparente */
-        background: rgba(255, 255, 255, 0.3);
-        /* Centra la onda */
-        transform: translate(-50%, -50%);
-        /* Anima el crecimiento lentamente */
-        transition: width 0.6s, height 0.6s;
-    }
-
-    /* Efecto hover del botón */
-    &:hover {
-        /* Verde más claro */
-        background-color: $color-accent-hover;
-        /* Sube el botón 3px */
-        transform: translateY(-3px);
-        /* Sombra */
-        box-shadow: 0 10px 20px rgba(88, 179, 15, 0.3);
-
-        /* La onda se expande */
-        &::before {
-            /* Crece a 300px */
-            width: 300px;
-            height: 300px;
-        }
-    }
-
-    /* Efecto cuando está presionado */
-    &:active {
-        /* Menos elevación cuando está presionado */
-        transform: translateY(-1px);
-    }
-}
-
-/* ================================================
-   FOOTER - Pie de página
-   ================================================ */
-
-.footer {
-    /* Relleno: 30px arriba/abajo, 20px izquierda/derecha */
-    padding: 30px 20px;
-    /* Centra el contenido */
-    text-align: center;
-    /* Fondo aún más oscuro que main */
-    background-color: #050409;
-    /* Borde superior para separar del contenido */
-    border-top: 1px solid $color-border;
-    /* Color del texto gris */
-    color: $color-text-gray;
-    /* Tamaño de fuente pequeño */
-    font-size: 0.95rem;
-}
-
-/* ================================================
-   RESPONSIVE - Media Queries
-   Adapta el diseño a diferentes tamaños de pantalla
-   ================================================ */
-
-/* Pantallas medianas (tablets) - Máximo 768px de ancho */
-@media (max-width: 768px) {
-    /* Estilos de navbar en tablets */
-    .navbar {
-        /* Reduce el relleno */
-        padding: 15px 20px;
-        /* Cambia a flex vertical para apilar elementos */
-        flex-direction: column;
-        /* Espacio entre elementos apilados */
-        gap: 15px;
-
-        /* Estilos de navegación en tablets */
-        nav {
-            /* Reduce el espacio entre links */
-            gap: 15px;
-        }
-    }
-
-    /* Estilos del hero en tablets */
-    .hero {
-        /* Altura automática en lugar de 100vh */
-        height: auto;
-        /* Ajusta el relleno */
-        padding: 40px 20px;
-
-        /* Contenido del hero en tablets */
-        .hero-content {
-            /* Una columna en lugar de dos */
-            grid-template-columns: 1fr;
-            /* Menos espacio entre columnas */
-            gap: 30px;
-            /* Centra el texto */
-            text-align: center;
-
-            /* Título en tablets */
-            h1 {
-                /* Reduce el tamaño de fuente */
-                font-size: 2.5rem;
-            }
-
-            /* Imagen del perfil en tablets */
-            .img_style img {
-                /* Imagen más pequeña */
-                width: 200px;
-                height: 200px;
-            }
-        }
-    }
-
-    /* Contenido About Me y Contact en tablets */
-    .about_me .about-content,
-    .contact .contact-content {
-        /* Una columna en lugar de dos */
-        grid-template-columns: 1fr;
-        /* Menos espacio entre elementos */
-        gap: 40px;
-    }
-
-    /* Grid de proyectos en tablets */
-    .projects .projects-grid {
-        /* Una columna en lugar de grid responsivo */
-        grid-template-columns: 1fr;
-    }
-
-    /* Grid de mascotas en tablets: 2 columnas */
-    .pets .projects-grid-pet {
-        /* Cambia a 2 columnas en tablets */
-        grid-template-columns: repeat(2, 1fr);
-        /* Reduce el espacio entre tarjetas */
-        gap: 20px;
-        /* Reduce el espacio entre filas */
-        row-gap: 30px;
-    }
-
-    /* Altura de imagen en tablets */
-    .project-image-pet {
-        /* Reduce la altura de la imagen */
-        height: 280px !important;
-    }
-
-    /* Título de sección en tablets */
-    .section-title {
-        /* Tamaño reducido */
-        font-size: 2rem;
-    }
-}
-
-/* Pantallas pequeñas (móviles) - Máximo 480px de ancho */
-@media (max-width: 480px) {
-    /* Navbar en móviles */
-    .navbar {
-        /* Reduce padding */
-        padding: 10px 15px;
-
-        /* Logo en móviles */
-        .logo {
-            /* Reduce el tamaño del logo */
-            font-size: 20px;
-        }
-
-        /* Navegación en móviles */
-        nav {
-            /* Cambia a vertical */
-            flex-direction: column;
-            /* Reduce espaciado */
-            gap: 10px;
-            /* Reduce tamaño de fuente */
-            font-size: 0.9rem;
-        }
-    }
-
-    /* Hero en móviles */
-    .hero {
-        /* Altura automática */
-        height: auto;
-
-        /* Contenido del hero en móviles */
-        .hero-content {
-            /* Título en móviles */
-            h1 {
-                /* Tamaño muy reducido */
-                font-size: 2rem;
-            }
-
-            /* Párrafo en móviles */
-            p {
-                /* Reduce el tamaño */
-                font-size: 1rem;
-            }
-
-            /* Imagen en móviles */
-            .img_style img {
-                /* Imagen muy pequeña */
-                width: 150px;
-                height: 150px;
-            }
-        }
-    }
-
-    /* Grid de mascotas en móviles: 1 columna */
-    .pets .projects-grid-pet {
-        /* Una sola columna en móviles */
-        grid-template-columns: 1fr;
-        /* Reduce el espacio entre tarjetas */
-        gap: 15px;
-        /* Reduce el espacio entre filas */
-        row-gap: 20px;
-    }
-
-    /* Altura de imagen en móviles */
-    .project-image-pet {
-        /* Reduce más la altura */
-        height: 220px !important;
-    }
-
-    /* Info de tarjeta en móviles */
-    .project-info {
-        /* Reduce padding */
-        padding: 20px;
-    }
-
-    /* Título de sección en móviles */
-    .section-title {
-        /* Tamaño muy reducido */
-        font-size: 1.5rem;
-        /* Reduce margen inferior */
-        margin-bottom: 30px;
-    }
-
-    /* Contacto en móviles */
-    .contact-content {
-        /* Menos espacio */
-        gap: 30px;
     }
 }

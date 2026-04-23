@@ -4,14 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio | Luis Medrano</title>
-    <link rel="icon" type="image/x-icon" href="favicon.png">
+    <link rel="icon" type="image/x-icon" href="img/favicon.png">
 
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/index.css">
 </head>
 <body>
     <header class="navbar">
         <div class="logo">Portfolio</div>
-        <nav>
+        <button class="menu-btn" id="menubtn" onclick="Desplegar()">☰</button>
+        <nav class="links">
             <a href="#about">About me</a>
             <a href="#projects">Projects</a>
             <a href="#contact">Contact me</a>
@@ -29,7 +31,7 @@
                 <button class="btn-main">Contáctame</button>
             </div>
             <div class="img_style">
-                <img src="foto.jpg" alt="Foto de perfil">
+                <img src="img/foto.jpg" alt="Foto de perfil">
             </div>
         </div>
     </section>
@@ -89,7 +91,7 @@
                             <span class="tag">Desktop App</span>
                         </div>
                     </div>
-                </div>
+                </div>  
 
                 <div class="project-card slide-in-left">
                     <div class="project-image">
@@ -165,6 +167,6 @@
     <footer class="footer">
         <p>&copy; 2026 Luis Medrano. All rights reserved.</p>
     </footer>
-
+    <script src="script.js"></script>
 </body>
 </html>
