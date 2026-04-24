@@ -1,0 +1,308 @@
+@charset "UTF-8";
+/* Importa la fuente Libre Franklin de Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap");
+/* 
+VARIABLES DE COLOR - Define colores reutilizables en todo el SCSS */
+/* Color de fondo principal  */
+/* Color de fondo para tarjetas  */
+/* Color de acento principal  */
+/* Versión más clara del acento para estados hover */
+/* Texto principal contraste */
+/* Texto secundario para descripciones y textos auxiliares */
+/* Texto oscuro usado en navegación */
+/* Color de bordes para separadores */
+/* ================================================
+   SECCIÓN PROYECTOS (PROJECTS) - Galería de proyectos
+   ================================================ */
+.projects {
+  /* Relleno: 80px arriba/abajo, 20px izquierda/derecha */
+  padding: 80px 20px;
+  /* Fondo oscuro */
+  background-color: #0E0B16;
+  /* Título de la sección */
+  /* Grid de tarjetas de proyectos */ }
+  .projects .section-title {
+    /* Tamaño grande para destacar */
+    font-size: 3rem;
+    /* Centra el texto */
+    text-align: center;
+    /* Margen inferior */
+    margin-bottom: 60px;
+    /* Color verde acento */
+    color: #58b30f;
+    /* Necesario para el pseudo-elemento */
+    position: relative;
+    /* Espacio para la línea decorativa */
+    padding-bottom: 20px;
+    /* Línea decorativa verde debajo */ }
+    .projects .section-title::after {
+      /* Elemento decorativo vacío */
+      content: '';
+      /* Se posiciona absolutamente */
+      position: absolute;
+      /* En la parte inferior */
+      bottom: 0;
+      /* Centrado horizontalmente */
+      left: 50%;
+      /* Ajusta el origen al centro */
+      transform: translateX(-50%);
+      /* Ancho de la línea */
+      width: 60px;
+      /* Altura de la línea */
+      height: 4px;
+      /* Gradiente verde a transparente */
+      background: linear-gradient(90deg, #58b30f, transparent);
+      /* Esquinas redondeadas */
+      border-radius: 2px; }
+  .projects .projects-grid {
+    /* Activa grid CSS */
+    display: grid;
+    /* Auto-fit: crea columnas automáticamente
+       minmax(300px, 1fr): cada columna tiene mínimo 300px y expande si hay espacio */
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    /* Espacio entre tarjetas */
+    gap: 40px; }
+
+/* Tarjeta de proyecto individual */
+.project-card {
+  /* Fondo gris oscuro de tarjeta */
+  background-color: #1A1722;
+  /* Esquinas redondeadas */
+  border-radius: 10px;
+  /* Recorta contenido que salga de los límites de la tarjeta */
+  overflow: hidden;
+  /* Transición suave de 0.3 segundos para cambios */
+  transition: all 0.3s ease;
+  /* Cambia el cursor a manita (señal de clickeable) */
+  cursor: pointer;
+  /* Efecto hover: tarjeta sube y muestra sombra */
+  /* Contenedor de imagen con efecto overlay */
+  /* Información de la tarjeta (debajo de la imagen) */ }
+  .project-card:hover {
+    /* Sube 10 píxeles */
+    transform: translateY(-10px);
+    /* Sombra verde */
+    box-shadow: 0 20px 40px rgba(88, 179, 15, 0.2); }
+  .project-card .project-image {
+    /* Se posiciona relativamente para controlar el overlay */
+    position: relative;
+    /* Oculta contenido que salga de los límites */
+    overflow: hidden;
+    /* Altura fija de la imagen */
+    height: 400px;
+    /* Imagen del proyecto */
+    /* Capa oscura que aparece en hover */
+    /* Al pasar mouse sobre la imagen */ }
+    .project-card .project-image img {
+      width: 100%;
+      /* Ocupa todo el ancho de la tarjeta */
+      height: 400px;
+      /* Altura uniforme para todas */
+      object-fit: cover;
+      /* Recorta la imagen para que no se vea estirada */
+      border-radius: 10px;
+      /* Transición suave para el efecto zoom */
+      transition: transform 0.3s ease; }
+    .project-card .project-image .project-overlay {
+      /* Se posiciona sobre la imagen */
+      position: absolute;
+      /* Pega en las esquinas */
+      top: 0;
+      left: 0;
+      /* Cubre toda la imagen */
+      width: 100%;
+      height: 100%;
+      /* Fondo negro con 70% opacidad (transparencia) */
+      background: rgba(0, 0, 0, 0.7);
+      /* Flex para centrar el botón */
+      display: flex;
+      /* Centra horizontalmente */
+      justify-content: center;
+      /* Centra verticalmente */
+      align-items: center;
+      /* Invisible por defecto */
+      opacity: 0;
+      /* Aparece suavemente */
+      transition: opacity 0.3s ease; }
+    .project-card .project-image:hover {
+      /* La imagen se agranda (zoom) */ }
+      .project-card .project-image:hover img {
+        transform: scale(1.1); }
+  .project-card .project-info {
+    /* Relleno interno */
+    padding: 25px;
+    /* Título del proyecto */
+    /* Descripción del proyecto */ }
+    .project-card .project-info h3 {
+      /* Tamaño grande */
+      font-size: 1.4rem;
+      /* Margen inferior */
+      margin-bottom: 10px;
+      /* Texto blanco */
+      color: #fff; }
+    .project-card .project-info p {
+      /* Texto gris */
+      color: #999;
+      /* Tamaño de fuente */
+      font-size: 0.95rem;
+      /* Margen inferior */
+      margin-bottom: 15px;
+      /* Espaciado entre líneas */
+      line-height: 1.6; }
+
+/* ================================================
+   RESPONSIVE - Media Queries
+   Adapta el diseño a diferentes tamaños de pantalla
+   ================================================ */
+/* Pantallas medianas (tablets) - Máximo 768px de ancho */
+@media (max-width: 768px) {
+  /* Estilos de navbar en tablets */
+  .navbar {
+    /* Reduce el relleno */
+    padding: 15px 20px;
+    /* Cambia a flex vertical para apilar elementos */
+    flex-direction: column;
+    /* Espacio entre elementos apilados */
+    gap: 15px;
+    /* Estilos de navegación en tablets */ }
+    .navbar nav {
+      /* Reduce el espacio entre links */
+      gap: 15px; }
+
+  /* Estilos del hero en tablets */
+  .hero {
+    /* Altura automática en lugar de 100vh */
+    height: auto;
+    /* Ajusta el relleno */
+    padding: 40px 20px;
+    /* Contenido del hero en tablets */ }
+    .hero .hero-content {
+      /* Una columna en lugar de dos */
+      grid-template-columns: 1fr;
+      /* Menos espacio entre columnas */
+      gap: 30px;
+      /* Centra el texto */
+      text-align: center;
+      /* Título en tablets */
+      /* Imagen del perfil en tablets */ }
+      .hero .hero-content h1 {
+        /* Reduce el tamaño de fuente */
+        font-size: 2.5rem; }
+      .hero .hero-content .img_style img {
+        /* Imagen más pequeña */
+        width: 200px;
+        height: 200px; }
+
+  /* Contenido About Me y Contact en tablets */
+  .about_me .about-content,
+  .contact .contact-content {
+    /* Una columna en lugar de dos */
+    grid-template-columns: 1fr;
+    /* Menos espacio entre elementos */
+    gap: 40px; }
+
+  /* Grid de proyectos en tablets */
+  .projects .projects-grid {
+    /* Una columna en lugar de grid responsivo */
+    grid-template-columns: 1fr; }
+
+  /* Grid de mascotas en tablets: 2 columnas */
+  .pets .projects-grid-pet {
+    /* Cambia a 2 columnas en tablets */
+    grid-template-columns: repeat(2, 1fr);
+    /* Reduce el espacio entre tarjetas */
+    gap: 20px;
+    /* Reduce el espacio entre filas */
+    row-gap: 30px; }
+
+  /* Altura de imagen en tablets */
+  .project-image-pet {
+    /* Reduce la altura de la imagen */
+    height: 280px !important; }
+
+  /* Título de sección en tablets */
+  .section-title {
+    /* Tamaño reducido */
+    font-size: 2rem; } }
+/* Pantallas pequeñas (móviles) - Máximo 480px de ancho */
+@media (max-width: 480px) {
+  /* Navbar en móviles */
+  .navbar {
+    /* Reduce padding */
+    padding: 10px 15px;
+    /* Logo en móviles */
+    /* Navegación en móviles */ }
+    .navbar .menu-btn {
+      display: block;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      background-color: #fff;
+      color: #58b30f; }
+    .navbar .logo {
+      /* Reduce el tamaño del logo */
+      font-size: 20px; }
+    .navbar nav {
+      top: 100px;
+      right: 20px;
+      position: absolute;
+      display: none;
+      background-color: #333; }
+      .navbar nav.active {
+        display: flex;
+        flex-direction: column; }
+        .navbar nav.active a {
+          color: white; }
+
+  /* Hero en móviles */
+  .hero {
+    /* Altura automática */
+    height: auto;
+    /* Contenido del hero en móviles */ }
+    .hero .hero-content {
+      /* Título en móviles */
+      /* Párrafo en móviles */
+      /* Imagen en móviles */ }
+      .hero .hero-content h1 {
+        /* Tamaño muy reducido */
+        font-size: 2rem; }
+      .hero .hero-content p {
+        /* Reduce el tamaño */
+        font-size: 1rem; }
+      .hero .hero-content .img_style img {
+        /* Imagen muy pequeña */
+        width: 150px;
+        height: 150px; }
+
+  /* Grid de mascotas en móviles: 1 columna */
+  .pets .projects-grid-pet {
+    /* Una sola columna en móviles */
+    grid-template-columns: 1fr;
+    /* Reduce el espacio entre tarjetas */
+    gap: 15px;
+    /* Reduce el espacio entre filas */
+    row-gap: 20px; }
+
+  /* Altura de imagen en móviles */
+  .project-image-pet {
+    /* Reduce más la altura */
+    height: 220px !important; }
+
+  /* Info de tarjeta en móviles */
+  .project-info {
+    /* Reduce padding */
+    padding: 20px; }
+
+  /* Título de sección en móviles */
+  .section-title {
+    /* Tamaño muy reducido */
+    font-size: 1.5rem;
+    /* Reduce margen inferior */
+    margin-bottom: 30px; }
+
+  /* Contacto en móviles */
+  .contact-content {
+    /* Menos espacio */
+    gap: 30px; } }
+
+/*# sourceMappingURL=pets.css.map */

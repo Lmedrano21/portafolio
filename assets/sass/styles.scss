@@ -1,0 +1,270 @@
+/* Importa la fuente Libre Franklin de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* 
+VARIABLES DE COLOR - Define colores reutilizables en todo el SCSS */
+/* Color de fondo principal  */
+$color-bg-dark: #0E0B16;
+/* Color de fondo para tarjetas  */
+$color-bg-card: #1A1722;
+/* Color de acento principal  */
+$color-accent: #58b30f;
+/* Versión más clara del acento para estados hover */
+$color-accent-hover: #6bc91e;
+/* Texto principal contraste */
+$color-text-light: #fff;
+/* Texto secundario para descripciones y textos auxiliares */
+$color-text-gray: #999;
+/* Texto oscuro usado en navegación */
+$color-text-dark: #333;
+/* Color de bordes para separadores */
+$color-border: #2d2a2a;
+
+
+* {
+    /* Elimina márgenes externos por defecto */
+    margin: 0;
+    /* Elimina relleno interno por defecto*/
+    padding: 0;
+    /* Incluye padding y border en el cálculo del ancho/alto total */
+    box-sizing: border-box;
+    /* Define la tipografía todo el sitio */
+    font-family: 'Libre Franklin', sans-serif;
+}
+
+/* Body: contenedor principal del documento HTML */
+body {
+    /* Aplica el fondo oscuro definido en la variable de color */
+    background-color: $color-bg-dark;
+    /* Define el color de texto principal en blanco para contraste */
+    color: $color-text-light;
+    /* Espaciado entre líneas: 1.6 líneas proporciona buena legibilidad */
+    line-height: 1.6;
+    /* Evita que aparezca barra de scroll horizontal innecesaria */
+    overflow-x: hidden;
+}
+
+/* CONTENEDOR - Clase reutilizable para centrar contenido*/
+
+/* Centra el contenido y establece un ancho máximo para mejor legibilidad */
+.container {
+    /* Ancho máximo en pantallas grandes para evitar líneas demasiado largas */
+    max-width: 1200px;
+    /* Establece márgenes automáticos derecha e izquierda para centrar horizontalmente */
+    margin: 0 auto;
+    /* Relleno lateral responsivo: evita que el contenido toque los bordes en móviles */
+    padding: 0 20px;
+}
+
+/*  BARRA DE NAVEGACIÓN (NAVBAR) - Encabezado superior fijo*/
+
+.navbar {
+    /* Activa Flexbox para alinear elementos de forma flexible */
+    display: flex;
+    /* Distribuye espacio: logo a la izquierda, navegación a la derecha */
+    justify-content: space-between;
+    /* Alinea verticalmente todos los elementos al centro */
+    align-items: center;
+    /* Espaciado: 20px arriba/abajo, 50px izquierda/derecha */
+    padding: 20px 50px;
+    /* Fondo oscuro igual al del body para consistencia */
+    background-color: $color-bg-dark;
+    /* Sombra sutil: da profundidad visual separando navbar del contenido */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    /* Mantiene la navbar visible incluso al hacer scroll */
+    position: sticky;
+    /* Fija la posición en la parte superior de la pantalla */
+    top: 0;
+    /* Asegura que esté sobre otros elementos (dropdown, modal, etc) */
+    z-index: 100;
+
+    .menu-btn {
+        display: none;
+        background-color: gray;
+        color: white;
+        padding: 15px 20px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: rgb(251, 251, 251);
+            color: $color-accent;
+        }
+    }
+
+    /* Estilos para el logo de la marca */
+    .logo {
+        /* Tamaño de letra grande y visible */
+        font-size: 24px;
+        /* Texto en negrita para destacar */
+        font-weight: bold;
+        /* Color verde acento definido en variables */
+        color: $color-accent;
+        /* Espaciado entre letras para elegancia tipográfica */
+        letter-spacing: 1px;
+        /* Suaviza todos los cambios de estilo en 0.3 segundos */
+        transition: all 0.3s ease;
+
+        /* Estilos cuando el mouse está sobre el logo */
+        &:hover {
+            /* Cambia a verde más claro al pasar el mouse */
+            color: $color-accent-hover;
+            /* Crea un efecto de brillo/resplandor alrededor del texto */
+            text-shadow: 0 0 10px rgba(88, 179, 15, 0.5);
+        }
+    }
+
+    /* Estilos para el contenedor de navegación */
+    nav {
+        /* Alinea los links de navegación horizontalmente */
+        display: flex;
+        /* Espacio entre cada link de navegación */
+        gap: 30px;
+
+        /* Estilos para cada enlace dentro de nav */
+        a {
+            /* Elimina la línea subrayada por defecto de los enlaces */
+            text-decoration: none;
+            /* Color blanco para los links */
+            color: $color-text-light;
+            /* Grosor medio de la fuente */
+            font-weight: 500;
+            /* Tamaño de letra estándar */
+            font-size: 16px;
+            /* Transición suave de 0.3 segundos para cambios de estilo */
+            transition: 0.3s ease;
+            /* Position relativo necesario para que funcione ::after */
+            position: relative;
+
+            /* Crea un pseudo-elemento para efecto de subrayado animado */
+            &::after {
+                /* Crea un elemento invisible (vacío) */
+                content: '';
+                /* Se posiciona relativo a su elemento padre (el link) */
+                position: absolute;
+                /* 5 píxeles debajo del texto */
+                bottom: -5px;
+                /* Comienza desde la izquierda del elemento */
+                left: 0;
+                /* Inicia con ancho 0 (invisible) */
+                width: 0;
+                /* Altura del subrayado: 2 píxeles */
+                height: 2px;
+                /* Color del subrayado: verde acento */
+                background-color: $color-accent;
+                /* Anima el cambio de ancho suavemente */
+                transition: width 0.3s ease;
+            }
+
+            /* Estilos cuando el mouse está sobre el link */
+            &:hover {
+                /* Cambia el color del texto a verde acento */
+                color: $color-accent;
+
+                /* El subrayado se expande al ancho del texto */
+                &::after {
+                    /* El subrayado se expande al 100% del ancho del link */
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+/* ================================================
+   BOTONES - Estilos para botones de acción
+   ================================================ */
+
+.btn-main {
+    /* Relleno del botón */
+    padding: 15px 40px;
+    /* Fondo verde acento */
+    background-color: $color-accent;
+    /* Texto blanco */
+    color: white;
+    /* Quita el borde default del navegador */
+    border: none;
+    /* Esquinas ligeramente redondeadas */
+    border-radius: 5px;
+    /* Tamaño de fuente */
+    font-size: 1rem;
+    /* Texto en negrita */
+    font-weight: 600;
+    /* Cambia el cursor a manita */
+    cursor: pointer;
+    /* Transición suave */
+    transition: all 0.3s ease;
+    /* Necesario para el efecto de ondas */
+    position: relative;
+    /* Oculta la onda que sale del botón */
+    overflow: hidden;
+
+    /* Crea un efecto de onda que se expande en hover */
+    &::before {
+        /* Elemento invisible que será la onda */
+        content: '';
+        /* Se posiciona absolutamente desde el botón */
+        position: absolute;
+        /* En el centro vertical */
+        top: 50%;
+        /* En el centro horizontal */
+        left: 50%;
+        /* Comienza con tamaño 0 */
+        width: 0;
+        height: 0;
+        /* Forma circular */
+        border-radius: 50%;
+        /* Fondo blanco semitransparente */
+        background: rgba(255, 255, 255, 0.3);
+        /* Centra la onda */
+        transform: translate(-50%, -50%);
+        /* Anima el crecimiento lentamente */
+        transition: width 0.6s, height 0.6s;
+    }
+
+    /* Efecto hover del botón */
+    &:hover {
+        /* Verde más claro */
+        background-color: $color-accent-hover;
+        /* Sube el botón 3px */
+        transform: translateY(-3px);
+        /* Sombra */
+        box-shadow: 0 10px 20px rgba(88, 179, 15, 0.3);
+
+        /* La onda se expande */
+        &::before {
+            /* Crece a 300px */
+            width: 300px;
+            height: 300px;
+        }
+    }
+
+    /* Efecto cuando está presionado */
+    &:active {
+        /* Menos elevación cuando está presionado */
+        transform: translateY(-1px);
+    }
+}
+
+/* ================================================
+   FOOTER - Pie de página
+   ================================================ */
+
+.footer {
+    /* Relleno: 30px arriba/abajo, 20px izquierda/derecha */
+    padding: 30px 20px;
+    /* Centra el contenido */
+    text-align: center;
+    /* Fondo aún más oscuro que main */
+    background-color: #050409;
+    /* Borde superior para separar del contenido */
+    border-top: 1px solid $color-border;
+    /* Color del texto gris */
+    color: $color-text-gray;
+    /* Tamaño de fuente pequeño */
+    font-size: 0.95rem;
+}
+

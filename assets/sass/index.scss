@@ -1,0 +1,1124 @@
+
+
+/* Importa la fuente Libre Franklin de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* 
+VARIABLES DE COLOR - Define colores reutilizables en todo el SCSS */
+/* Color de fondo principal  */
+$color-bg-dark: #0E0B16;
+/* Color de fondo para tarjetas  */
+$color-bg-card: #1A1722;
+/* Color de acento principal  */
+$color-accent: #58b30f;
+/* Versión más clara del acento para estados hover */
+$color-accent-hover: #6bc91e;
+/* Texto principal contraste */
+$color-text-light: #fff;
+/* Texto secundario para descripciones y textos auxiliares */
+$color-text-gray: #999;
+/* Texto oscuro usado en navegación */
+$color-text-dark: #333;
+/* Color de bordes para separadores */
+$color-border: #2d2a2a;
+
+
+.hero {
+    /* Altura igual al 100% de la ventana del navegador */
+    height: 100vh;
+    /* Activa Flexbox para centrar el contenido */
+    display: flex;
+    /* Centra el contenido horizontalmente */
+    justify-content: center;
+    /* Centra el contenido verticalmente */
+    align-items: center;
+    /* Gradiente diagonal: de color oscuro a gris oscuro para profundidad */
+    background: linear-gradient(135deg, $color-bg-dark 0%, #1a1722 100%);
+    /* Color de texto blanco */
+    color: $color-text-light;
+    /* Relleno: 40px arriba/abajo, 20px izquierda/derecha */
+    padding: 40px 20px;
+
+    /* Contenedor principal del contenido hero */
+    .hero-content {
+        /* Crea un grid (tabla) con 2 columnas de igual tamaño */
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        /* Espacio entre columnas */
+        gap: 50px;
+        /* Alinea los items al inicio vertical */
+        align-items: center;
+        /* El contenido ocupa todo el ancho disponible */
+        width: 100%;
+        /* Ancho máximo para que no sea demasiado ancho en pantallas grandes */
+        max-width: 1200px;
+
+        /* Columna izquierda: texto del hero */
+        .hero-text {
+            /* Estilos del texto principal */
+        }
+
+        /* Columna derecha: imagen del perfil */
+        .img_style {
+            /* Centrador flexible para la imagen */
+            display: flex;
+            /* Centra la imagen horizontalmente */
+            justify-content: center;
+            /* Centra la imagen verticalmente */
+            align-items: center;
+
+            img {
+                /* Ancho de la imagen: 300 píxeles */
+                width: 300px;
+                /* Alto de la imagen: 300 píxeles (hace un cuadrado) */
+                height: 300px;
+                /* Esquinas redondeadas: 50% hace un círculo perfecto */
+                border-radius: 50%;
+                /* Asegura que la imagen no se deforme al recortarse */
+                object-fit: cover;
+                /* Borde de 3px sólido con color de acento verde */
+                border: 3px solid $color-accent;
+                /* Aplica animación de flotación continua por 3 segundos */
+                animation: flotar 3s ease-in-out infinite;
+                /* Sombra alrededor de la imagen: efecto de resplandor verde */
+                box-shadow: 0 0 30px rgba(88, 179, 15, 0.3);
+            }
+        }
+
+        /* Título principal (h1) */
+        h1 {
+            /* Tamaño muy grande: 4 veces el tamaño base (64px) */
+            font-size: 4rem;
+            /* Margen inferior para separar del párrafo */
+            margin-bottom: 20px;
+            /* Peso máximo de fuente: muy negrita */
+            font-weight: 900;
+            /* Color verde acento */
+            color: $color-accent;
+        }
+
+        /* Párrafo (p) - descripción principal */
+        p {
+            /* Tamaño de letra más grande */
+            font-size: 1.2rem;
+            /* Margen inferior para separar del siguiente elemento */
+            margin-bottom: 30px;
+            /* Color gris para texto secundario */
+            color: $color-text-gray;
+            /* Espaciado entre líneas: 1.8 proporciona buena legibilidad */
+            line-height: 1.8;
+        }
+    }
+}
+
+/* ================================================
+   ANIMACIÓN: FLOTAR - Hace que la imagen suba y baje continuamente
+   ================================================ */
+@keyframes flotar {
+
+    /* Estado inicial (0%) y final (100%): posición normal */
+    0%,
+    100% {
+        /* Sin movimiento vertical */
+        transform: translateY(0);
+    }
+
+    /* Estado medio (50%): sube 30 píxeles */
+    50% {
+        /* Sube 30 píxeles (valor negativo = hacia arriba) */
+        transform: translateY(-30px);
+    }
+}
+
+/* ================================================
+   ANIMACIÓN: TYPING (EFECTO DE ESCRITURA) - Simula escribir texto
+   ================================================ */
+@keyframes typing {
+
+    /* Desde el inicio */
+    from {
+        /* Comienza con ancho 0 (texto invisible) */
+        width: 0;
+    }
+
+    /* Hasta el final */
+    to {
+        /* Se expande al ancho completo (todo el texto visible) */
+        width: 100%;
+    }
+}
+
+/* Efecto de parpadeo del cursor de máquina de escribir */
+@keyframes blink {
+
+    /* Estados inicial y final: el cursor está invisible */
+    from,
+    to {
+        /* Color del borde transparente = invisible */
+        border-color: transparent;
+    }
+
+    /* Estado medio (50%): el cursor es visible */
+    50% {
+        /* Color del borde verde = visible */
+        border-color: $color-accent;
+    }
+}
+
+/* Clase para aplicar la animación typing a elementos */
+.typing {
+    /* Fuente monoespaciada (cada letra ocupa mismo ancho) */
+    font-family: monospace;
+    /* Tamaño grande de fuente */
+    font-size: 3rem;
+    /* Evita que el texto salte a nueva línea */
+    white-space: nowrap;
+    /* Oculta el texto que aún no se "escribe" */
+    overflow: hidden;
+    /* Borde derecho de 3px que simula el cursor de escritura */
+    border-right: 3px solid $color-accent;
+    /* Ancho inicial 0: el texto comienza invisible */
+    width: 0;
+    /* Combina dos animaciones:
+       - typing: expande el ancho en pasos discretos (30 pasos) durante 3.5 segundos
+       - blink: hace parpadear el cursor cada 0.75 segundos */
+    animation:
+        typing 3.5s steps(30, end) forwards,
+        blink 0.75s step-end infinite;
+}
+
+/* ================================================
+   ANIMACIÓN: FADE IN UP (APARECE Y SUBE SUAVEMENTE)
+   ================================================ */
+@keyframes fadeInUp {
+
+    /* Estado inicial */
+    from {
+        /* Texto completamente transparente (invisible) */
+        opacity: 0;
+        /* Empieza 30 píxeles más abajo que posición final */
+        transform: translateY(30px);
+    }
+
+    /* Estado final */
+    to {
+        /* Texto completamente visible */
+        opacity: 1;
+        /* Sube a su posición original */
+        transform: translateY(0);
+    }
+}
+
+/* Clase que aplica la animación fadeInUp */
+.fade-in-up {
+    /* Duración: 0.8 segundos, suave, sin repetirse */
+    animation: fadeInUp 0.8s ease forwards;
+
+    /* Cada hijo de esta clase se anima en diferente momento (efecto cascada) */
+    &:nth-child(1) {
+        /* Primer elemento comienza después de 0.2 segundos */
+        animation-delay: 0.2s;
+    }
+
+    &:nth-child(2) {
+        /* Segundo elemento comienza después de 0.4 segundos */
+        animation-delay: 0.4s;
+    }
+
+    &:nth-child(3) {
+        /* Tercer elemento comienza después de 0.6 segundos */
+        animation-delay: 0.6s;
+    }
+}
+
+/* ================================================
+   ANIMACIÓN: SLIDE IN LEFT (ENTRA DESDE IZQUIERDA)
+   ================================================ */
+@keyframes slideInLeft {
+
+    /* Estado inicial */
+    from {
+        /* Invisible */
+        opacity: 0;
+        /* 50 píxeles a la izquierda de su posición final */
+        transform: translateX(-50px);
+    }
+
+    /* Estado final */
+    to {
+        /* Visible */
+        opacity: 1;
+        /* En su posición original */
+        transform: translateX(0);
+    }
+}
+
+/* Clase que aplica la animación slideInLeft */
+.slide-in-left {
+    /* Duración: 0.6 segundos, suave, sin repetirse */
+    animation: slideInLeft 0.6s ease forwards;
+
+    /* Cada tarjeta se anima en diferente momento (efecto cascada) */
+    &:nth-child(1) {
+        /* Primer elemento comienza después de 0.2 segundos */
+        animation-delay: 0.2s;
+    }
+
+    &:nth-child(2) {
+        /* Segundo elemento comienza después de 0.4 segundos */
+        animation-delay: 0.4s;
+    }
+
+    &:nth-child(3) {
+        /* Tercer elemento comienza después de 0.6 segundos */
+        animation-delay: 0.6s;
+    }
+}
+
+/* ================================================
+   SECCIÓN ABOUT ME (SOBRE MÍ) - Información personal y habilidades
+   ================================================ */
+
+.about_me {
+    /* Relleno: 80px arriba/abajo, 20px izquierda/derecha */
+    padding: 80px 20px;
+    /* Gradiente vertical: de oscuro a más claro */
+    background: linear-gradient(180deg, $color-bg-dark 0%, $color-bg-card 100%);
+
+    /* Título de la sección */
+    .section-title {
+        /* Tamaño grande para destacar */
+        font-size: 3rem;
+        /* Centra el texto horizontalmente */
+        text-align: center;
+        /* Margen inferior para separar del contenido */
+        margin-bottom: 60px;
+        /* Color verde acento */
+        color: $color-accent;
+        /* Necesario para que el pseudo-elemento ::after funcione */
+        position: relative;
+        /* Espacio inferior dentro del elemento para el decorador */
+        padding-bottom: 20px;
+
+        /* Crea una línea decorativa debajo del título */
+        &::after {
+            /* Crea un elemento invisible que será la línea */
+            content: '';
+            /* Se posiciona relativo al elemento padre */
+            position: absolute;
+            /* Pone la línea en la parte inferior */
+            bottom: 0;
+            /* Centra horizontalmente */
+            left: 50%;
+            /* Mueve el origen al 50% (centro) */
+            transform: translateX(-50%);
+            /* Ancho de la línea: 60px */
+            width: 60px;
+            /* Altura de la línea: 4px */
+            height: 4px;
+            /* Gradiente de color verde a transparente */
+            background: linear-gradient(90deg, $color-accent, transparent);
+            /* Esquinas ligeramente redondeadas */
+            border-radius: 2px;
+        }
+    }
+
+    /* Contenedor del contenido About Me */
+    .about-content {
+        /* Crea un grid con 2 columnas */
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        /* Espacio entre columnas */
+        gap: 60px;
+        /* Alinea los items al inicio vertical */
+        align-items: start;
+
+        /* Columna izquierda: texto y habilidades */
+        .about-text {
+
+            /* Subtítulo (h3) */
+            h3 {
+                /* Tamaño grande para subtítulo */
+                font-size: 1.5rem;
+                /* Margen inferior para separar */
+                margin-bottom: 15px;
+                /* Color verde acento */
+                color: $color-accent;
+            }
+
+            /* Párrafos de descripción */
+            p {
+                /* Tamaño de fuente un poco más grande */
+                font-size: 1.1rem;
+                /* Color gris para texto secundario */
+                color: $color-text-gray;
+                /* Margen inferior entre párrafos */
+                margin-bottom: 25px;
+                /* Espaciado vertical entre líneas: mejora legibilidad */
+                line-height: 1.8;
+                /* Alinea el texto a ambos márgenes (justificado) */
+                text-align: justify;
+            }
+
+            /* Lista de habilidades */
+            .skills-list {
+                /* Quita los puntos/bullets por defecto */
+                list-style: none;
+
+                /* Cada elemento de la lista */
+                li {
+                    /* Relleno: 12px arriba/abajo, 0 izquierda/derecha */
+                    padding: 12px 0;
+                    /* Espacio para dejar lugar al icono checkmark */
+                    padding-left: 30px;
+                    /* Necesario para posicionar el ::before */
+                    position: relative;
+                    /* Tamaño de letra */
+                    font-size: 1.1rem;
+                    /* Color gris para habilidades */
+                    color: $color-text-gray;
+
+                    /* Crea un checkmark (✓) antes de cada elemento */
+                    &::before {
+                        /* Inserta un checkmark en lugar de punto */
+                        content: '✓';
+                        /* Se posiciona relativo al li */
+                        position: absolute;
+                        /* Alineado a la izquierda */
+                        left: 0;
+                        /* Color verde del checkmark */
+                        color: $color-accent;
+                        /* Checkmark en negrita */
+                        font-weight: bold;
+                        /* Tamaño del checkmark */
+                        font-size: 1.3rem;
+                    }
+                }
+            }
+        }
+
+        /* Columna derecha: estadísticas en tarjetas */
+        .about-stats {
+            /* Flex vertical para apilar tarjetas */
+            display: flex;
+            /* Dirección vertical (uno debajo de otro) */
+            flex-direction: column;
+            /* Espacio entre tarjetas */
+            gap: 20px;
+
+            /* Cada tarjeta de estadística */
+            .stat-card {
+                /* Fondo oscuro de tarjeta */
+                background-color: $color-bg-card;
+                /* Relleno interno */
+                padding: 30px;
+                /* Esquinas redondeadas */
+                border-radius: 10px;
+                /* Borde izquierdo de 4px verde */
+                border-left: 4px solid $color-accent;
+                /* Centra el contenido de la tarjeta */
+                text-align: center;
+                /* Transición suave de 0.3 segundos */
+                transition: all 0.3s ease;
+
+                /* Efecto hover: tarjeta sube y muestra sombra */
+                &:hover {
+                    /* Sube el elemento 5 píxeles */
+                    transform: translateY(-5px);
+                    /* Sombra con color verde tenue */
+                    box-shadow: 0 10px 30px rgba(88, 179, 15, 0.2);
+                }
+
+                /* Número grande de la estadística */
+                .stat-number {
+                    /* Tamaño muy grande: 2.5 veces el tamaño base */
+                    font-size: 2.5rem;
+                    /* Color verde acento */
+                    color: $color-accent;
+                    /* Margen inferior */
+                    margin-bottom: 10px;
+                    /* Muy negrita */
+                    font-weight: 900;
+                }
+
+                /* Texto descriptivo de la estadística */
+                p {
+                    /* Color gris */
+                    color: $color-text-gray;
+                    /* Tamaño normal */
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+}
+
+/* ================================================
+   SECCIÓN PROYECTOS (PROJECTS) - Galería de proyectos
+   ================================================ */
+
+.projects {
+    /* Relleno: 80px arriba/abajo, 20px izquierda/derecha */
+    padding: 80px 20px;
+    /* Fondo oscuro */
+    background-color: $color-bg-dark;
+
+    /* Título de la sección */
+    .section-title {
+        /* Tamaño grande para destacar */
+        font-size: 3rem;
+        /* Centra el texto */
+        text-align: center;
+        /* Margen inferior */
+        margin-bottom: 60px;
+        /* Color verde acento */
+        color: $color-accent;
+        /* Necesario para el pseudo-elemento */
+        position: relative;
+        /* Espacio para la línea decorativa */
+        padding-bottom: 20px;
+
+        /* Línea decorativa verde debajo */
+        &::after {
+            /* Elemento decorativo vacío */
+            content: '';
+            /* Se posiciona absolutamente */
+            position: absolute;
+            /* En la parte inferior */
+            bottom: 0;
+            /* Centrado horizontalmente */
+            left: 50%;
+            /* Ajusta el origen al centro */
+            transform: translateX(-50%);
+            /* Ancho de la línea */
+            width: 60px;
+            /* Altura de la línea */
+            height: 4px;
+            /* Gradiente verde a transparente */
+            background: linear-gradient(90deg, $color-accent, transparent);
+            /* Esquinas redondeadas */
+            border-radius: 2px;
+        }
+    }
+
+    /* Grid de tarjetas de proyectos */
+    .projects-grid {
+        /* Activa grid CSS */
+        display: grid;
+        /* Auto-fit: crea columnas automáticamente
+           minmax(300px, 1fr): cada columna tiene mínimo 300px y expande si hay espacio */
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        /* Espacio entre tarjetas */
+        gap: 40px;
+    }
+}
+
+/* Tarjeta de proyecto individual */
+.project-card {
+    /* Fondo gris oscuro de tarjeta */
+    background-color: $color-bg-card;
+    /* Esquinas redondeadas */
+    border-radius: 10px;
+    /* Recorta contenido que salga de los límites de la tarjeta */
+    overflow: hidden;
+    /* Transición suave de 0.3 segundos para cambios */
+    transition: all 0.3s ease;
+    /* Cambia el cursor a manita (señal de clickeable) */
+    cursor: pointer;
+
+    /* Efecto hover: tarjeta sube y muestra sombra */
+    &:hover {
+        /* Sube 10 píxeles */
+        transform: translateY(-10px);
+        /* Sombra verde */
+        box-shadow: 0 20px 40px rgba(88, 179, 15, 0.2);
+    }
+
+    /* Contenedor de imagen con efecto overlay */
+    .project-image {
+        /* Se posiciona relativamente para controlar el overlay */
+        position: relative;
+        /* Oculta contenido que salga de los límites */
+        overflow: hidden;
+        /* Altura fija de la imagen */
+        height: 200px;
+
+        /* Imagen del proyecto */
+        img {
+            /* Ancho 100% del contenedor */
+            width: 100%;
+            /* Alto 100% del contenedor */
+            height: 100%;
+            /* Recorta o redimensiona la imagen sin distorsionar */
+            object-fit: cover;
+            /* Transición suave para el efecto zoom */
+            transition: transform 0.3s ease;
+        }
+
+        /* Capa oscura que aparece en hover */
+        .project-overlay {
+            /* Se posiciona sobre la imagen */
+            position: absolute;
+            /* Pega en las esquinas */
+            top: 0;
+            left: 0;
+            /* Cubre toda la imagen */
+            width: 100%;
+            height: 100%;
+            /* Fondo negro con 70% opacidad (transparencia) */
+            background: rgba(0, 0, 0, 0.7);
+            /* Flex para centrar el botón */
+            display: flex;
+            /* Centra horizontalmente */
+            justify-content: center;
+            /* Centra verticalmente */
+            align-items: center;
+            /* Invisible por defecto */
+            opacity: 0;
+            /* Aparece suavemente */
+            transition: opacity 0.3s ease;
+
+            /* Botón "Ver más" */
+            .btn-view {
+                /* Relleno del botón */
+                padding: 12px 30px;
+                /* Fondo verde acento */
+                background-color: $color-accent;
+                /* Texto blanco */
+                color: white;
+                /* Quita subrayado de enlace */
+                text-decoration: none;
+                /* Esquinas redondeadas */
+                border-radius: 5px;
+                /* Texto en negrita */
+                font-weight: bold;
+                /* Transición suave */
+                transition: all 0.3s ease;
+
+                /* Efecto hover del botón */
+                &:hover {
+                    /* Verde más claro */
+                    background-color: $color-accent-hover;
+                    /* Agranda el botón en 5% */
+                    transform: scale(1.05);
+                }
+            }
+        }
+
+        /* Al pasar mouse sobre la imagen */
+        &:hover {
+
+            /* El overlay se hace visible */
+            .project-overlay {
+                opacity: 1;
+            }
+
+            /* La imagen se agranda (zoom) */
+            img {
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    /* Información de la tarjeta (debajo de la imagen) */
+    .project-info {
+        /* Relleno interno */
+        padding: 25px;
+
+        /* Título del proyecto */
+        h3 {
+            /* Tamaño grande */
+            font-size: 1.4rem;
+            /* Margen inferior */
+            margin-bottom: 10px;
+            /* Texto blanco */
+            color: $color-text-light;
+        }
+
+        /* Descripción del proyecto */
+        p {
+            /* Texto gris */
+            color: $color-text-gray;
+            /* Tamaño de fuente */
+            font-size: 0.95rem;
+            /* Margen inferior */
+            margin-bottom: 15px;
+            /* Espaciado entre líneas */
+            line-height: 1.6;
+        }
+
+        /* Contenedor de tags/etiquetas de tecnologías */
+        .project-tags {
+            /* Flex para alinear tags horizontalmente */
+            display: flex;
+            /* Los tags pasan a siguiente línea si no caben */
+            flex-wrap: wrap;
+            /* Espacio entre tags */
+            gap: 10px;
+
+            /* Cada tag/etiqueta de tecnología */
+            .tag {
+                /* Muestra el tag como un bloque en línea */
+                display: inline-block;
+                /* Relleno del tag */
+                padding: 6px 12px;
+                /* Fondo verde con 20% opacidad (muy tenue) */
+                background-color: rgba(88, 179, 15, 0.2);
+                /* Color del texto verde */
+                color: $color-accent;
+                /* Esquinas muy redondeadas (estilo píldora) */
+                border-radius: 20px;
+                /* Tamaño de fuente pequeño */
+                font-size: 0.85rem;
+                /* Borde de 1px verde */
+                border: 1px solid $color-accent;
+                /* Transición suave */
+                transition: all 0.3s ease;
+
+                /* Efecto hover del tag */
+                &:hover {
+                    /* Fondo verde sólido */
+                    background-color: $color-accent;
+                    /* Texto oscuro */
+                    color: $color-bg-dark;
+                }
+            }
+        }
+    }
+}
+
+/* ================================================
+   SECCIÓN CONTACTO (CONTACT) - Formulario y datos de contacto
+   ================================================ */
+
+.contact {
+    /* Relleno: 80px arriba/abajo, 20px izquierda/derecha */
+    padding: 80px 20px;
+    /* Gradiente vertical: gris a oscuro */
+    background: linear-gradient(180deg, $color-bg-card 0%, $color-bg-dark 100%);
+
+    /* Título de la sección */
+    .section-title {
+        /* Tamaño grande */
+        font-size: 3rem;
+        /* Centra el texto */
+        text-align: center;
+        /* Margen inferior */
+        margin-bottom: 60px;
+        /* Color verde acento */
+        color: $color-accent;
+        /* Para el pseudo-elemento decorativo */
+        position: relative;
+        /* Espacio para la línea */
+        padding-bottom: 20px;
+
+        /* Línea decorativa */
+        &::after {
+            /* Elemento decorativo */
+            content: '';
+            /* Posición absoluta */
+            position: absolute;
+            /* En la parte inferior */
+            bottom: 0;
+            /* Centrado horizontalmente */
+            left: 50%;
+            /* Ajusta al centro */
+            transform: translateX(-50%);
+            /* Ancho de la línea */
+            width: 60px;
+            /* Alto de la línea */
+            height: 4px;
+            /* Gradiente verde a transparente */
+            background: linear-gradient(90deg, $color-accent, transparent);
+            /* Esquinas redondeadas */
+            border-radius: 2px;
+        }
+    }
+
+    /* Contenedor principal de contacto */
+    .contact-content {
+        /* Grid con 2 columnas: info + formulario */
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        /* Espacio entre columnas */
+        gap: 60px;
+        /* Ancho máximo */
+        max-width: 1000px;
+        /* Centra el contenido */
+        margin: 0 auto;
+    }
+
+    /* Columna izquierda: información de contacto */
+    .contact-info {
+
+        /* Subtítulo */
+        h3 {
+            /* Tamaño grande */
+            font-size: 1.8rem;
+            /* Margen inferior */
+            margin-bottom: 15px;
+            /* Color verde acento */
+            color: $color-accent;
+        }
+
+        /* Párrafos de descripción (usando > para solo párrafos directos) */
+        >p {
+            /* Texto gris */
+            color: $color-text-gray;
+            /* Tamaño de fuente */
+            font-size: 1.1rem;
+            /* Margen inferior */
+            margin-bottom: 30px;
+            /* Espaciado entre líneas */
+            line-height: 1.8;
+        }
+
+        /* Contenedor de enlaces de contacto */
+        .contact-links {
+            /* Flex vertical */
+            display: flex;
+            /* Dirección: vertical (uno abajo del otro) */
+            flex-direction: column;
+            /* Espacio entre enlaces */
+            gap: 20px;
+
+            /* Cada enlace de contacto */
+            .contact-link {
+                /* Flex horizontal para alinear icono y texto */
+                display: flex;
+                /* Centra verticalmente */
+                align-items: center;
+                /* Espacio entre icono y texto */
+                gap: 15px;
+                /* Relleno interno */
+                padding: 15px;
+                /* Fondo verde muy transparente */
+                background-color: rgba(88, 179, 15, 0.1);
+                /* Esquinas redondeadas */
+                border-radius: 8px;
+                /* Quita subrayado del enlace */
+                text-decoration: none;
+                /* Texto blanco */
+                color: $color-text-light;
+                /* Transición suave */
+                transition: all 0.3s ease;
+                /* Borde izquierdo inicialmente transparente */
+                border-left: 3px solid transparent;
+
+                /* Icono (emoji o símbolo) */
+                .icon {
+                    /* Tamaño del icono */
+                    font-size: 1.5rem;
+                }
+
+                /* El último span es el texto */
+                span:last-child {
+                    /* Texto en negrita */
+                    font-weight: 500;
+                }
+
+                /* Efecto hover del enlace */
+                &:hover {
+                    /* Fondo verde más intenso */
+                    background-color: rgba(88, 179, 15, 0.2);
+                    /* Borde izquierdo verde */
+                    border-left-color: $color-accent;
+                    /* Se desplaza 5px a la derecha */
+                    transform: translateX(5px);
+                }
+            }
+        }
+    }
+
+    /* Columna derecha: formulario de contacto */
+    .contact-form {
+        /* Flex vertical para apilar elementos */
+        display: flex;
+        /* Dirección: vertical */
+        flex-direction: column;
+        /* Espacio entre grupos de formulario */
+        gap: 20px;
+
+        /* Cada grupo de formulario (label + input) */
+        .form-group {
+            /* Flex vertical */
+            display: flex;
+            /* Dirección vertical */
+            flex-direction: column;
+            /* Espacio entre label e input */
+            gap: 8px;
+
+            /* Etiqueta del formulario */
+            label {
+                /* Texto en negrita */
+                font-weight: 600;
+                /* Texto blanco */
+                color: $color-text-light;
+                /* Tamaño de fuente */
+                font-size: 0.95rem;
+            }
+
+            /* Estilos para inputs y textareas (formularios) */
+            input,
+            textarea {
+                /* Relleno interno */
+                padding: 15px;
+                /* Fondo muy tenue (casi invisible) */
+                background-color: rgba(255, 255, 255, 0.05);
+                /* Borde gris oscuro */
+                border: 1px solid $color-border;
+                /* Esquinas redondeadas */
+                border-radius: 5px;
+                /* Texto blanco */
+                color: $color-text-light;
+                /* Fuente heredada del sitio */
+                font-family: inherit;
+                /* Tamaño de fuente */
+                font-size: 1rem;
+                /* Transición suave */
+                transition: all 0.3s ease;
+
+                /* Placeholder (texto de ayuda dentro del input) */
+                &::placeholder {
+                    /* Color gris muy tenue */
+                    color: rgba(255, 255, 255, 0.3);
+                }
+
+                /* Cuando el input está enfocado (clickeado) */
+                &:focus {
+                    /* Elimina el outline azul default */
+                    outline: none;
+                    /* Fondo verde suave */
+                    background-color: rgba(88, 179, 15, 0.1);
+                    /* Borde verde acento */
+                    border-color: $color-accent;
+                    /* Brillo verde alrededor */
+                    box-shadow: 0 0 10px rgba(88, 179, 15, 0.3);
+                }
+
+                /* Cuando pasa el mouse sobre el input */
+                &:hover {
+                    /* Borde se vuelve verde */
+                    border-color: $color-accent;
+                }
+            }
+
+            /* Textarea específicamente */
+            textarea {
+                /* Permite cambiar solo la altura (no el ancho) */
+                resize: vertical;
+                /* Fuente consistente del sitio */
+                font-family: 'Libre Franklin', sans-serif;
+            }
+        }
+
+        /* Botón de envío del formulario */
+        .btn-submit {
+            /* Margen superior para separar */
+            margin-top: 10px;
+            /* Ancho al 100% del contenedor */
+            width: 100%;
+        }
+    }
+}
+
+/* ================================================
+   RESPONSIVE - Media Queries
+   Adapta el diseño a diferentes tamaños de pantalla
+   ================================================ */
+
+/* Pantallas medianas (tablets) - Máximo 768px de ancho */
+@media (max-width: 768px) {
+
+    /* Estilos de navbar en tablets */
+    .navbar {
+        /* Reduce el relleno */
+        padding: 15px 20px;
+        /* Cambia a flex vertical para apilar elementos */
+        flex-direction: column;
+        /* Espacio entre elementos apilados */
+        gap: 15px;
+
+        /* Estilos de navegación en tablets */
+        nav {
+            /* Reduce el espacio entre links */
+            gap: 15px;
+        }
+    }
+
+    /* Estilos del hero en tablets */
+    .hero {
+        /* Altura automática en lugar de 100vh */
+        height: auto;
+        /* Ajusta el relleno */
+        padding: 40px 20px;
+
+        /* Contenido del hero en tablets */
+        .hero-content {
+            /* Una columna en lugar de dos */
+            grid-template-columns: 1fr;
+            /* Menos espacio entre columnas */
+            gap: 30px;
+            /* Centra el texto */
+            text-align: center;
+
+            /* Título en tablets */
+            h1 {
+                /* Reduce el tamaño de fuente */
+                font-size: 2.5rem;
+            }
+
+            /* Imagen del perfil en tablets */
+            .img_style img {
+                /* Imagen más pequeña */
+                width: 200px;
+                height: 200px;
+            }
+        }
+    }
+
+    /* Contenido About Me y Contact en tablets */
+    .about_me .about-content,
+    .contact .contact-content {
+        /* Una columna en lugar de dos */
+        grid-template-columns: 1fr;
+        /* Menos espacio entre elementos */
+        gap: 40px;
+    }
+
+    /* Grid de proyectos en tablets */
+    .projects .projects-grid {
+        /* Una columna en lugar de grid responsivo */
+        grid-template-columns: 1fr;
+    }
+
+    /* Grid de mascotas en tablets: 2 columnas */
+    .pets .projects-grid-pet {
+        /* Cambia a 2 columnas en tablets */
+        grid-template-columns: repeat(2, 1fr);
+        /* Reduce el espacio entre tarjetas */
+        gap: 20px;
+        /* Reduce el espacio entre filas */
+        row-gap: 30px;
+    }
+
+    /* Altura de imagen en tablets */
+    .project-image-pet {
+        /* Reduce la altura de la imagen */
+        height: 280px !important;
+    }
+
+    /* Título de sección en tablets */
+    .section-title {
+        /* Tamaño reducido */
+        font-size: 2rem;
+    }
+}
+
+/* Pantallas pequeñas (móviles) - Máximo 480px de ancho */
+@media (max-width: 480px) {
+
+    /* Navbar en móviles */
+    .navbar {
+        /* Reduce padding */
+        padding: 10px 15px;
+
+        .menu-btn {
+            display: block;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background-color: #fff;
+            color: $color-accent;
+
+        }
+
+        /* Logo en móviles */
+        .logo {
+            /* Reduce el tamaño del logo */
+            font-size: 20px;
+        }
+
+        /* Navegación en móviles */
+        nav {
+            top: 100px;
+            right: 20px;
+            position: absolute;
+            display: none;
+            background-color: $color-text-dark;
+            &.active {
+                display: flex;
+                flex-direction: column;
+
+                a {
+                    color: white;
+                }
+            }
+        }
+    }
+
+    /* Hero en móviles */
+    .hero {
+        /* Altura automática */
+        height: auto;
+
+        /* Contenido del hero en móviles */
+        .hero-content {
+
+            /* Título en móviles */
+            h1 {
+                /* Tamaño muy reducido */
+                font-size: 2rem;
+            }
+
+            /* Párrafo en móviles */
+            p {
+                /* Reduce el tamaño */
+                font-size: 1rem;
+            }
+
+            /* Imagen en móviles */
+            .img_style img {
+                /* Imagen muy pequeña */
+                width: 150px;
+                height: 150px;
+            }
+        }
+    }
+
+    /* Grid de mascotas en móviles: 1 columna */
+    .pets .projects-grid-pet {
+        /* Una sola columna en móviles */
+        grid-template-columns: 1fr;
+        /* Reduce el espacio entre tarjetas */
+        gap: 15px;
+        /* Reduce el espacio entre filas */
+        row-gap: 20px;
+    }
+
+    /* Altura de imagen en móviles */
+    .project-image-pet {
+        /* Reduce más la altura */
+        height: 220px !important;
+    }
+
+    /* Info de tarjeta en móviles */
+    .project-info {
+        /* Reduce padding */
+        padding: 20px;
+    }
+
+    /* Título de sección en móviles */
+    .section-title {
+        /* Tamaño muy reducido */
+        font-size: 1.5rem;
+        /* Reduce margen inferior */
+        margin-bottom: 30px;
+    }
+
+    /* Contacto en móviles */
+    .contact-content {
+        /* Menos espacio */
+        gap: 30px;
+    }
+}
