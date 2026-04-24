@@ -40,12 +40,6 @@ VARIABLES DE COLOR - Define colores reutilizables en todo el SCSS */
   width: 100%;
   /* Ancho máximo para que no sea demasiado ancho en pantallas grandes */
   max-width: 1200px;
-  /* Columna izquierda: texto del hero */
-}
-.hero .hero-content .hero-text {
-  /* Estilos del texto principal */
-}
-.hero .hero-content {
   /* Columna derecha: imagen del perfil */
 }
 .hero .hero-content .img_style {
@@ -73,7 +67,7 @@ VARIABLES DE COLOR - Define colores reutilizables en todo el SCSS */
   box-shadow: 0 0 30px rgba(88, 179, 15, 0.3);
 }
 .hero .hero-content {
-  /* Título principal (h1) */
+  /* Título principal */
 }
 .hero .hero-content h1 {
   /* Tamaño muy grande: 4 veces el tamaño base (64px) */
@@ -86,7 +80,7 @@ VARIABLES DE COLOR - Define colores reutilizables en todo el SCSS */
   color: #58b30f;
 }
 .hero .hero-content {
-  /* Párrafo (p) - descripción principal */
+  /* Párrafo descripción principal */
 }
 .hero .hero-content p {
   /* Tamaño de letra más grande */
@@ -99,9 +93,7 @@ VARIABLES DE COLOR - Define colores reutilizables en todo el SCSS */
   line-height: 1.8;
 }
 
-/* ================================================
-   ANIMACIÓN: FLOTAR - Hace que la imagen suba y baje continuamente
-   ================================================ */
+/* ANIMACIÓN: FLOTAR - Hace que la imagen suba y baje continuamente */
 @keyframes flotar {
   /* Estado inicial (0%) y final (100%): posición normal */
   0%, 100% {
@@ -114,9 +106,7 @@ VARIABLES DE COLOR - Define colores reutilizables en todo el SCSS */
     transform: translateY(-30px);
   }
 }
-/* ================================================
-   ANIMACIÓN: TYPING (EFECTO DE ESCRITURA) - Simula escribir texto
-   ================================================ */
+/* ANIMACIÓN: TYPING (EFECTO DE ESCRITURA) - Simula escribir texto */
 @keyframes typing {
   /* Desde el inicio */
   from {
@@ -162,9 +152,7 @@ VARIABLES DE COLOR - Define colores reutilizables en todo el SCSS */
   animation: typing 3.5s steps(30, end) forwards, blink 0.75s step-end infinite;
 }
 
-/* ================================================
-   ANIMACIÓN: FADE IN UP (APARECE Y SUBE SUAVEMENTE)
-   ================================================ */
+/* ANIMACIÓN: FADE IN UP (APARECE Y SUBE SUAVEMENTE) */
 @keyframes fadeInUp {
   /* Estado inicial */
   from {
@@ -200,9 +188,7 @@ VARIABLES DE COLOR - Define colores reutilizables en todo el SCSS */
   animation-delay: 0.6s;
 }
 
-/* ================================================
-   ANIMACIÓN: SLIDE IN LEFT (ENTRA DESDE IZQUIERDA)
-   ================================================ */
+/* ANIMACIÓN: SLIDE IN LEFT (ENTRA DESDE IZQUIERDA)*/
 @keyframes slideInLeft {
   /* Estado inicial */
   from {
@@ -238,9 +224,7 @@ VARIABLES DE COLOR - Define colores reutilizables en todo el SCSS */
   animation-delay: 0.6s;
 }
 
-/* ================================================
-   SECCIÓN ABOUT ME (SOBRE MÍ) - Información personal y habilidades
-   ================================================ */
+/* SECCIÓN ABOUT ME*/
 .about_me {
   /* Relleno: 80px arriba/abajo, 20px izquierda/derecha */
   padding: 80px 20px;
@@ -413,9 +397,7 @@ VARIABLES DE COLOR - Define colores reutilizables en todo el SCSS */
   font-size: 1rem;
 }
 
-/* ================================================
-   SECCIÓN PROYECTOS (PROJECTS) - Galería de proyectos
-   ================================================ */
+/* SECCIÓN PROYECTOS (PROJECTS) */
 .projects {
   /* Relleno: 80px arriba/abajo, 20px izquierda/derecha */
   padding: 80px 20px;
@@ -644,9 +626,7 @@ VARIABLES DE COLOR - Define colores reutilizables en todo el SCSS */
   color: #0E0B16;
 }
 
-/* ================================================
-   SECCIÓN CONTACTO (CONTACT) - Formulario y datos de contacto
-   ================================================ */
+/* SECCIÓN CONTACTO (CONTACT) - Formulario y datos de contacto*/
 .contact {
   /* Relleno: 80px arriba/abajo, 20px izquierda/derecha */
   padding: 80px 20px;
@@ -887,11 +867,8 @@ VARIABLES DE COLOR - Define colores reutilizables en todo el SCSS */
   width: 100%;
 }
 
-/* ================================================
-   RESPONSIVE - Media Queries
-   Adapta el diseño a diferentes tamaños de pantalla
-   ================================================ */
-/* Pantallas medianas (tablets) - Máximo 768px de ancho */
+/* RESPONSIVE - Media Queries */
+/* Pantallas medianas- Máximo 768px de ancho */
 @media (max-width: 768px) {
   /* Estilos de navbar en tablets */
   .navbar {
@@ -944,10 +921,10 @@ VARIABLES DE COLOR - Define colores reutilizables en todo el SCSS */
     /* Menos espacio entre elementos */
     gap: 40px;
   }
-  /* Grid de proyectos en tablets */
+  /* Grid de proyectos en tablets: 2 columnas */
   .projects .projects-grid {
-    /* Una columna en lugar de grid responsivo */
-    grid-template-columns: 1fr;
+    /* Dos columnas en tablets para mejor aprovechamiento de espacio */
+    grid-template-columns: repeat(2, 1fr);
   }
   /* Grid de mascotas en tablets: 2 columnas */
   .pets .projects-grid-pet {
@@ -1036,24 +1013,17 @@ VARIABLES DE COLOR - Define colores reutilizables en todo el SCSS */
     width: 150px;
     height: 150px;
   }
-  /* Grid de mascotas en móviles: 1 columna */
-  .pets .projects-grid-pet {
-    /* Una sola columna en móviles */
+  /* Grid de proyectos en móviles: 1 columna */
+  .projects .projects-grid {
+    /* Una sola columna para que se vean una debajo de la otra */
     grid-template-columns: 1fr;
     /* Reduce el espacio entre tarjetas */
-    gap: 15px;
-    /* Reduce el espacio entre filas */
-    row-gap: 20px;
+    gap: 20px;
   }
   /* Altura de imagen en móviles */
-  .project-image-pet {
-    /* Reduce más la altura */
-    height: 220px !important;
-  }
-  /* Info de tarjeta en móviles */
-  .project-info {
-    /* Reduce padding */
-    padding: 20px;
+  .project-image {
+    /* Reduce la altura de la imagen */
+    height: 250px !important;
   }
   /* Título de sección en móviles */
   .section-title {
@@ -1061,11 +1031,6 @@ VARIABLES DE COLOR - Define colores reutilizables en todo el SCSS */
     font-size: 1.5rem;
     /* Reduce margen inferior */
     margin-bottom: 30px;
-  }
-  /* Contacto en móviles */
-  .contact-content {
-    /* Menos espacio */
-    gap: 30px;
   }
 }
 

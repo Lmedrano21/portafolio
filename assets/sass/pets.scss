@@ -23,9 +23,7 @@ $color-border: #2d2a2a;
 
 
 
-/* ================================================
-   SECCIÓN PROYECTOS (PROJECTS) - Galería de proyectos
-   ================================================ */
+/* SECCIÓN pets - SE REUTILIZA EL CODIGO DE PROJECT DEL INDEX de forma personalizada*/
 
 .projects {
     /* Relleno: 80px arriba/abajo, 20px izquierda/derecha */
@@ -191,10 +189,7 @@ $color-border: #2d2a2a;
 }
 
 
-/* ================================================
-   RESPONSIVE - Media Queries
-   Adapta el diseño a diferentes tamaños de pantalla
-   ================================================ */
+/* RESPONSIVE - Media Queries */
 
 /* Pantallas medianas (tablets) - Máximo 768px de ancho */
 @media (max-width: 768px) {
@@ -261,10 +256,10 @@ $color-border: #2d2a2a;
         grid-template-columns: 1fr;
     }
 
-    /* Grid de mascotas en tablets: 2 columnas */
+    /* Grid de mascotas en tablets: 3 columnas */
     .pets .projects-grid-pet {
-        /* Cambia a 2 columnas en tablets */
-        grid-template-columns: repeat(2, 1fr);
+        /* Cambia a 3 columnas en tablets para mostrar más contenido */
+        grid-template-columns: repeat(3, 1fr);
         /* Reduce el espacio entre tarjetas */
         gap: 20px;
         /* Reduce el espacio entre filas */
@@ -368,7 +363,7 @@ $color-border: #2d2a2a;
     /* Altura de imagen en móviles */
     .project-image-pet {
         /* Reduce más la altura */
-        height: 220px !important;
+        height: 220px;
     }
 
     /* Info de tarjeta en móviles */
